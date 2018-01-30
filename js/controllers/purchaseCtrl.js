@@ -61,7 +61,10 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
     $scope.products = [];
     $scope.products.push({
         colors:[],
-        pickedColors:[]
+        pickedColors:[],
+        category: {
+            sub_category: []
+        }
     });
 
     $scope.supplierSelected=function(item, model){
@@ -99,7 +102,10 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
     $scope.addAProduct = function(){
         $scope.products.push({
             colors:[],
-            pickedColors: []
+            pickedColors: [],
+            category: {
+                sub_category: []
+            }
         });
     }
 
@@ -115,7 +121,9 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
         modalInstance.result.then(function (item) {
             baseSvc.post({
                 supplier: item.company,
-                company: item.company
+                company: item.company,
+                mobile: item.mobile,
+                address: item.address
             }, "warehouse/supplier/store")
                 .then(function(response){ 
                     if(response.supplier){
@@ -133,6 +141,66 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
             console.log('Modal dismissed at: ' + new Date());
         });
         
+    }
+
+    $scope.addNewCategory = function(categories, product){
+        var modalInstance = $uibModal.open({
+            animation: false,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'js/templates/purchase/addCategoryModal.html',
+            controller: 'ModalInstanceCtrl'
+        });
+      
+        modalInstance.result.then(function (item) {
+            baseSvc.post({category:item.name}, "warehouse/category/store")
+            .then(function(response){ 
+                if(response.category){
+                    response.category.sub_category = [];           
+                    product.category = response.category;
+                    categories.push(response.category);
+                }
+                else if(response.status){
+                    alert(response.status);
+                }
+                else {
+                    alert("Error occured");
+                }
+            })
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    }
+
+    $scope.addNewSubcategory = function(category, product){
+        var modalInstance = $uibModal.open({
+            animation: false,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'js/templates/purchase/addSubcategoryModal.html',
+            controller: 'ModalInstanceCtrl'
+        });
+      
+        modalInstance.result.then(function (item) {
+            baseSvc.post({
+                category: category.id,
+                subcategory: item.name
+            }, "warehouse/subcategory/store")
+            .then(function(response){ 
+                if(response.subcategory){
+                    product.sub_category = response.subcategory;
+                    category.sub_category.push(response.subcategory);
+                }
+                else if(response.status){
+                    alert(response.status);
+                }
+                else {
+                    alert("Error occured");
+                }
+            })
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
     }
 
     $scope.addNewColor = function(colors, pickedColors){
@@ -177,7 +245,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
         });
       
         modalInstance.result.then(function (item) {
-            console.log(sizes);
+            //console.log(sizes);
             baseSvc.post({size:item.name}, "warehouse/size/store")
             .then(function(response){ 
                 if(response.size){

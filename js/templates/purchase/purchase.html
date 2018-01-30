@@ -41,13 +41,20 @@
                             </div>
                             <div class="form-group">
                                 <h3>Category</h3>
-                                <select ng-model="product.category" required class="form-control" ng-options="category.name for category in categories">
+                                <div class="col-md-11" style="padding-left: 0px;padding-bottom: 14px;">
+                                    <select ng-model="product.category" required class="form-control" ng-options="category.name for category in categories">
                                     </select>
+                                </div>
+                                <a ng-click="addNewCategory(categories, product)" class="col-md-1 btn btn-info"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
-                            <div class="form-group" ng-show="product.category">
+                            <div class="form-group">
                                 <h3>Subcategory</h3>
-                                <select ng-model="product.sub_category" required class="form-control" ng-options="sub_category.name for sub_category in product.category.sub_category">
-                                </select>
+                                <div class="col-md-11" style="padding-left: 0px;padding-bottom: 14px;">
+                                    <select ng-model="product.sub_category" required class="form-control" ng-disabled="!product.category.id" ng-options="sub_category.name for sub_category in product.category.sub_category">
+                                        <option value="" disabled ng-if="product.category.id && product.category.sub_category.length==0">No subcategory added to this category. Please add.</option>
+                                    </select>
+                                </div>
+                                <a ng-click="addNewSubcategory(product.category, product)" class="col-md-1 btn btn-info" ng-disabled="!product.category.id"><i class="fa fa-plus" aria-hidden="true"></i></a>
                             </div>
                         </td>
                         <td style="width:50%">
@@ -100,7 +107,7 @@
                         </td>
                     </tr>
                 </table>
-                <div class="" style="">
+                <div style="padding-bottom:10px">
                     <a ng-click="addAProduct()" class="btn btn-info pull-right">Add another product</a>
                 </div>
                 <div class="row col-md-12" style="text-align: center; margin-top: 8px;">
