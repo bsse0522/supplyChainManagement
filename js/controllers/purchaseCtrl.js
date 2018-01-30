@@ -183,7 +183,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
       
         modalInstance.result.then(function (item) {
             baseSvc.post({
-                category: category.id,
+                category_id: category.id,
                 subcategory: item.name
             }, "warehouse/subcategory/store")
             .then(function(response){ 
