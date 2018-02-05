@@ -1,9 +1,9 @@
 myApp.service('baseSvc', function($http, $q) {
     var baseUrl = "http://soft360d.com/accountingManagement/api/";
     function getToken () {
-        var token = localStorage.getItem("token");
-        //return token;
-        return "$2y$10$8U/h2vhQj/aoQMr0VpmIIeLR4Z/JQK.BEt33weq.N2okJzGtd6I6W";
+        var token = localStorage.getItem('token');
+        //console.log(token);
+        return token;
     }
 
     function get(endPoint) {
@@ -15,13 +15,17 @@ myApp.service('baseSvc', function($http, $q) {
                 "api-token": getToken(),
                 "content-Type": "application/json"
             }
-        }).success(function(result) {
-            deferred.resolve(result);
-        }).error(function(result, status) {
+        }).then(function(success) {
+            deferred.resolve(success.data);
+        }, function(error) {
             deferred.reject({
-                error: result,
-                status: status
+                error: error
             });
+            if(error.status==401 || error.status==403){
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                location.href = 'login.html';
+            }
         });
         return deferred.promise;
     }
@@ -36,13 +40,17 @@ myApp.service('baseSvc', function($http, $q) {
                 "content-Type": "application/json"
             },
             data: JSON.stringify(data)
-        }).success(function(result) {
-            deferred.resolve(result);
-        }).error(function(result, status) {
+        }).then(function(success) {
+            deferred.resolve(success.data);
+        }, function(error) {
             deferred.reject({
-                error: result,
-                status: status
+                error: error
             });
+            if(error.status==401 || error.status==403){
+                localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                location.href = 'login.html';
+            }
         });
         return deferred.promise;
     }

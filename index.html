@@ -15,10 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
     <link rel="stylesheet" href="https://rawgit.com/buberdds/angular-bootstrap-colorpicker/master/css/colorpicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-datepicker/2.1.23/angular-datepicker.min.css">
     
 </head>
 
-<body>
+<body ng-app="accounting-soft">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -37,10 +38,13 @@
                             </a>
                         </div>
                     </li>
-
-                    <!-- <li class="active">
-                        <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                    </li> -->
+                    
+                    <li ng-show="role=='super'">
+                        <a ui-sref="dateWiseJournal"><i class="fa fa-diamond"></i> <span class="nav-label">Journals</span></a>
+                    </li>
+                    <li ng-show="role=='super'">
+                        <a ui-sref="dateWiseLedger"><i class="fa fa-diamond"></i> <span class="nav-label">Ledgers</span></a>
+                    </li>
 
                 </ul>
 
@@ -70,7 +74,7 @@
             
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
-                    <div class="col-lg-12" ng-app="accounting-soft">
+                    <div class="col-lg-12">
                         <ui-view></ui-view>
                     </div>
                 </div>
@@ -86,8 +90,12 @@
     </div>
 </body>
 
-<script src="js/angular.min.js"></script>
-<script src="js/angular-ui-router.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-datepicker/2.1.23/angular-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+<script src="https://cdn.rawgit.com/bradberger/angular-material-calendar/master/dist/angular-material-calendar.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-sanitize.js"></script>
 <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
 <script src="js/angular-select.js"></script>
@@ -95,4 +103,7 @@
 <script src="app.js"></script>
 <script src="service.js"></script>
 <script src="js/controllers/purchaseCtrl.js"></script>
+<script src="js/controllers/accountsPurchaseCtrl.js"></script>
+<script src="js/controllers/superAdminJournalCtrl.js"></script>
+<script src="js/controllers/superAdminLedgerCtrl.js"></script>
 </html>

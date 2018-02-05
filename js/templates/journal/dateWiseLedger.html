@@ -1,0 +1,74 @@
+<style>
+    ._720kb-datepicker-calendar {
+        min-width: auto!important;
+        max-width: 800px!important;
+    }
+
+    ._720kb-datepicker-calendar-day._720kb-datepicker-active,
+    ._720kb-datepicker-calendar-day:hover {
+        background: #148efa!important;
+        color: white!important;
+    }
+
+    .padding-left-3em {
+        padding-left: 3em;
+    }
+</style>
+<div class="container">
+    <h2>Ledgers</h2>
+</div>
+<div class="col-md-4">
+    <datepicker datepicker-show="true" date-max-limit="2/4/2018">
+        <input ng-model="date" ng-change="dateChanged(date)" type="text" style="display:none" />
+    </datepicker>
+</div>
+<div class="col-md-8">
+    <div class="table-responsive">
+        <table class="table table-bordered dataTables-example">
+            <thead>
+                <tr class="gtable">
+                    <th style="width: 20%;">Date</th>
+                    <th style="width: 20%;">Accounts</th>
+                    <th style="width: 20%;">Debit</th>
+                    <th style="width: 20%;">Accounts</th>
+                    <th style="width: 20%;">Credit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="gradeX">
+                    <td>21/03/1995</td>
+                    <td>abc</td>
+                    <td>00</td>
+                    <td>def</td>
+                    <td>100</td>
+                </tr>
+                <tr class="gradeX">
+                    <td>21/03/1995</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>100</td>
+                </tr>
+                <tr class="gradeX">
+                    <td rowspan="3" style="vertical-align: middle;"></td>
+                    <td>Balance</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="gradeX">
+                    <td></td>
+                    <td></td>
+                    <td>Transport</td>
+                    <td>200</td>
+                </tr>
+                <tr class="gradeX">
+                    <td></td>
+                    <td></td>
+                    <td>abc</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
