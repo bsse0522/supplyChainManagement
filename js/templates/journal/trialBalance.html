@@ -1,0 +1,31 @@
+<style>
+    .app-modal-window .modal-dialog {
+        width: 400px;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title" style="text-align:center">Trial Balance</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <h3 style="text-align: center;">{{date| date: 'MMMM d, yyyy'}}</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th style="text-align:center">Title of account</th>
+            <th style="text-align:center">Debit</th>
+            <th style="text-align:center">Credit</th>
+        </tr>
+        <tr ng-repeat="ledger in ledgers">
+            <th style="text-align:left">{{ledger.name}}</th>
+            <th style="text-align:right"><span ng-hide="ledger.cr_balance>ledger.dr_balance">{{ledger.balance}}</span></th>
+            <th style="text-align:right"><span ng-show="ledger.cr_balance>ledger.dr_balance">{{ledger.balance}}</span></th>
+        </tr>
+        <tr>
+            <th style="text-align:left"></th>
+            <th style="text-align:right">{{debit}}</span></th>
+            <th style="text-align:right">{{credit}}</span></th>
+        </tr>
+    </table>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel();">Close</button>
+</div>

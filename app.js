@@ -22,19 +22,11 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'superAdminJournalCtrl'
   }
 
-  var dateWiseLedger = {
-    name: 'dateWiseLedger',
-    url: '/ledger',
-    templateUrl: 'js/templates/journal/dateWiseLedger.html',
-    controller: 'superAdminLedgerCtrl'
-  }
-
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
-  $stateProvider.state(dateWiseLedger);
 
-  $urlRouterProvider.otherwise('/ledger');
+  $urlRouterProvider.otherwise('/journal');
 });
 
 myApp.run(function($rootScope){
