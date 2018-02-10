@@ -1,4 +1,4 @@
-var myApp = angular.module('accounting-soft', ['ui.router', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'colorpicker.module', '720kb.datepicker']);
+var myApp = angular.module('accounting-soft', ['ui.router', 'ngSanitize','ngTable', 'ui.bootstrap', 'ui.select', 'colorpicker.module', '720kb.datepicker']);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
   var warehousePurchase = {
