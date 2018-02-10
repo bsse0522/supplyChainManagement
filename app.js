@@ -29,6 +29,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'superAdminLedgerCtrl'
   }
 
+  var superDashboard = {
+    name: 'superDashboard',
+    url: '/super/dashboard',
+    templateUrl: 'js/templates/superDashboard/dashboard.html',
+    controller: 'superAdminLedgerCtrl'
+  }
+
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
