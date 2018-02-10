@@ -9,14 +9,35 @@
         <div class="">
             <div class="tab-pane active">
                 <div>
-                    <div>
-                        <p style="font-weight: bold;">Supplier Name: {{item.supplier.company}}</p>
-                        <p style="font-weight: bold;">Reference: {{item.reference}}</p>
-                        <p style="font-weight: bold;">Transport Cost: {{item.transport}}</p>
-                        <p style="font-weight: bold;">Labour Cost: {{item.labour}}</p>
-                        <p style="font-weight: bold;">Discount: {{item.discount}}</p>
-                        <p style="font-weight: bold;">Other: {{item.other}}</p>
-                        <p style="font-weight: bold;">Vat: {{item.vat==1?'Yes':'No'}}</p>
+                    <div class="p-m-p">
+                        <div class="col-md-4">Supplier Name:</div>
+                        <div class="col-md-8">{{item.supplier.company}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Reference:</div>
+                        <div class="col-md-8">{{item.reference}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Transport Cost:</div>
+                        <div class="col-md-8">{{item.transport?item.transport:0}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Labour Cost:</div>
+                        <div class="col-md-8">{{item.labour?item.labour:0}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Discount:</div>
+                        <div class="col-md-8">{{item.discount?item.discount:0}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Other:</div>
+                        <div class="col-md-8">{{item.other?item.other:0}}</div>
+                        <div class="clearix"></div>
+
+                        <div class="col-md-4">Vat:</div>
+                        <div class="col-md-8">{{item.vat==1?'Yes':'No'}}</div>
+                        <div class="clearix"></div>
+
                         <div class=" float-e-margins">
                             <div class="ibox-content" style="border: none;">
                                 <table class="table table-hover">
