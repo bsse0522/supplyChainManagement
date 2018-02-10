@@ -35,10 +35,10 @@
                                                         <td>{{purchase.reference}}</td>
                                                         <td>
                                                             <a href="" ng-click="showPurchaseInfo(purchase)">
-                                                                <i class="fa fa-eye" style="margin-right: 10px;"></i>
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Details" style="margin-right: 10px;"></i>
                                                             </a>
                                                             <a href="" ng-click="addAccountsInfo(purchase)">
-                                                                <i class="fa fa-edit"></i>
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -93,8 +93,8 @@
                                                         <td>{{purchase.supplier.company}}</td>
                                                         <td>{{purchase.reference}}</td>
                                                         <td>
-                                                            <a href="" ng-click="showCompletePurchaseInfo(purchase)">
-                                                                <i class="fa fa-eye" style="margin-right: 10px;"></i>
+                                                            <a href=""  ng-click="showCompletePurchaseInfo(purchase)">
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Details" style="margin-right: 10px;"></i>
                                                             </a>
                                                             <!-- <a href="" ng-click="addAccountsInfo(purchase)">
                                                                 <i class="fa fa-edit"></i>

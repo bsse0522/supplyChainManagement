@@ -8610,3 +8610,10 @@ body.md-skin {
 .p-th th {
   text-align: center;
 }
+
+.p-m-p .col-md-4 {
+  margin-bottom: 5px;
+}
+.p-m-p .col-md-8 {
+  margin-bottom: 5px;
+}
