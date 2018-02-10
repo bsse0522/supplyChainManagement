@@ -4,10 +4,12 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
         location.href = "login.html"
     }
     $scope.ledgers = [];
+    $scope.showLedgers = false;
+    $scope.showTrialBalance = false;
     var d = new Date();
     $scope.date = new Date();
     $scope.today = "" + d.getMonth + "\/" + d.getDate() + "\/" + d.getFullYear();
-    $scope.dateChanged = function (from, to) {
+    $scope.showLedger = function (from, to) {
         from = new Date(from);
         to = new Date(to);
         var fd = "" + from.getFullYear() + "-" + (from.getMonth() + 1) + "-" + from.getDate();
@@ -30,9 +32,9 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
                                 transaction.creditAccount = "By " + node.dr[i].account;
                                 transaction.creditValue = node.dr[i].value;
                             }
-                            else if (node.dr.length == i && node.cr_balance > node.dr_balance) {
+                            else if (node.dr.length == i && node.dr_balance > node.cr_balance) {
                                 transaction.date2 = '';
-                                transaction.creditAccount = 'Balance C/D';
+                                transaction.creditAccount = 'By Balance C/D';
                                 transaction.creditValue = node.balance;
                             }
                             else {
@@ -42,13 +44,13 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
                             }
                             node.transactions.push(transaction);
                         }
-                        if (node.dr_balance > node.cr_balance) {
+                        if (node.cr_balance > node.dr_balance) {
                             var transaction = {};
                             transaction.date1 = '';
                             transaction.creditAccount = '';
                             transaction.creditValue = '';
                             transaction.date2 = '';
-                            transaction.debitAccount = 'Balance C/D';
+                            transaction.debitAccount = 'To Balance C/D';
                             transaction.debitValue = node.balance;
                             node.transactions.push(transaction);
                         }
@@ -64,9 +66,9 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
                                 transaction.debitAccount = "To " + node.cr[i].account;
                                 transaction.debitValue = node.cr[i].value;
                             }
-                            else if (node.cr.length == i && node.dr_balance > node.cr_balance) {
+                            else if (node.cr.length == i && node.cr_balance > node.dr_balance) {
                                 transaction.date1 = '';
-                                transaction.debitAccount = 'Balance C/D';
+                                transaction.debitAccount = 'To Balance C/D';
                                 transaction.debitValue = node.balance;
                             }
                             else {
@@ -76,10 +78,10 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
                             }
                             node.transactions.push(transaction);
                         }
-                        if (node.dr_balance < node.cr_balance) {
+                        if (node.cr_balance < node.dr_balance) {
                             var transaction = {};
                             transaction.date1 = '';
-                            transaction.creditAccount = 'Balance C/D';
+                            transaction.creditAccount = 'By Balance C/D';
                             transaction.creditValue = node.balance;
                             transaction.date2 = '';
                             transaction.debitAccount = '';
@@ -99,67 +101,78 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
                             node.transactions.push(transaction);
                         }
 
-                        if (node.dr_balance < node.cr_balance) {
+                        if (node.cr_balance < node.dr_balance) {
                             var transaction = {};
                             transaction.date1 = '';
-                            transaction.creditAccount = 'Balance C/D';
+                            transaction.creditAccount = 'By Balance C/D';
                             transaction.creditValue = node.balance;
                             transaction.date2 = '';
                             transaction.debitAccount = '';
                             transaction.debitValue = '';
                             node.transactions.push(transaction);
                         }
-                        else if (node.dr_balance > node.cr_balance) {
+                        else if (node.cr_balance > node.dr_balance) {
                             var transaction = {};
                             transaction.date1 = '';
                             transaction.creditAccount = '';
                             transaction.creditValue = '';
                             transaction.date2 = '';
-                            transaction.debitAccount = 'Balance C/D';
+                            transaction.debitAccount = 'To Balance C/D';
                             transaction.debitValue = node.balance;
                             node.transactions.push(transaction);
                         }
                     }
+                    $scope.showLedgers = true;
+                    $scope.debit = 0;
+                    $scope.credit = 0;
+                    $scope.ledgers.forEach(function (node) {
+                        if (node.cr_balance > node.dr_balance) {
+                            $scope.credit += node.balance;
+                        }
+                        else {
+                            $scope.debit += node.balance;
+                        }
+                    });
                 });
 
                 //console.log($scope.ledgers);
             });
     }
 
-    $scope.showTrialBalance = function (){
-        var modalInstance = $uibModal.open({
-            animation: false,
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: 'js/templates/journal/trialBalance.html',
-            controller: 'TrialBalanceModalCtrl',
-            resolve: {
-                items: function() {
-                    return {
-                        date: $scope.date,
-                        ledgers: $scope.ledgers
-                    }
-                }
-              }
-        });
+    // $scope.showTrialBalance = function (){
+    //     var modalInstance = $uibModal.open({
+    //         animation: false,
+    //         ariaLabelledBy: 'modal-title',
+    //         ariaDescribedBy: 'modal-body',
+    //         templateUrl: 'js/templates/journal/trialBalance.html',
+    //         controller: 'TrialBalanceModalCtrl',
+    //         resolve: {
+    //             items: function() {
+    //                 return {
+    //                     date: $scope.date,
+    //                     ledgers: $scope.ledgers
+    //                 }
+    //             }
+    //           }
+    //     });
 
-        modalInstance.result.then(function (item) {
-            console.log('Modal dismissed at: ' + new Date());
-        }, function () {
-            console.log('Modal dismissed at: ' + new Date());
-        });
-    }
+    //     modalInstance.result.then(function (item) {
+    //         console.log('Modal dismissed at: ' + new Date());
+    //     }, function () {
+    //         console.log('Modal dismissed at: ' + new Date());
+    //     });
+    // }
 });
 
 
-myApp.controller('TrialBalanceModalCtrl', function ($scope, $uibModalInstance, items) { 
+myApp.controller('TrialBalanceModalCtrl', function ($scope, $uibModalInstance, items) {
     console.log(items);
     $scope.date = items.date;
     $scope.ledgers = items.ledgers;
     $scope.debit = 0;
     $scope.credit = 0;
-    $scope.ledgers.forEach(function(node){
-        if(node.cr_balance>node.dr_balance){
+    $scope.ledgers.forEach(function (node) {
+        if (node.cr_balance > node.dr_balance) {
             $scope.credit += node.balance;
         }
         else {
