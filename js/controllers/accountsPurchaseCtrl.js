@@ -27,6 +27,32 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             ariaDescribedBy: 'modal-body',
             templateUrl: 'js/templates/accounts/addInfo.html',
             controller: 'AddInfoModalInstanceCtrl',
+            size: 'lg',
+            resolve: {
+                purchase: function() {
+                  return purchase;
+                }
+              }
+        });
+      
+        modalInstance.result.then(function (item) {
+            //console.log(item);
+            if(item.success==true){
+                $scope.getIncompletePurchases();
+                alert("Added successfully.")
+            }
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    }
+
+    $scope.showPurchaseInfo = function(purchase){
+        var modalInstance = $uibModal.open({
+            animation: false,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'js/templates/accounts/showIncompletePurchase.html',
+            controller: 'ViewPurchaseInfoModalCtrl',
             resolve: {
                 purchase: function() {
                   return purchase;
@@ -50,6 +76,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
 myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = {};
     angular.copy(purchase, $scope.item);
+    console.log($scope.item);
     $scope.item.product.forEach(function(node) {
         node.payment_category = "1";
         node.payment_type = "1";
@@ -93,6 +120,14 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
                 }
             })
     };
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+myApp.controller('ViewPurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
+    $scope.item = purchase;
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

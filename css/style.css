@@ -8601,3 +8601,12 @@ body.md-skin {
 ._720kb-datepicker-calendar {
   position: relative !important;
 }
+
+.p-td td {
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+.p-th th {
+  text-align: center;
+}

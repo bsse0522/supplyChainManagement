@@ -1,0 +1,49 @@
+<form ng-submit="save(item)">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Incomplete Purchase</h4>
+    </div>
+    <div class="modal-body">
+        <div class="">
+            <div class="tab-pane active">
+                <div>                          
+                    <div>
+                        <p style="font-weight: bold;">Supplier Name:</p>
+                        <p style="font-weight: bold;">Reference:</p>
+                        <div class=" float-e-margins">
+                        <div class="ibox-content" style="border: none;">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr class="p-th">
+                                    <th>S/L</th>
+                                    <th>Product Name</th>
+                                    <th>Cetegory:</th>
+                                    <th>Subcetegory:</th>
+                                    <th>Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="p-td">
+                                    <td>1</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>200</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <a type="button" class="btn btn-white" ng-click="cancel()">Close</a>
+        <button type="submit" style="margin-top: -6px;" class="btn btn-primary" >Save</button>
+    </div>
+</form>

@@ -39,10 +39,7 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
             size: 'lg',
             resolve: {
                 journals: function() {
-                    return {
-                        journals: $scope.journals,
-                        date: date
-                    }
+                    return $scope.journals;
                 }
               }
         });
