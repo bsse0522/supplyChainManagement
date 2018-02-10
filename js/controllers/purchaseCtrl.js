@@ -8,6 +8,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
         $rootScope.withoutPermission();
     }
 
+    $rootScope.title = "Add Purchase";
 
     $scope.supplier = {};
 

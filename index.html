@@ -12,12 +12,12 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/select.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css">
     <link rel="stylesheet" href="https://rawgit.com/buberdds/angular-bootstrap-colorpicker/master/css/colorpicker.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-datepicker/2.1.23/angular-datepicker.min.css">
-    <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
-    
+    <link rel="stylesheet" ; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+
 </head>
 
 <body ng-app="accounting-soft">
@@ -34,7 +34,8 @@
                                 <span class="clear">
                                     <span class="block m-t-xs">
                                         <strong class="font-bold">David Williams</strong>
-                                    </span> <span class="text-muted text-xs block"> Director </span>
+                                    </span>
+                                    <span class="text-muted text-xs block"> Director </span>
                                 </span>
                             </a>
                         </div>
@@ -42,12 +43,42 @@
                             Logo
                         </div>
                     </li>
-                    
+
                     <li ng-show="role==='super'">
-                        <a ui-sref="dateWiseJournal"><i class="fa fa-diamond"></i> <span class="nav-label">Journals</span></a>
+                        <a ui-sref="superDashboard">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='super'">
+                        <a ui-sref="dateWiseJournal">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Journal</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='super'">
+                        <a ui-sref="dateWiseLedger">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Ledger</span>
+                        </a>
                     </li>
                     <li ng-show="role==='accounts'">
-                        <a ui-sref="dateWiseJournal"><i class="fa fa-diamond"></i> <span class="nav-label">afgdsf</span></a>
+                        <a ui-sref="accountsIncompletePurchase">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Purchases</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='warehouse'">
+                        <a ui-sref="warehouseDashboard">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Dashboard</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='warehouse'">
+                        <a ui-sref="warehousePurchase">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Add Purchase</span>
+                        </a>
                     </li>
                 </ul>
 
@@ -58,7 +89,9 @@
             <div class="row border-bottom">
                 <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
-                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="javascript:void(0)">
+                            <i class="fa fa-bars"></i>
+                        </a>
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
@@ -73,10 +106,10 @@
 
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-lg-9">
-                    <h2>Contacts 2</h2>
+                    <h2>{{title}}</h2>
                 </div>
             </div>
-            
+
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
                     <div class="col-lg-12">
@@ -112,6 +145,7 @@
 <script src="js/controllers/accountsPurchaseCtrl.js"></script>
 <script src="js/controllers/superAdminJournalCtrl.js"></script>
 <script src="js/controllers/superAdminLedgerCtrl.js"></script>
+<script src="js/controllers/superAdminDashboardCtrl.js"></script>
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

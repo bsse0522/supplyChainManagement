@@ -1,6 +1,12 @@
 var myApp = angular.module('accounting-soft', ['ui.router', 'ngSanitize', 'ngTable', 'ui.bootstrap', 'ui.select', 'colorpicker.module', '720kb.datepicker']);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
+  var home = {
+    name: 'home',
+    url: '/',
+    template: 'Hello'
+  }
+
   var warehousePurchase = {
     name: 'warehousePurchase',
     url: '/warehouse/purchase',
@@ -10,7 +16,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
   var accountsIncompletePurchase = {
     name: 'accountsIncompletePurchase',
-    url: '/accounts/incomplete/purchase',
+    url: '/accounts/purchase',
     templateUrl: 'js/templates/accounts/incompletePurchase.html',
     controller: 'accountsIncompletePurchaseCtrl'
   }
@@ -33,6 +39,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     name: 'superDashboard',
     url: '/super/dashboard',
     templateUrl: 'js/templates/superDashboard/dashboard.html',
+    controller: 'superAdminDashboardCtrl'
   }
 
   var warehouseDashboard = {
@@ -48,29 +55,29 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(superDashboard);
   $stateProvider.state(warehouseDashboard);
 
-  $urlRouterProvider.otherwise('/journal');
+  $urlRouterProvider.otherwise('/');
 });
 
 myApp.run(function ($rootScope, $state) {
   $rootScope.role = localStorage.getItem("role");
-  $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
-    //console.log($rootScope.role);
-  })
+  // $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+  //   console.log(toState);
+  // })
 
   $rootScope.withoutPermission = function () {
     if ($rootScope.role) {
       if ($rootScope.role == 'super') {
-        $state.go('dateWiseJournal');
+        $state.go('superDashboard');
       }
       else if ($rootScope.role == 'warehouse') {
-        $state.go('warehousePurchase');
+        $state.go('warehouseDashboard');
       }
       else if ($rootScope.role == 'accounts') {
         $state.go('accountsIncompletePurchase');
       }
-      else if ($rootScope.role == 'marketing') {
-        $state.go('dateWiseJournal');
-      }
+      // else if ($rootScope.role == 'marketing') {
+      //   $state.go('dateWiseJournal');
+      // }
       else {
         localStorage.clear();
         window.location.href = "login.html";
@@ -81,9 +88,14 @@ myApp.run(function ($rootScope, $state) {
       window.location.href = "login.html";
     }
   }
+  
   $rootScope.logout = function () {
     localStorage.clear();
     window.location.href = "login.html";
+  }
+
+  if($state.current.abstract){
+    $rootScope.withoutPermission();
   }
 });
 

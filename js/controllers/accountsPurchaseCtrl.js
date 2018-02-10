@@ -8,6 +8,8 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
         $rootScope.withoutPermission();
     }
 
+    $rootScope.title = "Purchases";
+
     $scope.incompletePurchases = [];
 
     $scope.getIncompletePurchases = function(){

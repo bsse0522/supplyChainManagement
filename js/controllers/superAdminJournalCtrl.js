@@ -7,7 +7,7 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
     if ($rootScope.role != 'super') {
         $rootScope.withoutPermission();
     }
-
+    $rootScope.title = "Journal";
     
     $scope.journals = [];
     var d = new Date();

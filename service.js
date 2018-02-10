@@ -22,8 +22,7 @@ myApp.service('baseSvc', function($http, $q) {
                 error: error
             });
             if(error.status==401 || error.status==403){
-                localStorage.removeItem("token");
-                localStorage.removeItem("role");
+                localStorage.clear();
                 location.href = 'login.html';
             }
         });
@@ -47,8 +46,7 @@ myApp.service('baseSvc', function($http, $q) {
                 error: error
             });
             if(error.status==401 || error.status==403){
-                localStorage.removeItem("token");
-                localStorage.removeItem("role");
+                localStorage.clear();
                 location.href = 'login.html';
             }
         });

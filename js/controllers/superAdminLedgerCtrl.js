@@ -1,8 +1,12 @@
-myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal) {
+myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $rootScope) {
     var token = localStorage.getItem("token");
     if (!token) {
         location.href = "login.html"
     }
+    if ($rootScope.role != 'super') {
+        $rootScope.withoutPermission();
+    }
+    $rootScope.title = "Ledger";
     $scope.ledgers = [];
     $scope.showLedgers = false;
     $scope.showTrialBalance = false;
