@@ -17,8 +17,16 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             $scope.incompletePurchases = response;
         });
     }
+    $scope.getCompletePurchases = function(){
+        baseSvc.get("complete/purchases")
+        .then(function(response){
+            console.log(response);
+            $scope.completePurchases = response;
+        });
+    }
 
     $scope.getIncompletePurchases();
+    $scope.getCompletePurchases();
 
     $scope.addAccountsInfo = function(purchase){
         var modalInstance = $uibModal.open({
@@ -39,6 +47,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             //console.log(item);
             if(item.success==true){
                 $scope.getIncompletePurchases();
+                $scope.getCompletePurchases();
                 alert("Added successfully.")
             }
         }, function () {
@@ -52,7 +61,32 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
             templateUrl: 'js/templates/accounts/showIncompletePurchase.html',
-            controller: 'ViewPurchaseInfoModalCtrl',
+            controller: 'ViewIncompletePurchaseInfoModalCtrl',
+            resolve: {
+                purchase: function() {
+                  return purchase;
+                }
+              }
+        });
+      
+        modalInstance.result.then(function (item) {
+            //console.log(item);
+            if(item.success==true){
+                $scope.getIncompletePurchases();
+                alert("Added successfully.")
+            }
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    }
+
+    $scope.showCompletePurchaseInfo = function(purchase){
+        var modalInstance = $uibModal.open({
+            animation: false,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'js/templates/accounts/showCompletePurchase.html',
+            controller: 'ViewCompletePurchaseInfoModalCtrl',
             resolve: {
                 purchase: function() {
                   return purchase;
@@ -76,7 +110,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
 myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = {};
     angular.copy(purchase, $scope.item);
-    console.log($scope.item);
+    //console.log($scope.item);
     $scope.item.product.forEach(function(node) {
         node.payment_category = "1";
         node.payment_type = "1";
@@ -126,43 +160,18 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
     };
 });
 
-myApp.controller('ViewPurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
+myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = purchase;
-
+    console.log($scope.item);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 });
 
-myApp.controller('accountsCompletePurchaseCtrl', function($scope, baseSvc, $uibModal) {
-    // var token = localStorage.getItem("token");
-    // if(!token){
-    //     location.href="login.html"
-    // }
-    $scope.incompletePurchases = [];
-
-    $scope.getIncompletePurchases = function(){
-        baseSvc.get("incomplete/purchases")
-        .then(function(response){
-            $scope.incompletePurchases = response;
-        });
-    }
-
-    $scope.getIncompletePurchases();
-
-    $scope.addAccountsInfo = function(purchase){
-        var modalInstance = $uibModal.open({
-            animation: false,
-            ariaLabelledBy: 'modal-title',
-            ariaDescribedBy: 'modal-body',
-            templateUrl: 'js/templates/accounts/addInfo.html',
-            controller: 'AddInfoModalInstanceCtrl'
-        });
-      
-        modalInstance.result.then(function (item) {
-            //console.log(item);
-        }, function () {
-            console.log('Modal dismissed at: ' + new Date());
-        });
-    }
+myApp.controller('ViewCompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
+    $scope.item = purchase;
+    console.log($scope.item);
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });
