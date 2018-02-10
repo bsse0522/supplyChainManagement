@@ -1,8 +1,13 @@
-myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $uibModal) {
+myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
     var token = localStorage.getItem("token");
     if(!token){
         location.href="login.html"
     }
+
+    if ($rootScope.role != 'accounts') {
+        $rootScope.withoutPermission();
+    }
+
     $scope.incompletePurchases = [];
 
     $scope.getIncompletePurchases = function(){

@@ -1,0 +1,47 @@
+<style>
+    .app-modal-window .modal-dialog {
+        width: 400px;
+    }
+</style>
+<div class="modal-header">
+    <h3 class="modal-title" id="modal-title" style="text-align:center">Journal</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="table-responsive">
+        <table class="table table-bordered dataTables-example">
+            <thead>
+                <tr class="gtable">
+                    <th style="width: 20%;">Date</th>
+                    <th style="width: 40%;">Accounts</th>
+                    <th style="width: 10%; ">Reference</th>
+                    <th>Debits</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="journal in journals">
+                <tr class="gradeX" ng-repeat="ledger in journal.ledger track by $index">
+                    <td rowspan="{{journal.ledger.length+1}}" ng-if="$index==0" style="vertical-align: middle;">{{journal.created_at | date : 'd/M/yyyy'}}</td>
+                    <td>{{ledger.name}}</td>
+                    <td>
+                        <a href="javascript:void(0)">{{ledger.id}}</a>
+                    </td>
+                    <td style="text-align: right; ">
+                        <span ng-if="ledger.pivot.account_type=='Dr'">{{ledger.pivot.value}}</span>
+                    </td>
+                    <td style="text-align: right; ">
+                        <span ng-if="ledger.pivot.account_type=='Cr'">{{ledger.pivot.value}}</span>
+                    </td>
+                </tr>
+                <tr class="gradeX">
+                    <td>({{journal.narration}})</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="cancel();">Close</button>
+</div>

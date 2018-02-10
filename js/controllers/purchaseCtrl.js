@@ -1,8 +1,14 @@
-myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal) {
+myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
     var token = localStorage.getItem("token");
     if(!token){
         location.href="login.html"
     }
+
+    if ($rootScope.role != 'warehouse') {
+        $rootScope.withoutPermission();
+    }
+
+
     $scope.supplier = {};
 
     baseSvc.get("suppliers")

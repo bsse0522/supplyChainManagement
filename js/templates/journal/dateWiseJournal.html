@@ -23,55 +23,14 @@
         <h2 style="font-weight: bold;">Journal</h2>
     </div>
     <div class="tabs-container">
-        <div class="col-md-2">
+        <div class="col-md-3">
 
         </div>
-        <div class="col-md-8" style="padding-top:20px" ng-hide="showJournal">
+        <div class="col-md-6" style="padding-top:20px">
             <label>Select a date</label>
             <datepicker datepicker-show="true">
                 <input ng-model="date" ng-change="dateChanged(date)" type="text" style="display:none" />
             </datepicker>
-        </div>
-        <div class="col-md-8" ng-show="showJournal" style="background-color:white;padding:20px;min-height:600px">
-            <div class="row" style="padding: 32px;">
-                <a class="btn btn-info pull-left" ng-click="showJournal=false">Go back</a>
-                <a class="btn btn-info pull-right" style="margin-left:20px" ng-click="showTrialBalance()">Trial balance</a>
-                <a class="btn btn-info pull-right" ng-click="showAllLedgers()">All ledgers</a>
-            </div>
-            <div class="table-responsive">
-                <table class="table table-bordered dataTables-example">
-                    <thead>
-                        <tr class="gtable">
-                            <th style="width: 20%;">Date</th>
-                            <th style="width: 40%;">Accounts</th>
-                            <th style="width: 10%; ">Reference</th>
-                            <th>Debits</th>
-                            <th>Credits</th>
-                        </tr>
-                    </thead>
-                    <tbody ng-repeat="journal in journals">
-                        <tr class="gradeX" ng-repeat="ledger in journal.ledger track by $index">
-                            <td rowspan="{{journal.ledger.length+1}}" ng-if="$index==0" style="vertical-align: middle;">{{journal.created_at | date : 'd/M/yyyy'}}</td>
-                            <td>{{ledger.name}}</td>
-                            <td>
-                                <a ng-click="showLedger(ledger.id)" href="javascript:void(0)">{{ledger.id}}</a>
-                            </td>
-                            <td style="text-align: right; ">
-                                <span ng-if="ledger.pivot.account_type=='Dr'">{{ledger.pivot.value}}</span>
-                            </td>
-                            <td style="text-align: right; ">
-                                <span ng-if="ledger.pivot.account_type=='Cr'">{{ledger.pivot.value}}</span>
-                            </td>
-                        </tr>
-                        <tr class="gradeX">
-                            <td>({{journal.narration}})</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </div>
 </div>

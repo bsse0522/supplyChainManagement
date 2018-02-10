@@ -39,10 +39,12 @@
                         </div>
                     </li>
                     
-                    <li ng-show="role=='super'">
+                    <li ng-show="role==='super'">
                         <a ui-sref="dateWiseJournal"><i class="fa fa-diamond"></i> <span class="nav-label">Journals</span></a>
                     </li>
-
+                    <li ng-show="role==='accounts'">
+                        <a ui-sref="dateWiseJournal"><i class="fa fa-diamond"></i> <span class="nav-label">afgdsf</span></a>
+                    </li>
                 </ul>
 
             </div>
@@ -60,7 +62,7 @@
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="login.html">
+                            <a ng-click="logout()">
                                 <i class="fa fa-sign-out"></i> Log out
                             </a>
                         </li>

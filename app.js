@@ -29,8 +29,40 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/journal');
 });
 
-myApp.run(function($rootScope){
+myApp.run(function ($rootScope, $state) {
   $rootScope.role = localStorage.getItem("role");
+  $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+    //console.log($rootScope.role);
+  })
+
+  $rootScope.withoutPermission = function () {
+    if ($rootScope.role) {
+      if ($rootScope.role == 'super') {
+        $state.go('dateWiseJournal');
+      }
+      else if ($rootScope.role == 'warehouse') {
+        $state.go('warehousePurchase');
+      }
+      else if ($rootScope.role == 'accounts') {
+        $state.go('accountsIncompletePurchase');
+      }
+      else if ($rootScope.role == 'marketing') {
+        $state.go('dateWiseJournal');
+      }
+      else {
+        localStorage.clear();
+        window.location.href = "login.html";
+      }
+    }
+    else {
+      localStorage.clear();
+      window.location.href = "login.html";
+    }
+  }
+  $rootScope.logout = function () {
+    localStorage.clear();
+    window.location.href = "login.html";
+  }
 });
 
 myApp.filter('propsFilter', function () {
