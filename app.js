@@ -46,6 +46,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     name: 'warehouseDashboard',
     url: '/warehouse/dashboard',
     templateUrl: 'js/templates/warehouseDashboard/dashboard.html',
+    controller: 'warehouseDashboardCtrl'
   }
 
   $stateProvider.state(warehousePurchase);
