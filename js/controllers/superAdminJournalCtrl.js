@@ -25,11 +25,11 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
                 $scope.journals.forEach(function (node) {
                     node.created_at = new Date(node.created_at);
                 });
-                showJournal();
+                showJournal(date);
             });
     }
 
-    function showJournal(){
+    function showJournal(date){
         var modalInstance = $uibModal.open({
             animation: false,
             ariaLabelledBy: 'modal-title',
@@ -39,7 +39,10 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
             size: 'lg',
             resolve: {
                 journals: function() {
-                    return $scope.journals
+                    return {
+                        journals: $scope.journals,
+                        date: date
+                    }
                 }
               }
         });

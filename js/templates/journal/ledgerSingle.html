@@ -7,7 +7,6 @@
     <h3 class="modal-title" id="modal-title" style="text-align:center">General ledger</h3>
 </div>
 <div class="modal-body" id="modal-body">
-    <div ng-repeat="ledger in ledgers" style="padding-bottom:20px">
         <h3 style="text-align: center;">{{ledger.name}} account</h3>
         <table class="table table-bordered">
             <tr>
@@ -61,7 +60,6 @@
                 <td style="text-align:right">{{ledger.cr_balance>ledger.dr_balance? '':ledger.balance}}</td>
             </tr>
         </table>
-    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-warning" type="button" ng-click="cancel();">Close</button>
