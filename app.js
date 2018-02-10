@@ -1,4 +1,4 @@
-var myApp = angular.module('accounting-soft', ['ui.router', 'ngSanitize','ngTable', 'ui.bootstrap', 'ui.select', 'colorpicker.module', '720kb.datepicker']);
+var myApp = angular.module('accounting-soft', ['ui.router', 'ngSanitize', 'ui.bootstrap', 'ui.select', 'colorpicker.module', '720kb.datepicker']);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
   var warehousePurchase = {
@@ -33,13 +33,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     name: 'superDashboard',
     url: '/super/dashboard',
     templateUrl: 'js/templates/superDashboard/dashboard.html',
-    controller: 'superAdminLedgerCtrl'
   }
 
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
   $stateProvider.state(dateWiseLedger);
+  $stateProvider.state(superDashboard);
 
   $urlRouterProvider.otherwise('/journal');
 });
