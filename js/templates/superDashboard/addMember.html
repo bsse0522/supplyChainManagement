@@ -1,28 +1,23 @@
 <div class="row">
-
-    <div class="col-md-1"></div>
     <div class="col-md-5">
         <div class="ibox-content">
             <h2 class="font-bold" style="text-align: center;">Create New Employee</h2>
-            <form class="m-t" role="form" action="http://webapplayers.com/inspinia_admin-v2.7.1/index.html">
+            <form class="m-t" ng-submit="submitUser(user)">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Name" required="">
+                    <input type="text" class="form-control" ng-model="user.name" placeholder="Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Email" required="">
+                    <input type="email" class="form-control" ng-model="user.email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Phone" required="">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password" required="">
+                    <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required>
                 </div>
                 <div class="">
-                    <select class="form-control m-b" name="account">
-                        <option>Type 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
+                    <select ng-init="user.role='super'" class="form-control m-b" name="account" ng-model="user.role" required>
+                        <option value="super">Super Admin</option>
+                        <option value="accounts">Accounts</option>
+                        <option value="warehouse">Warehouse Admin</option>
+                        <option value="marketing">Marketing</option>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Submit</button>      

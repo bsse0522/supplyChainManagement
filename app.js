@@ -46,7 +46,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   var addMember = {
     name: 'addMember',
     url: '/add/member',
-    templateUrl: 'js/templates/superDashboard/addMember.html'
+    templateUrl: 'js/templates/superDashboard/addMember.html',
+    controller: 'addNewMemberCtrl'
   }
 
   var warehouseDashboard = {
