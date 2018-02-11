@@ -8,9 +8,9 @@
                 <div class="row">
                     <div class="col-lg-6" style="margin-left: 8px;">
                         <div class="form-group" style="margin-bottom: 0px;">
-                            <h3>Select Supplier
+                            <h5>Select Supplier
                                 <span style="color:red">*</span>
-                            </h3>
+                            </h5>
                             <ui-select ng-model="supplier" on-select="supplierSelected($item, $model)" ng-required="true" style="padding-left: 0px; height: 32px;"
                                 theme="select2" class="col-md-11" title="Choose a supplier">
                                 <ui-select-match placeholder="Select a supplier">{{$select.selected.company}}</ui-select-match>
@@ -28,30 +28,30 @@
                     </div>
                     <div class="col-lg-6" style="width: 48%">
                         <div class="form-group">
-                            <h3>Reference
+                            <h5>Reference
                                 <span style="color:red">*</span>
-                            </h3>
+                            </h5>
                             <input ng-model="reference" required type="text" class="form-control">
                         </div>
                     </div>
                 </div>
                 <table class="table table-striped" style="margin-bottom: 0px;">
                     <tr>
-                        <th style="font-size: 18px; padding-left: 11px;">Basic Product Info</th>
-                        <th style="font-size: 18px; padding-left: 21px;">Quantity of different colors and sizes</th>
+                        <th style="font-size: 13px; padding-left: 11px;">Basic Product Info</th>
+                        <th style="font-size: 13px; padding-left: 21px;">Quantity of different colors and sizes</th>
                     </tr>
                     <tr ng-repeat="product in products">
                         <td style="width:50%">
                             <div class="form-group">
-                                <h3>Product Name
+                                <h5>Product Name
                                     <span style="color:red">*</span>
-                                </h3>
+                                </h5>
                                 <input ng-model="product.name" required type="text" class="form-control">
                             </div>
                             <div class="form-group">
-                                <h3>Category
+                                <h5>Category
                                     <span style="color:red">*</span>
-                                </h3>
+                                </h5>
                                 <div class="col-md-11" style="padding-left: 0px;padding-bottom: 14px;">
                                     <select ng-model="product.category" required class="form-control" ng-options="category.name for category in categories">
                                     </select>
@@ -61,9 +61,9 @@
                                 </a>
                             </div>
                             <div class="form-group">
-                                <h3>Subcategory
+                                <h5>Subcategory
                                     <span style="color:red">*</span>
-                                </h3>
+                                </h5>
                                 <div class="col-md-11" style="padding-left: 0px;padding-bottom: 14px;">
                                     <select ng-model="product.sub_category" required class="form-control" ng-disabled="!product.category.id" ng-options="sub_category.name for sub_category in product.category.sub_category">
                                         <option value="" disabled ng-if="product.category.id && product.category.sub_category.length==0">No subcategory added to this category. Please add.</option>
@@ -76,9 +76,9 @@
                         </td>
                         <td style="width:50%">
                             <div class="form-group col-md-11">
-                                <h3>Select Colors
+                                <h5>Select Colors
                                     <span style="color:red">*</span>
-                                </h3>
+                                </h5>
                                 <ui-select multiple ng-model="product.colors" on-select="colorSelected($item, product.pickedColors)" on-remove="colorRemoved($item, product.pickedColors)"
                                     ng-required="true" close-on-select="false" style="padding-left: 0px;" theme="select2" class="col-md-12"
                                     title="Choose colors">
@@ -88,19 +88,19 @@
                                     </ui-select-choices>
                                 </ui-select>
                             </div>
-                            <a ng-click="addNewColor(product.colors, product.pickedColors)" class="col-md-1 btn btn-info" style="top: 32px;">
+                            <a ng-click="addNewColor(product.colors, product.pickedColors)" class="col-md-1 btn btn-info" style="top: 28px;">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                             </a>
                             <div class="col-md-12" style="padding-right: 0px;">
                                 <table class="table table-striped" ng-show="product.pickedColors.length>0">
                                     <tr>
-                                        <th style="font-size: 16px;">Colors</th>
-                                        <th style="font-size: 16px; padding-left: 25px">Select Sizes
+                                        <th style="font-size: 12px;">Colors</th>
+                                        <th style="font-size: 12px; padding-left: 25px">Select Sizes
                                             <span style="color:red">*</span>
                                         </th>
                                     </tr>
                                     <tr ng-repeat="color in product.pickedColors">
-                                        <td style="padding-top: 14px; font-size: 14px; font-weight: bold;">{{color.name}}</td>
+                                        <td style="padding-top: 14px; font-size: 12px; font-weight: bold;">{{color.name}}</td>
                                         <td>
                                             <div class="form-group col-md-11 margin-bottom-zero">
                                                 <ui-select multiple ng-model="color.sizes" on-select="sizeSelected($item, color.pickedSizes)" on-remove="sizeRemoved($item, color.pickedSizes)"
