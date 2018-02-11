@@ -3,15 +3,15 @@
 </div>
 <div class="modal-body" id="modal-body">
     <div class="form-group">
-        <label>Name</label>
+        <label>Name <span style="color:red">*</span></label>
         <input class="form-control" type="text" ng-model="color.name" />
     </div>
     <div class="form-group">
-        <label>Color</label>
+        <label>Color <span style="color:red">*</span></label>
         <input colorpicker class="form-control" ng-model="color.hex" type="text">
     </div>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="ok(color);">Add</button>
+    <button class="btn btn-primary" type="button" ng-disabled="!color.name || !color.hex" ng-click="ok(color);">Add</button>
     <button class="btn btn-warning" type="button" ng-click="cancel();">Cancel</button>
 </div>

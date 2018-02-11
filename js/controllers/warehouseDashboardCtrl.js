@@ -118,7 +118,7 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
         
     }
 
-    $scope.addNewCategory = function(categories, product){
+    $scope.addNewCategory = function(){
         var modalInstance = $uibModal.open({
             animation: false,
             ariaLabelledBy: 'modal-title',
@@ -145,24 +145,28 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
         });
     }
 
-    $scope.addNewSubcategory = function(category, product){
+    $scope.addNewSubcategory = function(){
         var modalInstance = $uibModal.open({
             animation: false,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'js/templates/purchase/addSubcategoryModal.html',
-            controller: 'ModalInstanceCtrl'
+            templateUrl: 'js/templates/warehouseDashboard/addSubcategoryModal.html',
+            controller: 'SubcategoryAddModalInstanceCtrl',
+            resolve: {
+                categories: function(){
+                    return $scope.categories;
+                }
+            }
         });
       
         modalInstance.result.then(function (item) {
             baseSvc.post({
-                category_id: category.id,
+                category_id: item.category,
                 subcategory: item.name
             }, "warehouse/subcategory/store")
             .then(function(response){ 
                 if(response.subcategory){
-                    product.sub_category = response.subcategory;
-                    category.sub_category.push(response.subcategory);
+                    $scope.getCategories();
                 }
                 else if(response.status){
                     alert(response.status);
@@ -235,4 +239,17 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
     }
 
 
+});
+
+
+myApp.controller('SubcategoryAddModalInstanceCtrl', function ($scope, $uibModalInstance, categories) { 
+    $scope.categories = categories;
+
+    $scope.ok = function (item) {
+        $uibModalInstance.close(item);
+    };
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 });

@@ -278,8 +278,9 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
         }, "warehouse/purchase/product/store")
             .then(function(response){
                 console.log(response)
-                if(response.purchase){
+                if(response.message=='created'){
                     alert("Added successfully.")
+                    $state.go("warehouseDashboard");
                 }
                 else{
                     alert("Error occured.")

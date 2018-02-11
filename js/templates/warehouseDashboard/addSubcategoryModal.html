@@ -1,0 +1,19 @@
+<div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Add Subcategory</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div class="form-group">
+            <label>Category <span style="color:red">*</span></label>
+            <select ng-model="subCategory.category" class="form-control">
+                <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Name <span style="color:red">*</span></label>
+            <input class="form-control" type="text" ng-model="subCategory.name" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-disabled="!subCategory.name || !subCategory.category" ng-click="ok(subCategory);">Add</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel();">Cancel</button>
+    </div>

@@ -100,6 +100,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             //console.log(item);
             if(item.success==true){
                 $scope.getIncompletePurchases();
+                $scope.getCompletePurchases();
                 alert("Added successfully.")
             }
         }, function () {
