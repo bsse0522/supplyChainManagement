@@ -2,8 +2,8 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Incomplete Purchases
-                    <small>Simple example</small>
+                <h5>Incomplete Purchase List
+                    <small>Please complete the following list of purchases by issuing the accounts details</small>
                 </h5>
             </div>
             <div class="ibox-content">
@@ -35,10 +35,10 @@
                                                         <td>{{purchase.reference}}</td>
                                                         <td>
                                                             <a href="" ng-click="showPurchaseInfo(purchase)">
-                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Details" style="margin-right: 10px;"></i>
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
                                                             </a>
                                                             <a href="" ng-click="addAccountsInfo(purchase)">
-                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit"></i>
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -61,8 +61,8 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Complete Purchases
-                    <small>Simple example</small>
+                <h5>Complete Purchase List
+                    <small>View the details of the issued purchase or edit</small>
                 </h5>
             </div>
             <div class="ibox-content">
@@ -94,7 +94,7 @@
                                                         <td>{{purchase.reference}}</td>
                                                         <td>
                                                             <a href=""  ng-click="showCompletePurchaseInfo(purchase)">
-                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Details" style="margin-right: 10px;"></i>
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
                                                             </a>
                                                             <!-- <a href="" ng-click="addAccountsInfo(purchase)">
                                                                 <i class="fa fa-edit"></i>
