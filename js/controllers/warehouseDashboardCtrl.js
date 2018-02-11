@@ -8,7 +8,7 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
         $rootScope.withoutPermission();
     }
 
-    $rootScope.title = "Add Purchase";
+    $rootScope.title = "Warehouse Admin Dashboard";
 
     $scope.supplier = {};
 

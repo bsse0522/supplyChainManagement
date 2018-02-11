@@ -42,6 +42,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'superAdminDashboardCtrl'
   }
 
+  var addMember = {
+    name: 'addMember',
+    url: '/add/member',
+    templateUrl: 'js/templates/superDashboard/addMember.html'
+  }
+
   var warehouseDashboard = {
     name: 'warehouseDashboard',
     url: '/warehouse/dashboard',
@@ -55,6 +61,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(dateWiseLedger);
   $stateProvider.state(superDashboard);
   $stateProvider.state(warehouseDashboard);
+  $stateProvider.state(addMember);
 
   $urlRouterProvider.otherwise('/');
 });

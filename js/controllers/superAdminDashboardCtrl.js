@@ -8,7 +8,7 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
         $rootScope.withoutPermission();
     }
 
-    $rootScope.title = "Dashboard";
+    $rootScope.title = "Super Admin Dashboard";
 
     $scope.suppliers = [];
     $scope.purchases = [];

@@ -40,6 +40,9 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
             resolve: {
                 journals: function() {
                     return $scope.journals;
+                },
+                date: function() {
+                    return date;
                 }
               }
         });
@@ -52,8 +55,9 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
     }
 });
 
-myApp.controller('JournalModalCtrl', function ($scope, $uibModalInstance, journals) {  
+myApp.controller('JournalModalCtrl', function ($scope, $uibModalInstance, journals, date) {  
     $scope.journals = journals;
+    $scope.date = date;
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };

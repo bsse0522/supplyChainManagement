@@ -62,6 +62,12 @@
                             <span class="nav-label">Ledger</span>
                         </a>
                     </li>
+                    <li ng-show="role==='super'">
+                        <a ui-sref="addMember">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Add member</span>
+                        </a>
+                    </li>
                     <li ng-show="role==='accounts'">
                         <a ui-sref="accountsIncompletePurchase">
                             <i class="fa fa-diamond"></i>
@@ -158,9 +164,9 @@
 <script src="js/plugins/pace/pace.min.js"></script>
 
 <script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 
 </html>
