@@ -10,16 +10,26 @@
     }
 </style>
 
-<div class="ibox float-e-margins">
-    <div class="tabs-container">
-        <div class="col-md-3">
 
-        </div>
-        <div class="col-md-6" style="padding-top:20px">
-            <label>Select a date</label>
-            <datepicker datepicker-show="true">
-                <input ng-model="date" ng-change="dateChanged(date)" type="text" style="display:none" />
-            </datepicker>
+
+<div class="ibox float-e-margins">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title" style="min-height: 60px;">
+                    <div class="col-md-9">
+                        <h5 style="padding-top: 10px;">Select a date</h5>
+                    </div>
+                </div>
+                <div class="ibox-content" style="min-height: 400px;">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6" style="padding-top:20px">
+                        <datepicker datepicker-show="true">
+                            <input ng-model="date" ng-change="dateChanged(date)" type="text" style="display:none" />
+                        </datepicker>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
