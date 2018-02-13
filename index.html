@@ -81,9 +81,15 @@
                         </a>
                     </li>
                     <li ng-show="role==='warehouse'">
-                        <a ui-sref="warehousePurchase">
+                        <a ui-sref="warehouseSalesEntry">
                             <i class="fa fa-diamond"></i>
                             <span class="nav-label">Add Purchase</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='warehouse'">
+                        <a ui-sref="warehousePurchase">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Sales Entry</span>
                         </a>
                     </li>
                 </ul>

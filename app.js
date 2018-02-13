@@ -57,6 +57,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'warehouseDashboardCtrl'
   }
 
+  var warehouseSalesEntry = {
+    name: 'warehouseSalesEntry',
+    url: '/warehouse/salesEntry',
+    templateUrl: 'js/templates/warehouseSalesEntry/warehouseSalesEntry.html'
+  }
+
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
@@ -64,6 +70,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(superDashboard);
   $stateProvider.state(warehouseDashboard);
   $stateProvider.state(addMember);
+  $stateProvider.state(warehouseSalesEntry);
 
   $urlRouterProvider.otherwise('/');
 });
