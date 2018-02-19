@@ -8621,3 +8621,8 @@ body.md-skin {
 .ware-db {
   float: right;
 }
+
+.p-tdb td {
+  border-top: none;
+  border-bottom: none;
+}
