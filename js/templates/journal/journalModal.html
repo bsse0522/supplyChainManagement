@@ -29,8 +29,8 @@
                     </tr>
                 </tr>
             </thead>
-            <tbody ng-repeat="journal in journals">
-                <tr class="gradeX" ng-repeat="ledger in journal.ledger track by $index">
+            <tbody ng-repeat="journal in journals" ng-hide="journal.ledger.length==0">
+                <tr class="gradeX" ng-repeat="ledger in journal.ledger track by $index" >
                     <td rowspan="{{journal.ledger.length+1}}" ng-if="$index==0" style="vertical-align: middle;">{{journal.created_at | date : 'd/M/yyyy'}}</td>
                     <td style="border-top: 0; border-bottom: 0;">
                         <span ng-show="ledger.pivot.account_type=='Dr'">{{ledger.name}}</span>

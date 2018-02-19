@@ -114,11 +114,22 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
     $scope.item = {};
     angular.copy(purchase, $scope.item);
     //console.log($scope.item);
+
     $scope.item.product.forEach(function(node) {
         node.payment_category = "1";
         node.payment_type = "1";
         node.partial = {}
     });
+
+    $scope.getLedgers = function(){
+        baseSvc.get("ledgers/list")
+        .then(function(response){
+            //console.log(response);
+            $scope.ledgers = response;
+        });
+    }
+    $scope.getLedgers();
+
     $scope.save = function (item) {
         var data = {
             "purchaseId": item.id,
@@ -139,7 +150,8 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
                 "partial": {
                   "cash": node.partial.cash?node.partial.cash:null,
                   "check": node.partial.check?node.partial.check:null
-                }
+                },
+                "check": node.check?node.check.name: null
               };
             data.products.push(product);
         });
@@ -165,7 +177,7 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
 
 myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = purchase;
-    console.log($scope.item);
+    $scope.item.created_at = new Date($scope.item.created_at);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
@@ -173,7 +185,7 @@ myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibMo
 
 myApp.controller('ViewCompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = purchase;
-    console.log($scope.item);
+    $scope.item.created_at = new Date($scope.item.created_at);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };

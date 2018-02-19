@@ -18,7 +18,7 @@ myApp.service('baseSvc', function($http, $q) {
         }).then(function(success) {
             deferred.resolve(success.data);
         }, function(error) {
-            deferred.reject({
+            deferred.resolve({
                 error: error
             });
             if(error.status==401 || error.status==403){
@@ -42,7 +42,7 @@ myApp.service('baseSvc', function($http, $q) {
         }).then(function(success) {
             deferred.resolve(success.data);
         }, function(error) {
-            deferred.reject({
+            deferred.resolve({
                 error: error
             });
             if(error.status==401 || error.status==403){

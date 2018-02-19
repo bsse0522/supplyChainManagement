@@ -77,11 +77,18 @@
                                         <input type="radio" ng-model="product.payment_type" value="1">Cash
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" ng-model="product.payment_type" value="2">Check
+                                        <input type="radio" ng-model="product.payment_type" value="2">Cheque
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" ng-model="product.payment_type" value="3">Cash + Check
+                                        <input type="radio" ng-model="product.payment_type" value="3">Cash + Cheque
                                     </label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="product.payment_type!=1">
+                                <label class="col-sm-2 control-label">Bank account:</label>
+                                <div class="col-sm-10">
+                                        <select class="form-control" ng-model="product.check" ng-options="ledger.name for ledger in ledgers">
+                                            </select>
                                 </div>
                             </div>
                             <div class="form-group" ng-show="product.payment_type==3 || (product.payment_type==1 && product.payment_category==3)">
@@ -91,7 +98,7 @@
                                 </div>
                             </div>
                             <div class="form-group" ng-show="product.payment_type==3  || (product.payment_type==2 && product.payment_category==3)">
-                                <label class="col-sm-2 control-label">Check:</label>
+                                <label class="col-sm-2 control-label">Cheque:</label>
                                 <div class="col-sm-10">
                                     <input type="number" ng-required="product.payment_type==3" class="form-control" ng-model="product.partial.check">
                                 </div>

@@ -42,15 +42,15 @@ myApp.controller('warehouseSalesEntryCtrl', function($scope, baseSvc, $uibModal,
       
         modalInstance.result.then(function (item) {
             baseSvc.post({
-                supplier: item.company,
+                buyer: item.company,
                 company: item.company,
                 mobile: item.mobile,
                 address: item.address
-            }, "warehouse/supplier/store")
+            }, "warehouse/buyer/store")
                 .then(function(response){ 
-                    if(response.supplier){
-                        $scope.supplier = response.supplier;
-                        $scope.suppliers.push($scope.supplier);
+                    if(response.buyer){
+                        $scope.buyer = response.buyer;
+                        $scope.buyers.push($scope.buyer);
                     }
                     else if(response.status){
                         alert(response.status);

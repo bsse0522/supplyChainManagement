@@ -1,4 +1,4 @@
-myApp.controller('addNewMemberCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('addNewMemberCtrl', function($scope, baseSvc, $uibModal, $rootScope, $state) {
     var token = localStorage.getItem("token");
     if(!token){
         location.href="login.html"
