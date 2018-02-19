@@ -14,17 +14,17 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
 
     $scope.getIncompletePurchases = function(){
         baseSvc.get("incomplete/purchases")
-        .then(function(response){
-            //console.log(response);
-            $scope.incompletePurchases = response;
-        });
+            .then(function(response){
+                //console.log(response);
+                $scope.incompletePurchases = response;
+            });
     }
     $scope.getCompletePurchases = function(){
         baseSvc.get("complete/purchases")
-        .then(function(response){
-            console.log(response);
-            $scope.completePurchases = response;
-        });
+            .then(function(response){
+                console.log(response);
+                $scope.completePurchases = response;
+            });
     }
 
     $scope.getIncompletePurchases();
@@ -101,6 +101,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
             if(item.success==true){
                 $scope.getIncompletePurchases();
                 $scope.getCompletePurchases();
+                
                 alert("Added successfully.")
             }
         }, function () {

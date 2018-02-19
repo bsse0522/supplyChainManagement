@@ -13,18 +13,49 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $
     var d = new Date();
     $scope.date = new Date();
     $scope.today = "" + d.getMonth + "\/" + d.getDate() + "\/" + d.getFullYear();
-    $scope.showLedger = function (from, to) {
+
+    $scope.getLedgers = function(){
+        baseSvc.get("ledgers/list")
+        .then(function(response){
+            //console.log(response);
+            $scope.ledgersList = response;
+        });
+    }
+    $scope.getLedgers();
+
+    $scope.showLedger = function (from, to, id) {
         $scope.showTrialBalance = false;
         from = new Date(from);
         to = new Date(to);
         var fd = "" + from.getFullYear() + "-" + (from.getMonth() + 1) + "-" + from.getDate();
         var td = "" + to.getFullYear() + "-" + (to.getMonth() + 1) + "-" + to.getDate();
-        baseSvc.get("super/ledgers?from=" + fd + "&to=" + td)
+        baseSvc.get("super/ledgers?from=" + fd + "&to=" + td + "&id=" + id )
             .then(function (response) {
                 $scope.ledgers = [];
                 $scope.ledgers = response;
+
                 $scope.ledgers.forEach(function (node) {
                     node.transactions = [];
+                    if (node.opening_balance_type=="Dr") {
+                        var transaction = {};
+                        transaction.date1 = '';
+                        transaction.creditAccount = 'By Balance C/D';
+                        transaction.creditValue = node.balance;
+                        transaction.date2 = '';
+                        transaction.debitAccount = '';
+                        transaction.debitValue = '';
+                        node.transactions.push(transaction);
+                    }
+                    else if (node.cr_balance > node.dr_balance) {
+                        var transaction = {};
+                        transaction.date1 = '';
+                        transaction.creditAccount = '';
+                        transaction.creditValue = '';
+                        transaction.date2 = '';
+                        transaction.debitAccount = 'To Balance C/D';
+                        transaction.debitValue = node.balance;
+                        node.transactions.push(transaction);
+                    }
                     node.dr = Object.keys(node.dr).map(function (k) { return node.dr[k] });
                     node.cr = Object.keys(node.cr).map(function (k) { return node.cr[k] });
                     if (node.cr.length > node.dr.length) {

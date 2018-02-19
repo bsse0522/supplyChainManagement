@@ -34,17 +34,13 @@
                         <div class="col-md-2" style="padding-top:20px">
                             <div class="form-group">
                               <label for="sel1">Select list:</label>
-                              <select class="form-control" id="sel1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                              <select class="form-control" ng-model="ledger" ng-options="ledger.name for ledger in ledgersList">
                               </select>
                             </div>
                         </div>
 
                         <div class="col-md-4" style="padding-top:43px">
-                            <a class="btn btn-info" ng-click="showLedger(from, to)">Get ledgers</a>
+                            <a class="btn btn-info" ng-disabled="!ledger || !to || !from" ng-click="showLedger(from, to, ledger.id)">Get ledgers</a>
                             <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && !showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=true">Show trial balance</a>
                             <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=false">Back to ledgers</a>
                         </div>
@@ -106,10 +102,10 @@
                                         </tr>
                                         <tr ng-hide="ledger.dr_balance==ledger.cr_balance">
                                             <td style="border-top-color:white;"></td>
-                                            <td style="border-top-color:white;">{{ledger.cr_balance>ledger.dr_balance? '':'Balance B/D'}}</td>
+                                            <td style="border-top-color:white;">{{ledger.cr_balance>ledger.dr_balance? '':'Closing Balance'}}</td>
                                             <td style="text-align:right">{{ledger.cr_balance>ledger.dr_balance? '':ledger.balance}}</td>
                                             <td style="border-top-color:white;"></td>
-                                            <td style="border-top-color:white;">{{ledger.dr_balance>ledger.cr_balance? '':'Balance B/D'}}</td>
+                                            <td style="border-top-color:white;">{{ledger.dr_balance>ledger.cr_balance? '':'Closing Balance'}}</td>
                                             <td style="text-align:right">{{ledger.dr_balance>ledger.cr_balance? '':ledger.balance}}</td>
                                         </tr>
                                     </table>
