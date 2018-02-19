@@ -8631,3 +8631,16 @@ body.md-skin {
   border-top: none;
   border-bottom: none;
 }
+
+.t-bd-n td {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.h-css {
+  border-bottom: 1px solid #e7eaec;
+  text-align: center;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-top: 30px !important;
+}
