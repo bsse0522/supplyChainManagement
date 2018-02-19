@@ -50,6 +50,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'addNewMemberCtrl'
   }
 
+  var addLedger = {
+    name: 'addLedger',
+    url: '/add/Ledger',
+    templateUrl: 'js/templates/superDashboard/addLedger.html',
+    controller: 'addNewLedgerCtrl'
+  }
+
   var warehouseDashboard = {
     name: 'warehouseDashboard',
     url: '/warehouse/dashboard',
@@ -60,7 +67,15 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   var warehouseSalesEntry = {
     name: 'warehouseSalesEntry',
     url: '/warehouse/salesEntry',
-    templateUrl: 'js/templates/warehouseSalesEntry/warehouseSalesEntry.html'
+    templateUrl: 'js/templates/warehouseSalesEntry/warehouseSalesEntry.html',
+    controller: 'warehouseSalesEntryCtrl'
+  }
+
+  var purchaseDetails = {
+    name: 'purchaseDetails',
+    url: '/warehouse/purchaseDetails',
+    templateUrl: 'js/templates/purchase/purchaseDetails.html',
+    controller: 'purchaseDetailsCtrl'
   }
 
   $stateProvider.state(warehousePurchase);
@@ -70,6 +85,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(superDashboard);
   $stateProvider.state(warehouseDashboard);
   $stateProvider.state(addMember);
+  $stateProvider.state(addLedger);
+  $stateProvider.state(purchaseDetails);
   $stateProvider.state(warehouseSalesEntry);
 
   $urlRouterProvider.otherwise('/');

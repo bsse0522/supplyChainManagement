@@ -68,6 +68,12 @@
                             <span class="nav-label">Add member</span>
                         </a>
                     </li>
+                    <li ng-show="role==='super'">
+                            <a ui-sref="addLedger">
+                                <i class="fa fa-diamond"></i>
+                                <span class="nav-label">Add Ledger</span>
+                            </a>
+                        </li>
                     <li ng-show="role==='accounts'">
                         <a ui-sref="accountsIncompletePurchase">
                             <i class="fa fa-diamond"></i>
@@ -81,15 +87,21 @@
                         </a>
                     </li>
                     <li ng-show="role==='warehouse'">
-                        <a ui-sref="warehouseSalesEntry">
+                        <a ui-sref="warehousePurchase">
                             <i class="fa fa-diamond"></i>
                             <span class="nav-label">Add Purchase</span>
                         </a>
                     </li>
                     <li ng-show="role==='warehouse'">
-                        <a ui-sref="warehousePurchase">
+                        <a ui-sref="warehouseSalesEntry">
                             <i class="fa fa-diamond"></i>
                             <span class="nav-label">Sales Entry</span>
+                        </a>
+                    </li>
+                    <li ng-show="role==='warehouse'">
+                        <a ui-sref="purchaseDetails">
+                            <i class="fa fa-diamond"></i>
+                            <span class="nav-label">Purchase Details</span>
                         </a>
                     </li>
                 </ul>
@@ -167,6 +179,9 @@
 <script src="js/controllers/superAdminDashboardCtrl.js"></script>
 <script src="js/controllers/warehouseDashboardCtrl.js"></script>
 <script src="js/controllers/addNewMemberCtrl.js"></script>
+<script src="js/controllers/warehouseSalesEntryCtrl.js"></script>
+<script src="js/controllers/purchaseDetailsCtrl.js"></script>
+<script src="js/controllers/addNewLedgerCtrl.js"></script>
 <!-- Mainly scripts -->
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

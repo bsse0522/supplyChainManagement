@@ -9,6 +9,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
     }
 
     $rootScope.title = "Add Purchase";
+    $scope.submittingPurchase = false;
 
     $scope.supplier = {};
 
@@ -240,7 +241,13 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
         });
     }
 
+    $scope.removeProduct = function(index){
+        $scope.products.splice(index,1);
+    }
+
     $scope.submitPurchase = function() {
+
+        $scope.submittingPurchase = true;
         var purchase = {
             supplierId: $scope.supplier.id,
             reference: $scope.reference,
@@ -277,7 +284,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
             purchase: JSON.stringify(purchase)
         }, "warehouse/purchase/product/store")
             .then(function(response){
-                console.log(response)
+                $scope.submittingPurchase = false;
                 if(response.message=='created'){
                     alert("Added successfully.")
                     $state.go("warehouseDashboard");

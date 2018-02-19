@@ -8621,3 +8621,8 @@ body.md-skin {
 .ware-db {
   float: right;
 }
+
+.purchase-remove-product {
+  height: 20px;
+  padding: 0px 14px;
+}
