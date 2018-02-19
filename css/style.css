@@ -8626,3 +8626,8 @@ body.md-skin {
   height: 20px;
   padding: 0px 14px;
 }
+
+.p-tdb td {
+  border-top: none;
+  border-bottom: none;
+}
