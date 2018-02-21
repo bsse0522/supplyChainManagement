@@ -33,9 +33,9 @@
                         </div>
                         <div class="col-md-2" style="padding-top:20px">
                             <div class="form-group">
-                              <label for="sel1">Select list:</label>
-                              <select class="form-control" ng-model="ledger" ng-options="ledger.name for ledger in ledgersList">
-                              </select>
+                                <label for="sel1">Select list:</label>
+                                <select class="form-control" ng-model="ledger" ng-options="ledger.name for ledger in ledgersList">
+                                </select>
                             </div>
                         </div>
 
@@ -44,75 +44,100 @@
                             <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && !showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=true">Show trial balance</a>
                             <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=false">Back to ledgers</a>
                         </div>
-                        <div class="col-md-12" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && !showTrialBalance && ledgers.length!=0">
-                            <div class="row" style="text-align:center; margin-bottom:20px; margin-top:10px">
-                                <h1>XYZ Company</h1>
-                                <h3>General Ledgers</h3>
-                                <h3>{{from}} to {{to}}</h3>
-                            </div>
-                            <div class="row" ng-repeat="ledger in ledgers">
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-8" style="padding-bottom:20px">
-                                    <h3 style="text-align: center;">{{ledger.name}} account</h3>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th colspan="3" style="text-align:center">Debit</th>
-                                                <th colspan="3" style="text-align:center">Credit</th>
-                                            </tr>
-                                            <tr>
-                                                <th style="text-align:center">Date</th>
-                                                <th style="text-align:center">Particulars</th>
-                                                <th style="text-align:center">Amount</th>
-                                                <th style="text-align:center">Date</th>
-                                                <th style="text-align:center">Particulars</th>
-                                                <th style="text-align:center">Amount</th>
-                                            </tr>
-                                        </thead>
-                                        <tr ng-repeat="transaction in ledger.transactions">
-                                            <td style="border-top-color:white;border-bottom-color: white;">
-                                                <span ng-hide="transaction.date1==''">{{transaction.date1|date:'MMM d, y'}}</span>
-                                            </td>
-                                            <td style="border-top-color:white;border-bottom-color: white;">{{transaction.debitAccount}}</td>
-                                            <td style="text-align:right;border-bottom-color: white;" ng-hide="$index+1==ledger.transactions.length">{{transaction.debitValue}}</td>
-                                            <td style="text-align:right;" ng-show="$index+1==ledger.transactions.length">{{transaction.debitValue}}</td>
-                                            <td style="border-top-color:white;border-bottom-color: white;">
-                                                <span ng-hide="transaction.date2==''">{{transaction.date2|date:'MMM d, y'}}</span>
-                                            </td>
-                                            <td style="border-top-color:white;border-bottom-color: white;">{{transaction.creditAccount}}</td>
-                                            <td style="text-align:right;border-bottom-color: white;" ng-hide="$index+1==ledger.transactions.length">{{transaction.creditValue}}</td>
-                                            <td style="text-align:right;" ng-show="$index+1==ledger.transactions.length">{{transaction.creditValue}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-top-color:white;border-bottom-color: white;"></td>
-                                            <td style="border-top-color:white;border-bottom-color: white;"></td>
-                                            <td style="text-align:right; border-top-color:#e7eaec">{{ledger.cr_balance>ledger.dr_balance? ledger.cr_balance:ledger.dr_balance}}</td>
-                                            <td style="border-top-color:white;border-bottom-color: white;"></td>
-                                            <td style="border-top-color:white;border-bottom-color: white;"></td>
-                                            <td style="text-align:right; border-top-color:#e7eaec">{{ledger.cr_balance>ledger.dr_balance? ledger.cr_balance:ledger.dr_balance}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="border-top-color:white;border-bottom-color: white;padding: 1px;"></td>
-                                            <td style="border-top-color:white;border-bottom-color: white;padding: 1px;"></td>
-                                            <td style="padding: 1px;"></td>
-                                            <td style="border-top-color:white;border-bottom-color: white;padding: 1px;"></td>
-                                            <td style="border-top-color:white;border-bottom-color: white;padding: 1px;"></td>
-                                            <td style="padding: 1px;"></td>
-                                        </tr>
-                                        <tr ng-hide="ledger.dr_balance==ledger.cr_balance">
-                                            <td style="border-top-color:white;"></td>
-                                            <td style="border-top-color:white;">{{ledger.cr_balance>ledger.dr_balance? '':'Closing Balance'}}</td>
-                                            <td style="text-align:right">{{ledger.cr_balance>ledger.dr_balance? '':ledger.balance}}</td>
-                                            <td style="border-top-color:white;"></td>
-                                            <td style="border-top-color:white;">{{ledger.dr_balance>ledger.cr_balance? '':'Closing Balance'}}</td>
-                                            <td style="text-align:right">{{ledger.dr_balance>ledger.cr_balance? '':ledger.balance}}</td>
-                                        </tr>
-                                    </table>
+                        <div class="col-md-12" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && !showTrialBalance">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="ibox float-e-margins">
+                                        <div class="ibox-content">
+                                            <h5 style="text-align: center;">{{ledger.name}}</h5>
+                                            <h5 style="text-align: center;">Ledger Account</h5>
+                                            <br>
+                                            <h5 style="text-align: center;">{{from}} to {{to}}</h5>
+                                            <table class="table">
+                                                <thead style="border-top: 1px solid #e7eaec;">
+                                                    <tr>
+                                                        <th style="text-align:center">Date</th>
+                                                        <th style="text-align:center; width: 30%;">Particulars</th>
+                                                        <th style="text-align:center">Vch Type</th>
+                                                        <th style="text-align:center">Vch No</th>
+                                                        <th style="text-align:center">Debit</th>
+                                                        <th style="text-align:center">Credit</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;" ng-hide="ledger.opening_balance==0">
+                                                        <td></td>
+                                                        <td style="text-align: center;font-weight:bold">Opening Balance</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">
+                                                            <span ng-if="ledger.opening_balance_type=='Dr'">{{ledger.opening_balance}}</span>
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            <span ng-if="ledger.opening_balance_type=='Cr'">{{ledger.opening_balance}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;" ng-repeat="debit in ledger.cr">
+                                                        <td>{{debit.date| date: "d-M-yyyy"}}</td>
+                                                        <td style="text-align: center;">By
+                                                            <span style="font-weight:bold">{{debit.account}}</span>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">{{debit.value}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;" ng-repeat="credit in ledger.dr">
+                                                        <td>{{credit.date| date: "d-M-yyyy"}}</td>
+                                                        <td style="text-align: center;">To
+                                                            <span style="font-weight:bold">{{credit.account}}</span>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">{{credit.value}}</td>
+                                                    </tr>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;">
+                                                        <td></td>
+                                                        <td style="text-align: center;"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">{{ledger.dr_balance?ledger.dr_balance:''}}</td>
+                                                        <td style="text-align: center;">{{ledger.cr_balance?ledger.dr_balance:''}}</td>
+                                                    </tr>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;">
+                                                        <td></td>
+                                                        <td style="text-align: center;">
+                                                            <span ng-if="ledger.balance_type=='Cr'">To </span>
+                                                            <span ng-if="ledger.balance_type=='Dr'">By </span>
+                                                            <span style="font-weight:bold">Closing Balance</span>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;">
+                                                            <span ng-if="ledger.balance_type=='Cr'">{{ledger.balance}}</span>
+                                                        </td>
+                                                        <td style="text-align: center;">
+                                                            <span ng-if="ledger.balance_type=='Dr'">{{ledger.balance}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;">
+                                                        <td></td>
+                                                        <td style="text-align: center;"></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td style="text-align: center;"><span style="font-weight:bold;border-bottom: 1px solid;">{{ledger.dr_balance>ledger.cr_balance?ledger.dr_balance:ledger.cr_balance}}</span></td>
+                                                        <td style="text-align: center;"><span style="font-weight:bold;border-bottom: 1px solid;">{{ledger.dr_balance>ledger.cr_balance?ledger.dr_balance:ledger.cr_balance}}</span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && showTrialBalance && ledgers.length!=0">
+                        <!-- <div class="col-md-12" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && showTrialBalance && ledgers.length!=0">
                             <div class="row" style="text-align:center; margin-bottom:20px">
                                 <h1>XYZ Company</h1>
                                 <h3>Trial Balance</h3>
@@ -152,7 +177,7 @@
                             <div class="row" style="text-align:center">
                                 <p>No transaction occurred between {{from}} and {{to}}.</p>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
