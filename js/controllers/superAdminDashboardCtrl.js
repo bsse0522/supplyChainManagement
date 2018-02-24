@@ -1,4 +1,4 @@
-myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal, $rootScope, $stateParams, $state) {
     var token = localStorage.getItem("token");
     if (!token) {
         location.href = "login.html"
@@ -9,6 +9,10 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
     }
 
     $rootScope.title = "Super Admin Dashboard";
+
+    if($stateParams.message){
+        alert($stateParams.message);
+    }
 
     $scope.suppliers = [];
     $scope.purchases = [];

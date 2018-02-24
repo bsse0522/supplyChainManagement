@@ -25,18 +25,22 @@
                                     <tr class="p-th">
                                         <th>S/L</th>
                                         <th>Product Name</th>
-                                        <th>Cetegory</th>
-                                        <th>Subcetegory</th>
+                                        <th>Meta</th>
                                         <th>Quantity</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="p-td" ng-repeat="product in item.product">
                                         <td>{{$index+1}}</td>
                                         <td>{{product.name}}</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{product.meta}}</td>
                                         <td>{{product.stock}}</td>
+                                        <!-- <td>
+                                            <a href="">
+                                                <i class="fa fa-eye" ng-click="showProductDetails(product)" data-placement="top" title="View Stock Detail" style="margin-right: 10px;"></i>
+                                            </a>
+                                        </td> -->
                                     </tr>
                                 </tbody>
                             </table>

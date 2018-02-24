@@ -17,7 +17,6 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $
     $scope.getLedgers = function(){
         baseSvc.get("ledgers/list")
         .then(function(response){
-            //console.log(response);
             $scope.ledgersList = response;
         });
     }

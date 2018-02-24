@@ -1,4 +1,4 @@
-myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope, $state) {
     var token = localStorage.getItem("token");
     if(!token){
         location.href="login.html"

@@ -72,11 +72,6 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
         });
       
         modalInstance.result.then(function (item) {
-            //console.log(item);
-            if(item.success==true){
-                $scope.getIncompletePurchases();
-                alert("Added successfully.")
-            }
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -97,13 +92,6 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
         });
       
         modalInstance.result.then(function (item) {
-            //console.log(item);
-            if(item.success==true){
-                $scope.getIncompletePurchases();
-                $scope.getCompletePurchases();
-                
-                alert("Added successfully.")
-            }
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -113,6 +101,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
 
 myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
     $scope.item = {};
+    $scope.addingInfo = false;
     angular.copy(purchase, $scope.item);
     //console.log($scope.item);
 
@@ -132,6 +121,7 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
     $scope.getLedgers();
 
     $scope.save = function (item) {
+        $scope.addingInfo = true;
         var data = {
             "purchaseId": item.id,
             "transport": item.transport?item.transport:null,
@@ -161,9 +151,9 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
             purchase: JSON.stringify(data)
         }, "accounts/purchase/price/store")
             .then(function(response){
-                //console.log(response)
+                $scope.addingInfo = false;
                 if(response.message=="created"){
-                    $uibModalInstance.close({success:true});
+                    $uibModalInstance.close(purchase);
                 }
                 else{
                     alert("Error occured.")
@@ -176,18 +166,30 @@ myApp.controller('AddInfoModalInstanceCtrl', function ($scope, $uibModalInstance
     };
 });
 
-myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
+myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc, $state) {  
     $scope.item = purchase;
     $scope.item.created_at = new Date($scope.item.created_at);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    $scope.showProductDetails = function(product){
+        localStorage.setItem("product", JSON.stringify(product));
+        var url = $state.href('productDetails');
+        window.open(url,'_blank');
+    }
 });
 
-myApp.controller('ViewCompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc) {  
+myApp.controller('ViewCompletePurchaseInfoModalCtrl', function ($scope, $uibModalInstance, purchase, baseSvc, $state) {  
     $scope.item = purchase;
     $scope.item.created_at = new Date($scope.item.created_at);
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    $scope.showProductDetails = function(product){
+        localStorage.setItem("product", JSON.stringify(product));
+        var url = $state.href('productDetails');
+        window.open(url,'_blank');
+    }
 });

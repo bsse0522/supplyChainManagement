@@ -15,8 +15,7 @@ myApp.controller('addNewMemberCtrl', function($scope, baseSvc, $uibModal, $rootS
             .then(function(response){
                 console.log(response)
                 if(response.status=='Ok'){
-                    alert("User added successfully.")
-                    $state.go("superDashboard");
+                    $state.go("superDashboard", {"message": "User added successfully"});
                 }
                 else if(response.email){
                     alert("Email is already taken.");

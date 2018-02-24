@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Complete Purchase Detail</h4>
+</div>
+<div class="modal-body">
+    <div class="">
+        <div class="tab-pane active">
+            <div>
+                <div class="p-m-p">
+                    <div class="col-md-4">Name:</div>
+                    <div class="col-md-8">{{product.name}}</div>
+                    <div class="clearix"></div>
+
+                    <div class="col-md-4">Meta:</div>
+                    <div class="col-md-8">{{product.meta}}</div>
+                    <div class="clearix"></div>
+
+                    <div class="col-md-4">Initial stock:</div>
+                    <div class="col-md-8">{{product.initial_stock}}</div>
+                    <div class="clearix"></div>
+
+                    <div class="col-md-4">Available:</div>
+                    <div class="col-md-8">{{product.stock}}</div>
+                    <div class="clearix"></div>
+
+                    <div class=" float-e-margins">
+                        <div class="ibox-content" style="border: none;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="p-th">
+                                        <th>Color</th>
+                                        <th>Size</th>
+                                        <th>Stock</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="color in product.colors">
+                                    <tr class="p-td" ng-repeat="size in color.sizes">
+                                        <td>{{color.name}}</td>
+                                        <td>{{size.name}}</td>
+                                        <td>{{size.quantity}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <a type="button" class="btn btn-warning" ng-click="cancel()">Close</a>
+</div>

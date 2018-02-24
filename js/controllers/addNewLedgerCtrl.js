@@ -9,7 +9,9 @@ myApp.controller('addNewLedgerCtrl', function($scope, baseSvc, $uibModal, $rootS
     }
 
     $scope.ledger = {
-        opening_balance_type: 'Dr'
+        opening_balance_type: 'Dr',
+        opening_balance: 0,
+        other: ''
     };
 
     baseSvc.get("ledger/groups")
@@ -58,8 +60,7 @@ myApp.controller('addNewLedgerCtrl', function($scope, baseSvc, $uibModal, $rootS
             .then(function(response){
                 console.log(response)
                 if(response.message=='created'){
-                    alert("Ledger added successfully.")
-                    $state.go("superDashboard");
+                    $state.go("superDashboard", {'message': 'Ledger added successfully.'});
                 }
                 else {
                     alert("Error occured");

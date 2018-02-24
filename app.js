@@ -40,7 +40,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     name: 'superDashboard',
     url: '/super/dashboard',
     templateUrl: 'js/templates/superDashboard/dashboard.html',
-    controller: 'superAdminDashboardCtrl'
+    controller: 'superAdminDashboardCtrl',
+    params: {
+      message: null
+    }
   }
 
   var addMember = {
@@ -78,6 +81,20 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'purchaseDetailsCtrl'
   }
 
+  var superAdminStock = {
+    name: 'superAdminStock',
+    url: '/super/stock',
+    templateUrl: 'js/templates/superDashboard/stock.html',
+    controller: 'superAdminStockCtrl'
+  }
+
+  var productDetails = {
+    name: 'productDetails',
+    url: '/product/details',
+    templateUrl: 'js/templates/superDashboard/productDetails.html',
+    controller: 'productDetailsCtrl'
+  }
+
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
@@ -88,6 +105,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(addLedger);
   $stateProvider.state(purchaseDetails);
   $stateProvider.state(warehouseSalesEntry);
+  $stateProvider.state(superAdminStock);
+  $stateProvider.state(productDetails);
 
   $urlRouterProvider.otherwise('/');
 });
