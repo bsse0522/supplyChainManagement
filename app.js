@@ -15,6 +15,13 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     controller: 'purchaseCtrl'
   }
 
+  var editWarehousePurchase = {
+    name: 'editWarehousePurchase',
+    url: '/warehouse/edit/purchase/:id',
+    templateUrl: 'js/templates/purchase/editPurchase.html',
+    controller: 'editPurchaseCtrl'
+  }
+
   var accountsIncompletePurchase = {
     name: 'accountsIncompletePurchase',
     url: '/accounts/purchase',
@@ -96,6 +103,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   }
 
   $stateProvider.state(warehousePurchase);
+  $stateProvider.state(editWarehousePurchase);
   $stateProvider.state(accountsIncompletePurchase);
   $stateProvider.state(dateWiseJournal);
   $stateProvider.state(dateWiseLedger);

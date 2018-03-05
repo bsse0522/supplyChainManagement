@@ -79,7 +79,7 @@
                                                     </tr>
                                                     <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;" ng-repeat="debit in ledger.cr">
                                                         <td>{{debit.date| date: "d-M-yyyy"}}</td>
-                                                        <td style="text-align: center;">To 
+                                                        <td style="text-align: center;">By 
                                                             <span style="font-weight:bold">{{debit.account}}</span>
                                                         </td>
                                                         <td></td>
@@ -89,7 +89,7 @@
                                                     </tr>
                                                     <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;" ng-repeat="credit in ledger.dr">
                                                         <td>{{credit.date| date: "d-M-yyyy"}}</td>
-                                                        <td style="text-align: center;">By 
+                                                        <td style="text-align: center;">To 
                                                             <span style="font-weight:bold">{{credit.account}}</span>
                                                         </td>
                                                         <td></td>
@@ -108,8 +108,8 @@
                                                     <tr class="p-td p-tdb" style="border-bottom: none; border-top: none;">
                                                         <td></td>
                                                         <td style="text-align: center;">
-                                                            <span ng-if="ledger.balance_type=='Cr'">To </span>
-                                                            <span ng-if="ledger.balance_type=='Dr'">By </span>
+                                                            <span ng-if="ledger.balance_type=='Cr'">By </span>
+                                                            <span ng-if="ledger.balance_type=='Dr'">To </span>
                                                             <span style="font-weight:bold">Closing Balance</span>
                                                         </td>
                                                         <td></td>
