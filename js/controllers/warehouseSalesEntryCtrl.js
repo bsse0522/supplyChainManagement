@@ -23,13 +23,23 @@ myApp.controller('warehouseSalesEntryCtrl', function($scope, baseSvc, $uibModal,
 
     baseSvc.get("buyers")
         .then(function(response){
-            $scope.buyers = response;
+            $scope.buyers = response.filter(function(node){
+                return node.company!=null;
+            });
+
+            console.log($scope.buyers);
         });
 
     baseSvc.get("available/products")
         .then(function(response){
             $scope.products = response;
         });
+
+    $scope.selectedProducts = [];
+
+    $scope.productSelected = function(item, selectedProduct){
+        $scope.selectedProducts.push(item);
+    }
 
     $scope.addNewBuyer=function(){ 
         var modalInstance = $uibModal.open({
@@ -65,42 +75,46 @@ myApp.controller('warehouseSalesEntryCtrl', function($scope, baseSvc, $uibModal,
         
     }
 
-    $scope.submitPurchase = function() {
-        var purchase = {
-            supplierId: $scope.supplier.id,
+    $scope.submitSales = function() {
+        var sales = {
+            buyerId: $scope.buyer.id,
+            buyer: $scope.buyer.company,
             reference: $scope.reference,
             products: []
         };
-        $scope.products.forEach(function(node){
+
+        //console.log($scope.selectedProducts);
+        $scope.selectedProducts.forEach(function(node){
             var product = {
+                id: node.id,
                 name: node.name,
-                category: node.category.id,
-                sub_category: node.sub_category.id,
                 colors: []
             };
-            node.pickedColors.forEach(function(element){
+            node.colors.forEach(function(element){
                 var color = {
                     id: element.id,
+                    name: element.name,
                     sizes: []
                 };
-                element.pickedSizes.forEach(function(item){
+                element.sizes.forEach(function(item){
                     var size = {
                         id: item.id,
-                        quantity: item.quantity+""
+                        name: item.name,
+                        quantity: item.sellQuantity+""
                     };
                     color.sizes.push(size);
                 });
                 product.colors.push(color);
             });
 
-            purchase.products.push(product);
+            sales.products.push(product);
         })
 
-        console.log(JSON.stringify(purchase));
+        console.log(JSON.stringify(sales));
 
         baseSvc.post({
-            purchase: JSON.stringify(purchase)
-        }, "warehouse/purchase/product/store")
+            sale: JSON.stringify(sales)
+        }, "warehouse/sales/product/store")
             .then(function(response){
                 console.log(response)
                 if(response.message=='created'){

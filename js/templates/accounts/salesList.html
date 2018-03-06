@@ -1,0 +1,164 @@
+<div class="ibox float-e-margins">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Incomplete Sales List
+                    <small>Please complete the following list of sales by issuing the accounts details</small>
+                </h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="tabs-container">
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body" style="border: none;">
+
+                                    <div class="ibox-content" style="border: none;">
+
+                                        <div class="table-responsive">
+                                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                                <thead>
+                                                    <tr class="gtable p-th">
+                                                        <th>S/N</th>
+                                                        <th>Date</th>
+                                                        <th>Buyer Name</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gtable p-td" ng-repeat="purchase in incompletePurchases">
+                                                        <td>1</td>
+                                                        <td>10/2/2017</td>
+                                                        <td>ABC Company</td>
+                                                        <td>
+                                                            <a href="" >
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Sales Details" style="margin-right: 10px;"></i>
+                                                            </a>
+                                                            <a href="" >
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="gtable p-td" ng-repeat="purchase in incompletePurchases">
+                                                        <td>2</td>
+                                                        <td>10/2/2017</td>
+                                                        <td>ABC Company</td>
+                                                        <td>
+                                                            <a href="" >
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Sales Details" style="margin-right: 10px;"></i>
+                                                            </a>
+                                                            <a href="" >
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- <tr class="gtable p-td" ng-repeat="purchase in incompletePurchases">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{purchase.created_at}}</td>
+                                                        <td>{{purchase.supplier.company}}</td>
+                                                        <td>
+                                                            <a href="" ng-click="showPurchaseInfo(purchase)">
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
+                                                            </a>
+                                                            <a href="" ng-click="addAccountsInfo(purchase)">
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Complete Sales List
+                    <small>View the details of the issued sales or edit</small>
+                </h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="tabs-container">
+
+                        <div class="tab-content">
+                            <div id="tab-1" class="tab-pane active">
+                                <div class="panel-body" style="border: none;">
+
+                                    <div class="ibox-content" style="border: none;">
+
+                                        <div class="table-responsive">
+                                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                                <thead>
+                                                    <tr class="gtable p-th">
+                                                        <th>S/N</th>
+                                                        <th>Date</th>
+                                                        <th>Buyer Name</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="gtable p-td" ng-repeat="purchase in incompletePurchases">
+                                                        <td>1</td>
+                                                        <td>10/2/2017</td>
+                                                        <td>ABC Company</td>
+                                                        <td>
+                                                            <a href="" >
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Sales Details" style="margin-right: 10px;"></i>
+                                                            </a>
+                                                            <a href="" >
+                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="gtable p-td" ng-repeat="purchase in incompletePurchases">
+                                                            <td>2</td>
+                                                            <td>10/2/2017</td>
+                                                            <td>ABC Company</td>
+                                                            <td>
+                                                                <a href="" >
+                                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Sales Details" style="margin-right: 10px;"></i>
+                                                                </a>
+                                                                <a href="" >
+                                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    <!-- <tr class="gtable p-td" ng-repeat="purchase in completePurchases">
+                                                        <td>{{$index+1}}</td>
+                                                        <td>{{purchase.created_at}}</td>
+                                                        <td>{{purchase.supplier.company}}</td>
+                                                        <td>
+                                                            <a href=""  ng-click="showCompletePurchaseInfo(purchase)">
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr> -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

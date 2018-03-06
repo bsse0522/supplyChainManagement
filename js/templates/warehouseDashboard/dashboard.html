@@ -53,6 +53,57 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Sales List
+                        <small>Track & view details of all the sales</small>
+                    </h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="panel-body" style="border: none;">
+                            <div class="ibox-content" style="border: none;">
+
+                                <div class="table-responsive">
+                                    <table class="footable table table-stripped toggle-arrow-tiny">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Buyer Name</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="sale in sales">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{sale.created_at | date:'dd/MM/yy'}}</td>
+                                                <td>{{sale.buyer.company}}</td>
+                                                <td>
+                                                    <span ng-show="sale.status=='0'" style="color:red">Incomplete</span>
+                                                    <span ng-hide="sale.status=='0'" style="color:green">Complete</span>
+                                                </td>
+                                                <td>
+                                                    <a href="" ng-click="showPurchaseInfo(sale)">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View sale Detail" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-6">
             <div class="tabs-container">
                 <ul class="nav nav-tabs">

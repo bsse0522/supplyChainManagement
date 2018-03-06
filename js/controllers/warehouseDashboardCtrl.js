@@ -24,6 +24,18 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
     }
     $scope.getCompletePurchases();
 
+    $scope.getCompleteSales = function(){
+        baseSvc.get("all/sales")
+        .then(function(response){
+            //console.log(response);
+            $scope.sales = response;
+            $scope.sales.forEach(function(node){
+                node.created_at = new Date(node.created_at);
+            });
+        });
+    }
+    $scope.getCompleteSales();
+
     $scope.showPurchaseInfo = function(purchase){
         var modalInstance = $uibModal.open({
             animation: false,

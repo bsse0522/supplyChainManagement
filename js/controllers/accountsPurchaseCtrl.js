@@ -8,7 +8,7 @@ myApp.controller('accountsIncompletePurchaseCtrl', function($scope, baseSvc, $ui
         $rootScope.withoutPermission();
     }
 
-    $rootScope.title = "Accounts Admin Dashboard";
+    $rootScope.title = "Accounts Admin Dashboard (Purchases)";
 
     $scope.incompletePurchases = [];
 
