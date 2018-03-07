@@ -90,7 +90,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 
   var purchaseDetails = {
     name: 'purchaseDetails',
-    url: '/warehouse/purchaseDetails',
+    url: '/warehouse/purchaseDetails/:id',
     templateUrl: 'js/templates/purchase/purchaseDetails.html',
     controller: 'purchaseDetailsCtrl'
   }

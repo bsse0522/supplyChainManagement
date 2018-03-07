@@ -36,10 +36,10 @@
                     </div>
                     <div class="col-lg-6" style="">
                         <div class="form-group" style="margin-bottom: 0px;">
-                            <h5>Select a product
+                            <h5>Select products
                                 <span style="color:red">*</span>
                             </h5>
-                            <ui-select multiple ng-model="pickedProducts" on-select="productSelected($item, selectedProducts)" ng-required="true" close-on-select="false" style="padding-left: 0px;"
+                            <ui-select multiple ng-model="pickedProducts" on-select="productSelected($item, selectedProducts)" on-remove="productRemoved($item, selectedProducts)" ng-required="true" close-on-select="false" style="padding-left: 0px;"
                                 theme="select2" class="col-md-12" title="Choose products">
                                 <ui-select-match placeholder="Select products">{{$item.name}}</ui-select-match>
                                 <ui-select-choices repeat="product in products | propsFilter: {name: $select.search}">

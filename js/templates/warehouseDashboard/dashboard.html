@@ -37,11 +37,13 @@
                                                 <td>
                                                     <a href="" ng-click="showPurchaseInfo(purchase)">
                                                         <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
-
                                                     </a>
                                                     <a href="#!/warehouse/edit/purchase/{{purchase.id}}">
-                                                                <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit information"></i>
-                                                            </a>
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit information" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="#!/warehouse/purchaseDetails/{{purchase.id}}">
+                                                        <i class="fa fa-sticky-note-o" data-toggle="tooltip" data-placement="top" title="Purchase-wise report"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -76,6 +78,7 @@
                                                 <th>S/N</th>
                                                 <th>Date</th>
                                                 <th>Buyer Name</th>
+                                                <th>Reference</th>
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -85,12 +88,13 @@
                                                 <td>{{$index+1}}</td>
                                                 <td>{{sale.created_at | date:'dd/MM/yy'}}</td>
                                                 <td>{{sale.buyer.company}}</td>
+                                                <td>{{sale.reference}}</td>
                                                 <td>
                                                     <span ng-show="sale.status=='0'" style="color:red">Incomplete</span>
                                                     <span ng-hide="sale.status=='0'" style="color:green">Complete</span>
                                                 </td>
                                                 <td>
-                                                    <a href="" ng-click="showPurchaseInfo(sale)">
+                                                    <a href="" ng-click="showSaleInfo(sale)">
                                                         <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View sale Detail" style="margin-right: 10px;"></i>
                                                     </a>
                                                 </td>

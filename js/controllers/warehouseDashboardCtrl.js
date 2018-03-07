@@ -61,6 +61,31 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
         });
     }
 
+    $scope.showSaleInfo = function(sale){
+        var modalInstance = $uibModal.open({
+            animation: false,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'js/templates/accounts/showCompleteSale.html',
+            controller: 'ViewCompleteSaleInfoModalCtrl',
+            resolve: {
+                sale: function() {
+                  return sale;
+                }
+              }
+        });
+      
+        modalInstance.result.then(function (item) {
+            //console.log(item);
+            if(item.success==true){
+                $scope.getIncompletePurchases();
+                alert("Added successfully.")
+            }
+        }, function () {
+            console.log('Modal dismissed at: ' + new Date());
+        });
+    }
+
     $scope.getSuppliers = function(){
         baseSvc.get("suppliers")
         .then(function(response){

@@ -1,0 +1,89 @@
+<form ng-submit="save(item)">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Complete accounts information</h4>
+    </div>
+    <div class="modal-body">
+        <div class="">
+            <div class="tab-pane active">
+                <div>
+                    <fieldset class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Discount:</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" ng-model="item.discount">
+                            </div>
+                        </div>
+                        <div ng-repeat="product in item.product">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Product Name:</label>
+                                <div class="col-sm-10" style="padding-top: 8px;font-size: 15px;font-weight: bolder;">
+                                    {{product.name}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Unit Price:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" required ng-model="product.price">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Payment</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" ng-model="product.payment_category">
+                                        <option value="1">Full Paid</option>
+                                        <option value="2">Full Credit</option>
+                                        <option value="3">Partial Paid</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Payment method</label>
+                                <div class="col-sm-10" style="text-align: left;">
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="product.payment_type" value="1">Cash
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="product.payment_type" value="2">Cheque
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="product.payment_type" value="3">Cash + Cheque
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="product.payment_type!=1">
+                                <label class="col-sm-2 control-label">Bank account:</label>
+                                <div class="col-sm-10">
+                                        <select class="form-control" ng-model="product.check" ng-options="ledger.name for ledger in ledgers">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="product.payment_type==3 || (product.payment_type==1 && product.payment_category==3)">
+                                <label class="col-sm-2 control-label">Cash:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" ng-required="product.payment_type==3" class="form-control" ng-model="product.partial.cash">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="product.payment_type==3  || (product.payment_type==2 && product.payment_category==3)">
+                                <label class="col-sm-2 control-label">Cheque:</label>
+                                <div class="col-sm-10">
+                                    <input type="number" ng-required="product.payment_type==3" class="form-control" ng-model="product.partial.check">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer" ng-hide="addingInfo">
+        <a type="button" class="btn btn-white" ng-click="cancel()">Close</a>
+        <button type="submit" style="margin-top: -6px;" class="btn btn-primary" >Save</button>
+    </div>
+    <div class="modal-footer" ng-show="addingInfo">
+        <img src="img/spinner.gif" style=" height: 50px; padding-right: 20px;"/>
+    </div>
+</form>

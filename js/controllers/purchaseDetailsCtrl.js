@@ -1,4 +1,4 @@
-myApp.controller('purchaseDetailsCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('purchaseDetailsCtrl', function($scope, baseSvc, $uibModal, $rootScope, $stateParams) {
     var token = localStorage.getItem("token");
     if(!token){
         location.href="login.html"
@@ -10,25 +10,13 @@ myApp.controller('purchaseDetailsCtrl', function($scope, baseSvc, $uibModal, $ro
 
     $rootScope.title = "Purchase Details";
 
-    // $scope.submitUser = function(user){
-    //     baseSvc.post(user, "super/register")
-    //         .then(function(response){
-    //             console.log(response)
-    //             if(response.status=='Ok'){
-    //                 alert("User added successfully.")
-    //                 $state.go("superDashboard");
-    //             }
-    //             else if(response.email){
-    //                 alert("Email is already taken.");
-    //             }
-    //             else if(response.password){
-    //                 alert("Password must be 6 character long.");
-    //             }
-    //             else {
-    //                 alert("Error occured");
-    //             }
-    //         })
-    // }
+    baseSvc.get("warehouse/purchaseWiseReport?id="+$stateParams.id)
+        .then(function(response){
+            console.log(response);
+            $scope.purchase = response.purchase;
+            $scope.purchase.created_at = new Date($scope.purchase.created_at.date);
+            $scope.sales = response.sales;
+        });
 });
 
 

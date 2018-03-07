@@ -1,0 +1,56 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Incomplete Sale Details</h4>
+</div>
+<div class="modal-body">
+    <div class="">
+        <div class="tab-pane active">
+            <div>
+                <div class="p-m-p">
+                    <div class="col-md-4">Buyer Name:</div>
+                    <div class="col-md-8">{{item.buyer.company}}</div>
+                    <div class="clearix"></div>
+
+                    <div class="col-md-4">Reference:</div>
+                    <div class="col-md-8">{{item.reference}}</div>
+                    <div class="clearix"></div>
+
+                    <div class=" float-e-margins">
+                        <div class="ibox-content" style="border: none;">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="p-th">
+                                        <th>S/L</th>
+                                        <th>Product Name</th>
+                                        <th>Meta</th>
+                                        <th>Quantity</th>
+                                        <!-- <th>Action</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="p-td" ng-repeat="product in item.product">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{product.name}}</td>
+                                        <td>{{product.meta}}</td>
+                                        <td>{{product.pivot.total_amount}}</td>
+                                        <!-- <td>
+                                            <a href="">
+                                                <i class="fa fa-eye" ng-click="showProductDetails(product)" data-placement="top" title="View Stock Detail" style="margin-right: 10px;"></i>
+                                            </a>
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <a type="button" class="btn btn-warning" ng-click="cancel()">Close</a>
+</div>
