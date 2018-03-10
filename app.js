@@ -108,6 +108,15 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
     templateUrl: 'js/templates/superDashboard/productDetails.html',
     controller: 'productDetailsCtrl'
   }
+  
+  var marketing = {
+    name: 'marketing',
+    url: '/product/marketing',
+    templateUrl: 'js/templates/superDashboard/stock.html',
+    controller: 'marketingController',
+    controllerAs: 'marketingCtrl'
+  }
+  
 
   $stateProvider.state(warehousePurchase);
   $stateProvider.state(editWarehousePurchase);
@@ -123,6 +132,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state(warehouseSalesEntry);
   $stateProvider.state(superAdminStock);
   $stateProvider.state(productDetails);
+  $stateProvider.state(marketing);
 
   $urlRouterProvider.otherwise('/');
 });
