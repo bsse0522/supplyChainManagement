@@ -1,6 +1,25 @@
 <div class="ibox">
     <div class="ibox-title">
-        <h5 style="">Purchase</h5>
+        <h5 style="">Purchase</h5> <span data-toggle="modal" data-target="#myModal33"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+    </div>
+    <div class="modal inmodal" id="myModal33" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <h3>Instructions</h3>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>This section is for adding new purchase.</li>
+                        <li>Fields with star marks are mandatory</li>
+                        <li>You can add one or more product in a single purchase</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="ibox-content">
         <form id="form" ng-submit="submitPurchase()" class="wizard-big">
