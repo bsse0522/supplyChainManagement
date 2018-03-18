@@ -109,12 +109,19 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		controller: 'productDetailsCtrl'
 	}
 	
-	var marketing = {
-		name: 'marketing',
-		url: '/product/marketing',
-		templateUrl: 'js/templates/superDashboard/stock.html',
-		controller: 'marketingController',
-		controllerAs: 'marketingCtrl'
+	// var marketing = {
+	// 	name: 'marketing',
+	// 	url: '/product/marketing',
+	// 	templateUrl: 'js/templates/superDashboard/stock.html',
+	// 	controller: 'marketingController',
+	// 	controllerAs: 'marketingCtrl'
+	// }
+	
+	var productDetailsUpdate = {
+		name: 'productDetailsUpdate',
+		url: '/productdetailsupdate',
+		templateUrl: 'js/templates/superDashboard/productDetailsUpdate.html',
+		controller: 'productDetailsUpdateController'
 	}
 	
 	
@@ -132,7 +139,10 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider.state(warehouseSalesEntry);
 	$stateProvider.state(superAdminStock);
 	$stateProvider.state(productDetails);
-	$stateProvider.state(marketing);
+	// $stateProvider.state(marketing);
+	$stateProvider.state(productDetailsUpdate);
+	
+	
 	
 	$urlRouterProvider.otherwise('/');
 });

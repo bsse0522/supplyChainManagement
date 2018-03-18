@@ -1,4 +1,4 @@
-myApp.controller('superAdminStockCtrl', function ($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('superAdminStockCtrl', function ($scope, baseSvc, $uibModal, $rootScope,$state) {
 	var token = localStorage.getItem("token");
 	if (!token) {
 		location.href = "login.html"
@@ -22,6 +22,10 @@ myApp.controller('superAdminStockCtrl', function ($scope, baseSvc, $uibModal, $r
 			});
 	}
 	$scope.getProducts();
+	
+	$scope.goToProductDetailsEdit = function(){
+		$state.go('productDetailsUpdate');
+	}
 	
 	$scope.showProductDetails = function (product){
 		var modalInstance = $uibModal.open({
