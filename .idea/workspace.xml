@@ -2,6 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4ecab76-7195-4674-a574-ded176278db6" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/LICENSE" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/README.md" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.flash.swf" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.flash.swf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-all.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-all.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-shim.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-shim.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/index.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/package.json" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,10 +28,10 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1815">
+            <state relative-caret-position="123">
               <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
               <folding />
             </state>
@@ -66,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/js/controllers/productDetailsUpdateCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding>
                 <element signature="e#200#245#0" expanded="false" />
               </folding>
@@ -86,11 +100,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+            <state relative-caret-position="2985">
+              <caret line="199" column="60" lean-forward="false" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -145,9 +159,12 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1280" />
-    <option name="height" value="800" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -165,7 +182,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -274,6 +290,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -282,6 +299,11 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/js/plugins" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -383,17 +405,18 @@
       <workItem from="1520877442383" duration="3823000" />
       <workItem from="1520882889040" duration="990000" />
       <workItem from="1521386792045" duration="201000" />
+      <workItem from="1521477806608" duration="273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6208000" />
+    <option name="totallyTimeSpent" value="6481000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16521049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16482359" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -807,14 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/superAdminStockCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -826,7 +841,7 @@
     <entry file="file://$PROJECT_DIR$/js/controllers/productDetailsUpdateCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="e#200#245#0" expanded="false" />
           </folding>
@@ -835,8 +850,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="27" lean-forward="false" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+        <state relative-caret-position="2985">
+          <caret line="199" column="60" lean-forward="false" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
           <folding />
         </state>
       </provider>
