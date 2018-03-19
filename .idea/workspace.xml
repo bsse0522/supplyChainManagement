@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4ecab76-7195-4674-a574-ded176278db6" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/LICENSE" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/LICENSE" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/README.md" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/README.md" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.flash.swf" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.flash.swf" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/FileAPI.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/FileAPI.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-all.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-all.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-all.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-shim.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload-shim.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/dist/ng-file-upload.min.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/dist/ng-file-upload.min.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/index.js" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/index.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/node_modules/ng-file-upload/package.json" afterPath="$PROJECT_DIR$/js/plugins/ng-file-upload/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html" afterPath="$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +15,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="123">
@@ -79,8 +66,8 @@
       <file leaf-file-name="productDetailsUpdateCtrl.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/productDetailsUpdateCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
               <folding>
                 <element signature="e#200#245#0" expanded="false" />
               </folding>
@@ -91,21 +78,36 @@
       <file leaf-file-name="productDetailsUpdate.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1095">
-              <caret line="73" column="43" lean-forward="false" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="43" />
+            <state relative-caret-position="871">
+              <caret line="97" column="6" lean-forward="false" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
               <folding>
-                <marker date="1520881721637" expanded="false" signature="778:796" ph="..." />
+                <marker date="1521479212024" expanded="false" signature="778:796" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2985">
-              <caret line="199" column="60" lean-forward="false" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
-              <folding />
+            <state relative-caret-position="931">
+              <caret line="229" column="7" lean-forward="false" selection-start-line="229" selection-start-column="7" selection-end-line="229" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#7024#7030#0" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,11 +146,11 @@
         <option value="$PROJECT_DIR$/js/controllers/warehouseDashboardCtrl.js" />
         <option value="$PROJECT_DIR$/js/controllers/warehouseSalesEntryCtrl.js" />
         <option value="$PROJECT_DIR$/js/controllers/accountsPurchaseCtrl.js" />
-        <option value="$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html" />
         <option value="$PROJECT_DIR$/js/templates/superDashboard/stock.html" />
         <option value="$PROJECT_DIR$/js/controllers/superAdminStockCtrl.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/js/controllers/productDetailsUpdateCtrl.js" />
+        <option value="$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html" />
         <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
@@ -405,12 +407,12 @@
       <workItem from="1520877442383" duration="3823000" />
       <workItem from="1520882889040" duration="990000" />
       <workItem from="1521386792045" duration="201000" />
-      <workItem from="1521477806608" duration="273000" />
+      <workItem from="1521477806608" duration="954000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6481000" />
+    <option name="totallyTimeSpent" value="7162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -447,14 +449,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1815">
-          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/superAdminStockCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -478,7 +472,7 @@
         <state relative-caret-position="381">
           <caret line="73" column="43" lean-forward="false" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="43" />
           <folding>
-            <marker date="1520881721637" expanded="false" signature="778:796" ph="..." />
+            <marker date="1521479212024" expanded="false" signature="778:796" ph="..." />
           </folding>
         </state>
       </provider>
@@ -528,7 +522,7 @@
         <state relative-caret-position="180">
           <caret line="12" column="34" lean-forward="true" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
           <folding>
-            <marker date="1520881721637" expanded="false" signature="778:796" ph="..." />
+            <marker date="1521479212024" expanded="false" signature="778:796" ph="..." />
           </folding>
         </state>
       </provider>
@@ -580,7 +574,7 @@
         <state relative-caret-position="330">
           <caret line="22" column="44" lean-forward="false" selection-start-line="13" selection-start-column="33" selection-end-line="22" selection-end-column="44" />
           <folding>
-            <marker date="1520881721637" expanded="false" signature="778:796" ph="..." />
+            <marker date="1521479212024" expanded="false" signature="778:796" ph="..." />
           </folding>
         </state>
       </provider>
@@ -726,13 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/superAdminLedgerCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="8" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/accountsPurchaseCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
@@ -758,13 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/purchaseCtrl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -820,13 +800,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1095">
-          <caret line="73" column="43" lean-forward="false" selection-start-line="73" selection-start-column="40" selection-end-line="73" selection-end-column="43" />
-          <folding>
-            <marker date="1520881721637" expanded="false" signature="778:796" ph="..." />
-          </folding>
+        <state relative-caret-position="123">
+          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/superAdminLedgerCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="955">
+          <caret line="65" column="8" lean-forward="true" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/purchaseCtrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -840,27 +834,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/productDetailsUpdateCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="5" column="11" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
           <folding>
             <element signature="e#200#245#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/js/templates/superDashboard/productDetailsUpdate.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2985">
-          <caret line="199" column="60" lean-forward="false" selection-start-line="199" selection-start-column="60" selection-end-line="199" selection-end-column="60" />
+        <state relative-caret-position="871">
+          <caret line="97" column="6" lean-forward="false" selection-start-line="97" selection-start-column="6" selection-end-line="97" selection-end-column="6" />
+          <folding>
+            <marker date="1521479212024" expanded="false" signature="778:796" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="121" column="14" lean-forward="false" selection-start-line="121" selection-start-column="14" selection-end-line="121" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="931">
+          <caret line="229" column="7" lean-forward="false" selection-start-line="229" selection-start-column="7" selection-end-line="229" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#7024#7030#0" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
