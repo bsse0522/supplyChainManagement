@@ -121,7 +121,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		name: 'productDetailsUpdate',
 		url: '/productdetailsupdate',
 		templateUrl: 'js/templates/superDashboard/productDetailsUpdate.html',
-		controller: 'productDetailsUpdateController'
+		controller: 'productDetailsUpdateController',
+		controllerAs: 'pduCtrl'
 	}
 	
 	
