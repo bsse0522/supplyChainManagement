@@ -585,7 +585,7 @@ myApp.controller('editPurchaseCtrl', function($scope, baseSvc, $uibModal, $rootS
 
         $scope.submittingPurchase = true;
         var purchase = {
-            id: $stateParams.id,
+            purchase_id: $stateParams.id,
             supplierId: $scope.supplier.id,
             reference: $scope.reference,
             products: []
@@ -620,11 +620,11 @@ myApp.controller('editPurchaseCtrl', function($scope, baseSvc, $uibModal, $rootS
 
         baseSvc.post({
             purchase: JSON.stringify(purchase)
-        }, "warehouse/purchase/update")
+        }, "warehouse/purchase/product/update")
             .then(function(response){
                 $scope.submittingPurchase = false;
-                if(response.message=='created'){
-                    alert("Added successfully.")
+                if(response.message=='updated'){
+                    alert("Updated successfully.")
                     $state.go("warehouseDashboard");
                 }
                 else{

@@ -155,7 +155,7 @@ myApp.controller('AddSaleInfoModalInstanceCtrl', function ($scope, $uibModalInst
         });
         console.log(data);
         baseSvc.post({
-            purchase: JSON.stringify(data)
+            sale: JSON.stringify(data)
         }, "accounts/sale/price/store")
             .then(function(response){
                 $scope.addingInfo = false;
