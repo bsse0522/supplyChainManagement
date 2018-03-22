@@ -16,6 +16,7 @@ myApp.controller('purchaseDetailsCtrl', function($scope, baseSvc, $uibModal, $ro
 			$scope.purchase = response.purchase;
 			$scope.purchase.created_at = new Date($scope.purchase.created_at.date);
 			$scope.sales = response.sales;
+			$scope.pl = response.pl;
 		});
 });
 

@@ -119,11 +119,11 @@
                                         </tr>
                                     </tbody>
                                     <tr>
-                                        <td colspan="3">@tk {{product.price}}</td>
+                                        <td colspan="3">@tk {{product.unit_price}}</td>
                                     </tr>
                                 </table>
                             </td>
-                            <td style="vertical-align: middle;">{{product.total_amount*product.price}}</td>
+                            <td style="vertical-align: middle;">{{product.total_amount*product.unit_price}}</td>
                         </tr>
                         <tr>
                             <td>Discount</td>
@@ -136,15 +136,15 @@
                     <tbody>
                         <tr style="">
                             <td colspan="5">Gross Profit/Loss</td>
-                            <td>-6000</td>
+                            <td>{{pl.gross_pl}}</td>
                         </tr>
                         <tr style="">
                             <td colspan="5">Stock Value</td>
-                            <td>-6000</td>
+                            <td>{{pl.stock_value}}</td>
                         </tr>
                         <tr style="">
                             <td colspan="5">Net Profit/Loss</td>
-                            <td>6000</td>
+                            <td>{{pl.net_pl}}</td>
                         </tr>
                     </tbody>
                 </table>
