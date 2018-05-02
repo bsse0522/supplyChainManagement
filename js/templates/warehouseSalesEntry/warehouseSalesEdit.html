@@ -39,7 +39,7 @@
                             <h5>Select a product
                                 <span style="color:red">*</span>
                             </h5>
-                            <ui-select multiple ng-model="pickedProducts" on-select="productSelected($item, selectedProducts)" ng-required="true" close-on-select="false" style="padding-left: 0px;"
+                            <ui-select multiple ng-model="pickedProducts" on-select="productSelected($item, selectedProducts)" on-remove="productRemoved($item, selectedProducts)" ng-required="true" close-on-select="false" style="padding-left: 0px;"
                                 theme="select2" class="col-md-12" title="Choose products">
                                 <ui-select-match placeholder="Select products">{{$item.name}}</ui-select-match>
                                 <ui-select-choices repeat="product in products | propsFilter: {name: $select.search}">
@@ -71,7 +71,7 @@
                                 <td>{{size.name}}</td>
                                 <td>{{size.quantity}}</td>
                                 <td>
-                                    <input type="text" ng-model="size.sellQuantity" required class="form-control" size="16" value="0">
+                                    <input type="number" string-to-number ng-model="size.sellQuantity" ng-max="{{size.quantity}}" required class="form-control" size="16" value="0">
                                 </td>
                             </tr>
                         </tbody>

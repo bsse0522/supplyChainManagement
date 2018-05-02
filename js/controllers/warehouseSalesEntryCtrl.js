@@ -4,7 +4,7 @@ myApp.controller('warehouseSalesEntryCtrl', function($scope, $state, baseSvc, $u
 		location.href="login.html"
 	}
 	
-	if ($rootScope.role != 'warehouse') {
+	if ($rootScope.role.indexOf("warehouse_sale_modification")==-1) {
 		$rootScope.withoutPermission();
 	}
 	
@@ -142,13 +142,13 @@ myApp.controller('AddBuyerModalInstanceCtrl', function ($scope, $uibModalInstanc
 	};
 });
 
-myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, $rootScope) {
+myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, $rootScope, $state, $stateParams) {
 	var token = localStorage.getItem("token");
 	if(!token){
 		location.href="login.html"
 	}
 	
-	if ($rootScope.role != 'warehouse') {
+	if ($rootScope.role.indexOf("warehouse_sale_modification")==-1) {
 		$rootScope.withoutPermission();
 	}
 	
@@ -156,6 +156,7 @@ myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, 
 	
 	$scope.buyer = {};
 	$scope.product = {};
+	$scope.item = {};
 	
 	$scope.buyerSelected=function(item, model){
 		$scope.buyer=item;
@@ -164,25 +165,54 @@ myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, 
 	$scope.productSelected=function(item, model){
 		$scope.product=item;
 	}
-	
-	baseSvc.get("buyers")
+	baseSvc.get("warehouse/indivisual/sale?id="+$stateParams.id)
 		.then(function(response){
-			$scope.buyers = response.filter(function(node){
-				return node.company!=null;
-			});
+			$scope.item = response;
+			$scope.reference = $scope.item.reference;
+			baseSvc.get("buyers")
+				.then(function(response){
+					$scope.buyers = response.filter(function(node){
+						return node.company!=null;
+					});
+					$scope.buyer = $scope.buyers.filter(function(node){
+						return node.id==$scope.item.buyerId;
+					})[0];
+					// console.log($scope.buyer);
+				});
 			
-			console.log($scope.buyers);
-		});
-	
-	baseSvc.get("available/products")
-		.then(function(response){
-			$scope.products = response;
+			baseSvc.get("available/products")
+				.then(function(response){
+					$scope.products = response;
+					$scope.item.products.forEach(function(node){
+						$scope.pickedProducts.push($scope.products.filter(function(product){
+							return product.id==node.id;
+						})[0]);
+						var item = $scope.products.filter(function(product){
+									return product.id==node.id;
+								})[0];
+						item.colors = node.colors;
+						item.colors.forEach(function(color){
+							color.sizes.forEach(function(size){
+								size.sellQuantity = size.quantity;
+								size.quantity = size.stock; 
+							})
+						})
+						$scope.selectedProducts.push(item);
+					})
+				});
 		});
 	
 	$scope.selectedProducts = [];
+	$scope.pickedProducts = [];
 	
 	$scope.productSelected = function(item, selectedProduct){
 		$scope.selectedProducts.push(item);
+	}
+	
+	$scope.productRemoved = function(item, selectedProduct){
+		$scope.selectedProducts=$scope.selectedProducts.filter(function(node){
+			return node.id!=item.id;
+		});
 	}
 	
 	$scope.addNewBuyer=function(){
@@ -221,6 +251,7 @@ myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, 
 	
 	$scope.submitSales = function() {
 		var sales = {
+			sale_id: $stateParams.id,
 			buyerId: $scope.buyer.id,
 			buyer: $scope.buyer.company,
 			reference: $scope.reference,
@@ -258,11 +289,11 @@ myApp.controller('warehouseSalesEditCtrl', function($scope, baseSvc, $uibModal, 
 		
 		baseSvc.post({
 			sale: JSON.stringify(sales)
-		}, "warehouse/sales/product/store")
+		}, "update/sale")
 			.then(function(response){
 				console.log(response)
-				if(response.message=='created'){
-					alert("Added successfully.")
+				if(response.message=='updated'){
+					alert("Updated successfully.")
 					$state.go("warehouseDashboard");
 				}
 				else{

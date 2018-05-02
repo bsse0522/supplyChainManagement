@@ -3,12 +3,12 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
 	if (!token) {
 		location.href = "login.html"
 	}
-	
-	if ($rootScope.role != 'super') {
+
+	if ($rootScope.role.indexOf("journal") == -1) {
 		$rootScope.withoutPermission();
 	}
 	$rootScope.title = "Journal";
-	
+
 	$scope.journals = [];
 	var d = new Date();
 	$scope.date = new Date();
@@ -28,8 +28,8 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
 				showJournal(date);
 			});
 	}
-	
-	function showJournal(date){
+
+	function showJournal(date) {
 		var modalInstance = $uibModal.open({
 			animation: false,
 			ariaLabelledBy: 'modal-title',
@@ -38,21 +38,23 @@ myApp.controller('superAdminJournalCtrl', function ($scope, baseSvc, $uibModal, 
 			controller: 'JournalModalCtrl',
 			size: 'lg',
 			resolve: {
-				journals: function() {
+				journals: function () {
 					return $scope.journals;
 				},
-				date: function() {
+				date: function () {
 					return date;
 				}
 			}
 		});
-		
+
 		modalInstance.result.then(function (item) {
 			console.log('Modal dismissed at: ' + new Date());
 		}, function () {
 			console.log('Modal dismissed at: ' + new Date());
 		});
 	}
+
+	
 });
 
 myApp.controller('JournalModalCtrl', function ($scope, $uibModalInstance, journals, date) {
@@ -61,4 +63,11 @@ myApp.controller('JournalModalCtrl', function ($scope, $uibModalInstance, journa
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 });

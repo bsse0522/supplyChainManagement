@@ -3,7 +3,7 @@
         <button type="button" class="close" ng-click="cancel()">
             <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title">Complete accounts information</h4>
+        <h4 class="modal-title">Edit accounts information</h4>
     </div>
     <div class="modal-body">
         <div class="">
@@ -44,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Unit Price:</label>
                                 <div class="col-sm-10">
-                                    <input type="number" ng-change="calculateTotal()" class="form-control" required ng-model="product.price">
+                                    <input type="number" string-to-number ng-change="calculateTotal()" class="form-control" required ng-model="product.price">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -92,9 +92,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Total purchase value:</label>
+                            <label class="col-sm-2 control-label">Total purchase value</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" ng-model="total">
+                                <input type="number" string-to-number class="form-control" ng-model="total" readonly>
                             </div>
                         </div>
                     </fieldset>

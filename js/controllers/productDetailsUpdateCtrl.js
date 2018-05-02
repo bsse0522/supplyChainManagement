@@ -1,35 +1,78 @@
-myApp.controller('productDetailsUpdateController', function($rootScope,$scope, baseSvc,Upload){
-	
-	$scope.submit = function() {
-		if ($scope.form.file.$valid && $scope.file) {
-			$scope.upload($scope.file);
-		}
-	};
-	
-	// upload on file select or drop
-	$scope.uploadFiles = function (files) {
-		$scope.files = files;
-		if (files && files.length) {
-			Upload.upload({
-				url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
-				data: {
-					files: files
-				}
-			}).then(function (response) {
-				$timeout(function () {
-					$scope.result = response.data;
-				});
-			}, function (response) {
-				if (response.status > 0) {
-					$scope.errorMsg = response.status + ': ' + response.data;
-				}
-			}, function (evt) {
-				$scope.progress =
-					Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+myApp.controller('productDetailsUpdateController', function($rootScope,$scope, baseSvc, $state, $stateParams){
+	var token = localStorage.getItem("token");
+	if (!token) {
+		location.href = "login.html"
+	}
+	if ($rootScope.role.indexOf("marketing_modification")==-1) {
+		$rootScope.withoutPermission();
+	}
+	$rootScope.title = "Marketing";
+	$scope.submitting = false;
+	console.log($stateParams.id);
+	$scope.getProduct = function(){
+		baseSvc.get("indivisual/product?id="+$stateParams.id)
+			.then(function(response){
+				//$scope.product = response;
+				$scope.name = response.name;
+				$scope.detail = response.detail;
+				$scope.images = response.images;
+				$scope.doc = response.doc;
+				//console.log($scope.product);
 			});
-		}
-	};
+	}
+	$scope.getProduct();
 
-})/**
- * Created by mgmuntaqeem on 13/3/18.
- */
+	var formdata = new FormData();
+	$scope.getTheFiles = function ($files) {
+		formdata = new FormData();
+		angular.forEach($files, function (value, key) {
+			formdata.append("photos[]", value);
+		});
+	};
+	// NOW UPLOAD THE FILES.
+	$scope.uploadFiles = function () {
+		if (confirm("Are you sure?")) {
+		} else {
+			return;
+		}
+		$scope.submitting = true;
+		formdata.append("id", $stateParams.id);
+		formdata.append("detail", $scope.detail);
+		formdata.append("doc", $scope.newdoc);
+		baseSvc.postFile(formdata, "super/store/product/details")
+			.then(function(response){
+				if(response=="updated"){
+					alert("Updated successfully");
+					$state.go("marketing");
+				}
+				else {
+					alert("Error occured.");
+				}
+				$scope.submitting = false;
+			})
+	}
+
+	$scope.deleteImage = function(image) {
+		if (confirm("Are you sure?")) {
+			baseSvc.get("delete/photo?id="+image.id)
+			.then(function(response){
+				var index = $scope.images.indexOf(image);
+				$scope.images.splice(index, 1);
+			});
+		} else {
+			return;
+		}
+	}
+
+	$scope.removeDoc = function(image) {
+		if (confirm("Are you sure?")) {
+			baseSvc.get("delete/doc?id="+$stateParams.id)
+			.then(function(response){
+				$scope.doc = null;
+			});
+		} else {
+			return;
+		}
+	}
+
+})

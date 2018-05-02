@@ -7,49 +7,98 @@
             <div class="row">
                 <div class="panel-body" style="border: none;">
                     <div class="ibox-content" style="border: none;">
-
-                        <div class="table-responsive">
-                            <table class="footable table table-stripped toggle-arrow-tiny">
-                                <thead>
-                                    <tr class="gtable p-th">
-                                        <th>S/N</th>
-                                        <th>Product Name</th>
-                                        <th>Meta</th>
-                                        <th>Stock</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="p-td" ng-repeat="product in products">
-                                        <td>{{$index+1}}</td>
-                                        <td>{{product.name}}</td>
-                                        <td>{{product.meta}}</td>
-                                        <td>{{product.stock}}</td>
-                                        <td>
-                                            <a href="">
-                                                <i class="fa fa-eye" ng-click="showProductDetails(product)" data-placement="top" title="View Stock Detail" style="margin-right: 10px;"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="modal fade" id="myModal22" role="dialog">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                      <h4 class="modal-title"></h4>
-                                    </div>
-                                    <div class="modal-body">
-
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>  
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Supplier</label>
+                                    <select style="border: 1px solid black;" ng-model="supplier" class="form-control" id="sel1">
+                                        <option value="-1" selected>All</option>
+                                        <option ng-repeat="supplier in suppliers" value="{{supplier.id}}">{{supplier.company}}</option>
+                                    </select>
                                 </div>
                             </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select style="border: 1px solid black;" ng-change="categorySelected(category)" ng-model="category" class="form-control"
+                                        id="sel1">
+                                        <option value="-1" selected>All</option>
+                                        <option ng-repeat="category in categories" value="{{category}}">{{category.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Sub-Category</label>
+                                    <select style="border: 1px solid black;" ng-model="subcategory" class="form-control" id="sel1">
+                                        <option value="-1" selected>All</option>
+                                        <option ng-repeat="subcategory in subcategories" value="{{subcategory.id}}">{{subcategory.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <a style="width:100%; margin-top: 23px;" type="button" class="btn btn-primary" ng-click="filter()">Filter</a>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <p ng-hide="products.length>0">No product available in stock.</p>
+                                <table st-table="displayedProducts" st-safe-src="products" class="table table-striped" ng-show="products.length>0">
+                                    <thead>
+                                        <tr class="gtable p-th">
+                                            <th>S/N</th>
+                                            <th>Product Name</th>
+                                            <th>Supplier</th>
+                                            <th>Category</th>
+                                            <th>Stock</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="6">
+                                                <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="p-td" ng-repeat="product in displayedProducts">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{product.name}}</td>
+                                            <td>{{product.supplier.company}}</td>
+                                            <td>{{product.category.name}}</td>
+                                            <td>{{product.stock}}</td>
+                                            <td>
+                                                <a href="">
+                                                    <i class="fa fa-eye" ng-click="showProductDetails(product)" data-placement="top" title="View Stock Detail" style="margin-right: 10px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6" class="text-center">
+                                                <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <div class="modal fade" id="myModal22" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title"></h4>
+                                            </div>
+                                            <div class="modal-body">
 
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
@@ -57,127 +106,5 @@
                 </div>
             </div>
         </div>
-    </div>        
+    </div>
 </div>
-<div class="ibox">
-    <div class="ibox float-e-margins" style="padding-top: 30px;">
-        <div class="ibox-title">
-            <h5>Header</h5>
-        </div>
-        <div class="ibox-content">
-            <div class="row">
-                <div class="panel-body" style="border: none;">
-                    <div class="ibox-content" style="border: none;">
-                        <div class="table-responsive">
-                             <table class="footable table table-stripped toggle-arrow-tiny">
-                                <thead>
-                                    <tr class="gtable p-th">
-                                        <th>S/N</th>
-                                        <th>Name</th>
-                                        <th>Photo</th>
-                                        <th>Product Details</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="p-td">
-                                        <td>1</td>
-                                        <td></td>
-                                        <td>
-                                            <img class="" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: auto; height: 72px;">
-                                        </td>
-                                        <td></td>
-                                        <td>
-                                            <a><i ng-click="goToProductDetailsEdit()" class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Edit information" style="margin-right: 10px;"></i></a>
-                                        </td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>        
-</div>
-<!--<div class="ibox">-->
-    <!--<div class="ibox float-e-margins" style="padding-top: 30px;">-->
-        <!--<div class="ibox-title">-->
-            <!--<h5>Header</h5>-->
-        <!--</div>-->
-        <!--<div class="ibox-content">-->
-            <!--<div class="row">-->
-                <!--<div class="panel-body" style="border: none;">-->
-                    <!--<div class="ibox-content" style="border: none;">-->
-                        <!--<fieldset class="form-horizontal">-->
-                            <!--<div class="form-group"><label class="col-sm-2 control-label">Name:</label>-->
-                                <!--<div class="col-sm-10"><input type="text" class="form-control" placeholder="Product name"></div>-->
-                            <!--</div>-->
-                            <!--<div class="form-group"><label class="col-sm-2 control-label">Description:</label>-->
-                                <!--<div class="col-sm-10"><input type="text" class="form-control" placeholder=""></div>-->
-                            <!--</div>-->
-                        <!--</fieldset>-->
-                        <!--<div class="col-md-2"></div>-->
-                        <!--<div class="col-md-10" style="padding-right: 0px; padding-left: 6px;">-->
-                            <!--<div class="table-responsive">-->
-                            <!--<table class="table table-bordered table-stripped">-->
-                                <!--<thead>-->
-                                <!--<tr>-->
-                                    <!--<th>-->
-                                        <!--Image preview-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--Sort order-->
-                                    <!--</th>-->
-                                    <!--<th>-->
-                                        <!--Actions-->
-                                    <!--</th>-->
-                                <!--</tr>-->
-                                <!--</thead>-->
-                                <!--<tbody>-->
-                                <!--<tr>-->
-                                    <!--<td>-->
-                                        <!--<img src="img/gallery/2s.jpg">-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<input type="text" class="form-control" value="1">-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<button class="btn btn-white"><i class="fa fa-trash"></i> </button>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--<tr>-->
-                                    <!--<td>-->
-                                        <!--<img src="img/gallery/1s.jpg">-->
-                                    <!--</td>-->
-                                    <!---->
-                                    <!--<td>-->
-                                        <!--<input type="text" class="form-control" value="2">-->
-                                    <!--</td>-->
-                                    <!--<td>-->
-                                        <!--<button class="btn btn-white"><i class="fa fa-trash"></i> </button>-->
-                                    <!--</td>-->
-                                <!--</tr>-->
-                                <!--</tbody>-->
-                            <!--</table>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                          <!--<label for="pwd" class="col-sm-2 control-label">Upload New Image:</label>-->
-                          <!--<div class="col-sm-10" style="padding-right: 0px; padding-left: 6px;">-->
-                            <!--<input type="file" class="form-control" id="file" multiple>-->
-                          <!--</div>-->
-                        <!--</div>-->
-                        <!--<div class="col-md-10 col-md-offset-2" style="    margin-top: 10px; padding-left: 6px;">-->
-                            <!--<button type="submit" class="btn btn-primary" style="width: 20%;">Submit</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>        -->
-<!--</div>-->

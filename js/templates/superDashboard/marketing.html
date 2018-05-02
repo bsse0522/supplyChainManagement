@@ -1,0 +1,53 @@
+<div class="ibox">
+    <div class="ibox float-e-margins" style="padding-top: 30px;">
+        <div class="ibox-title">
+            <h5>Marketing</h5>
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="panel-body" style="border: none;">
+                    <div class="ibox-content" style="border: none;">
+                        <div class="table-responsive">
+                            <table st-table="displayedProducts" st-safe-src="products" class="table table-striped">
+                                <thead>
+                                    <tr class="gtable p-th">
+                                        <th>S/N</th>
+                                        <th st-sort="name">Product Name</th>
+                                        <th st-sort="meta">Meta</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="4">
+                                            <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="p-td" ng-repeat="product in displayedProducts">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{product.name}}</td>
+                                        <td>{{product.meta}}</td>
+                                        <td>
+                                            <a href="#!/productdetailsupdate/{{product.id}}" ng-hide="role.indexOf('marketing_modification')==-1">
+                                                <i class="fa fa-edit" data-placement="top" title="Edit and add photos" style="margin-right: 10px;"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

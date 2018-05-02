@@ -4,7 +4,7 @@ myApp.controller('purchaseCtrl', function($scope, baseSvc, $uibModal, $rootScope
 		location.href="login.html"
 	}
 	
-	if ($rootScope.role != 'warehouse') {
+	if ($rootScope.role.indexOf("warehouse_purchase_modification")==-1) {
 		$rootScope.withoutPermission();
 	}
 	
@@ -313,9 +313,9 @@ myApp.controller('editPurchaseCtrl', function($scope, baseSvc, $uibModal, $rootS
         location.href="login.html"
     }
 
-    if ($rootScope.role != 'warehouse') {
-        $rootScope.withoutPermission();
-    }
+    if ($rootScope.role.indexOf("warehouse_purchase_modification")==-1) {
+		$rootScope.withoutPermission();
+	}
 
     $rootScope.title = "Edit Purchase";
     $scope.submittingPurchase = false;

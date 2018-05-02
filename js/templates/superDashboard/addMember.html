@@ -1,5 +1,6 @@
 <div class="row">
-    <div class="col-md-5">
+        <div class="col-md-3"></div>
+    <div class="col-md-6">
         <div class="ibox-content">
             <h2 class="font-bold" style="text-align: center;">Create New Employee</h2>
             <form class="m-t" ng-submit="submitUser(user)">
@@ -12,100 +13,26 @@
                 <div class="form-group">
                     <input type="password" class="form-control" ng-model="user.password" placeholder="Password" required>
                 </div>
-                <div class="">
-                    <select ng-init="user.role='super'" class="form-control m-b" name="account" ng-model="user.role" required>
-                        <option value="super">Super Admin</option>
-                        <option value="accounts">Accounts</option>
-                        <option value="warehouse">Warehouse Admin</option>
-                        <option value="marketing">Marketing</option>
-                    </select>
+                <div class="form-group">
+                    <h2>Select responsibilities</h2>
+                    <div ng-repeat="p in permissions" style="padding-bottom: 10px">
+                        <h3>{{p.type}} responsibilities</h3>
+                        <div class="row">
+                            <div class="col-md-6" ng-repeat="option in p.options">
+                                <input type='checkbox' ng-model="option.selected"> {{option.value}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">Submit</button>      
+                <button type="submit" class="btn btn-primary block full-width m-b" ng-hide="submitting">Submit</button>
+                
+                <div class="row col-md-12" style="text-align: center; margin-top: 8px;" ng-show="submitting">
+                    <img src="img/spinner.gif" />
+                </div>
             </form>
         </div>
     </div>
-    <div class="col-md-5">
-        <h2 class="font-bold" style="text-align: center;">Responsibility of Employees</h2>
-    <div class="panel-group" id="faqAccordion">
-        <div class="panel panel-default ">
-            <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
-                 <h4 class="panel-title">
-                    <a href="#" class="ing">Responsibility of Type1 Employee</a>
-              </h4>
 
-            </div>
-            <div id="question0" class="panel-collapse collapse" style="height: 0px;">
-                <div class="panel-body">
-                    <ul>
-                        <li>But I must explain </li>
-                        <li>To you how all this mistaken</li>
-                        <li>Idea of denouncing pleasure </li>
-                        <li>Great explorer of the truth</li>
-                        <li>To take a trivial example
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default ">
-            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
-                 <h4 class="panel-title">
-                    <a href="#" class="ing">Responsibility of Type2 Employee</a>
-              </h4>
-
-            </div>
-            <div id="question1" class="panel-collapse collapse" style="height: 0px;">
-                <div class="panel-body">
-                     <ul>
-                        <li>But I must explain </li>
-                        <li>To you how all this mistaken</li>
-                        <li>Idea of denouncing pleasure </li>
-                        <li>Great explorer of the truth</li>
-                        <li>To take a trivial example
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default ">
-            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
-                 <h4 class="panel-title">
-                    <a href="#" class="ing">Responsibility of Type3 Employee</a>
-              </h4>
-
-            </div>
-            <div id="question2" class="panel-collapse collapse" style="height: 0px;">
-                <div class="panel-body">
-                     <ul>
-                        <li>But I must explain </li>
-                        <li>To you how all this mistaken</li>
-                        <li>Idea of denouncing pleasure </li>
-                        <li>Great explorer of the truth</li>
-                        <li>To take a trivial example
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default ">
-            <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
-                 <h4 class="panel-title">
-                    <a href="#" class="ing">Responsibility of Type4 Employee</a>
-              </h4>
-
-            </div>
-            <div id="question3" class="panel-collapse collapse" style="height: 0px;">
-                <div class="panel-body">
-                     <ul>
-                        <li>But I must explain </li>
-                        <li>To you how all this mistaken</li>
-                        <li>Idea of denouncing pleasure </li>
-                        <li>Great explorer of the truth</li>
-                        <li>To take a trivial example
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-    </div>
 </div>
 <div class="clearfix"></div>
 <div class="" style="margin-top: 20px;"></div>
-

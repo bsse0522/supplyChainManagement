@@ -1,19 +1,22 @@
 <style>
-	.select2-drop {
-    	width: 94.5%;
+    .select2-drop {
+        width: 94.5%;
     }
 </style>
 <div class="ibox float-e-margins">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-6" ng-show="role.indexOf('purchase_summary_dashboard')!=-1">
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="min-height: 60px;">
                     <div class="col-md-8">
-                        <h5 style="padding-top: 10px;">Purchase <span data-toggle="modal" data-target="#myModal33"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                        <h5 style="padding-top: 10px;">Purchase
+                            <span data-toggle="modal" data-target="#myModal33">
+                                <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                            </span>
                         </h5>
                         <div class="modal inmodal" id="myModal33" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
                                         <h3>Instructions</h3>
                                     </div>
@@ -72,15 +75,18 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" ng-show="role.indexOf('sale_summary_dashboard')!=-1">
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="min-height: 60px;">
                     <div class="col-md-8">
-                        <h5 style="padding-top: 10px;">Sale <span data-toggle="modal" data-target="#myModal34"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                        <h5 style="padding-top: 10px;">Sale
+                            <span data-toggle="modal" data-target="#myModal33">
+                                <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                            </span>
                         </h5>
-                        <div class="modal inmodal" id="myModal35" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal inmodal" id="myModal33" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
                                         <h3>Instructions</h3>
                                     </div>
@@ -97,53 +103,62 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <select class="form-control" name="account" style="border: none; padding-left: 25px;">
-                            <option>Today</option>
-                            <option>Yesterday</option>
-                            <option>This Week</option>
-                            <option>This Month</option>
+                        <select class="form-control" ng-change="saleTypeChanged(saleTimeRange)" ng-model="saleTimeRange" style="border: none; padding-left: 25px;">
+                            <option value="today" selected>Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
                         </select>
                     </div>
 
                 </div>
                 <div class="ibox-content">
 
-                    <table class="table">
+                    <table class="table" ng-hide="sales.length==0">
                         <thead>
                             <tr class="p-th">
                                 <th>S/L</th>
                                 <th>Date</th>
-                                <th>Purchase Id</th>
+                                <th>Sale Id</th>
                                 <th>Quantity</th>
                                 <th>Value</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="p-td">
-                                <td>1</td>
-                                <td>21/03/95</td>
-                                <td>12</td>
-                                <td>1200</td>
-                                <td>20</td>
+                            <tr class="p-td" ng-repeat="sale in sales">
+                                <td>{{$index+1}}</td>
+                                <td>{{sale.created_at | date:'dd/MM/yy'}}</td>
+                                <td>{{sale.id}}</td>
+                                <td>{{sale.quantity}}</td>
+                                <td>{{sale.status=='0'?'Incomplete':sale.value}}</td>
                             </tr>
-
+                            <tr class="p-td">
+                                <td></td>
+                                <th>Total</th>
+                                <td></td>
+                                <td>{{saleQuantity}}</td>
+                                <td>{{saleValue}}</td>
+                            </tr>
                         </tbody>
                     </table>
-
+                    <p ng-show="sales.length==0" style="font-size: 16px;">No sales have been issued yet.</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6">
-            <div class="ibox float-e-margins">
+        <div class="col-lg-6" ng-show="role.indexOf('supplier_info_dashboard')!=-1">
+            <div class="ibox float-e-margins" >
                 <div class="ibox-title" style="min-height: 60px;">
                     <div class="col-md-12">
-                        <h5 style="padding-top: 10px;">Supplier Info <span data-toggle="modal" data-target="#myModal36"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                        <h5 style="padding-top: 10px;">Supplier Info
+                            <span data-toggle="modal" data-target="#myModal36">
+                                <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                            </span>
                         </h5>
                         <div class="modal inmodal" id="myModal36" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
                                         <h3>Instructions</h3>
                                     </div>
@@ -170,18 +185,48 @@
                             </ui-select-choices>
                         </ui-select>
                     </div>
+                    <div class="row" style="margin:10px;margin-top:50px" ng-show="supplier">
+                        <p ng-hide="suppliersPurchases.length">No purchases made by this supplier.</p>
+                        <table class="table table-striped" ng-show="suppliersPurchases.length">
+                            <tr>
+                                <th>
+                                    Date
+                                </th>
+                                <th>
+                                    Reference
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                            <tr ng-repeat="purchase in suppliersPurchases">
+                                <td>
+                                    {{purchase.created_at | date:"dd/MM/yyyy"}}
+                                </td>
+                                <td>
+                                    {{purchase.reference}}
+                                </td>
+                                <td>
+                                    <a href="#!/warehouse/purchaseDetails/{{purchase.id}}">Purchasewise report</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" ng-show="role.indexOf('buyer_info_dashboard')!=-1">
             <div class="ibox float-e-margins">
                 <div class="ibox-title" style="min-height: 60px;">
                     <div class="col-md-12">
-                        <h5 style="padding-top: 10px;">Buyer Info <span data-toggle="modal" data-target="#myModal36"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                        <h5 style="padding-top: 10px;">Buyer Info
+                            <span data-toggle="modal" data-target="#myModal36">
+                                <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                            </span>
                         </h5>
                         <div class="modal inmodal" id="myModal36" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-dialog">
-                            <div class="modal-content animated bounceInRight">
+                                <div class="modal-content animated bounceInRight">
                                     <div class="modal-header">
                                         <h3>Instructions</h3>
                                     </div>
@@ -202,10 +247,10 @@
                 <div class="ibox-content" style="min-height: 100px;">
 
                     <div class="col-lg-12">
-                        <ui-select ng-model="supplier" on-select="supplierSelected($item, $model)" ng-required="true" theme="select2" class="col-md-12"
-                            title="Choose a supplier">
-                            <ui-select-match placeholder="Select a supplier">{{$select.selected.company}}</ui-select-match>
-                            <ui-select-choices repeat="person in suppliers | propsFilter: {company: $select.search}">
+                        <ui-select ng-model="buyer" on-select="buyerSelected($item, $model)" ng-required="true" theme="select2" class="col-md-12"
+                            title="Choose a buyer">
+                            <ui-select-match placeholder="Select a buyer">{{$select.selected.company}}</ui-select-match>
+                            <ui-select-choices repeat="person in buyers | propsFilter: {company: $select.search}">
                                 <div ng-bind-html="person.company | highlight: $select.search"></div>
                             </ui-select-choices>
                         </ui-select>

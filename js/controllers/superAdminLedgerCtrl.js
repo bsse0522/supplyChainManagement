@@ -3,7 +3,7 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $
 	if (!token) {
 		location.href = "login.html"
 	}
-	if ($rootScope.role != 'super') {
+	if ($rootScope.role.indexOf("ledger")==-1) {
 		$rootScope.withoutPermission();
 	}
 	$rootScope.title = "Ledger";
@@ -21,6 +21,13 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $
 			});
 	}
 	$scope.getLedgers();
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 	
 	$scope.showLedger = function (from, to, id) {
 		$scope.showTrialBalance = false;
@@ -31,7 +38,7 @@ myApp.controller('superAdminLedgerCtrl', function ($scope, baseSvc, $uibModal, $
 		baseSvc.get("super/ledgers?from=" + fd + "&to=" + td + "&id=" + id )
 			.then(function (response) {
 				$scope.ledger = {};
-				$scope.ledger = response[0];
+				$scope.ledger = response;
 				
 				$scope.ledger.dr = Object.keys($scope.ledger.dr).map(function (k) { return $scope.ledger.dr[k] });
 				$scope.ledger.cr = Object.keys($scope.ledger.cr).map(function (k) { return $scope.ledger.cr[k] });

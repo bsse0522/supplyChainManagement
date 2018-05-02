@@ -1,3 +1,8 @@
+<style>
+    .ta-text.ta-editor.form-control {
+        min-height: 150px;
+    }
+</style>
 <div class="ibox">
     <div class="ibox float-e-margins" style="padding-top: 30px;">
         <div class="ibox-title">
@@ -7,130 +12,81 @@
             <div class="row">
                 <div class="panel-body" style="border: none;">
                     <div class="ibox-content" style="border: none;">
-                        <fieldset class="form-horizontal">
-                            <div class="form-group"><label class="col-sm-2 control-label">Name:</label>
-                                <div class="col-sm-10"><input type="text" class="form-control" placeholder="Product name"></div>
-                            </div>
-                            <!--<ui-select ng-required="true" close-on-select="false" style="padding-left: 0px;"-->
-                            <!--theme="select2" class="col-md-12" title="Choose products">-->
-                            <!--<ui-select-match placeholder="Select products">{{$item.name}}</ui-select-match>-->
-                            <!--<ui-select-choices repeat="product in products | propsFilter: {name: $select.search}">-->
-                            <!--<div ng-bind-html="product.name | highlight: $select.search"></div>-->
-                            <!--<small>-->
-                            <!--Meta: <span ng-bind-html="''+product.meta | highlight: $select.search"></span>-->
-                            <!--</small>-->
-                            <!--</ui-select-choices>-->
-                            <!--</ui-select>-->
-                            <div class="form-group"><label class="col-sm-2 control-label">Description:</label>
-                                <div class="col-sm-10">
-                                    <div class="ibox float-e-margins">
-                                        <div class="ibox-content no-padding">
-
-                                            <div class="summernote">
-                                                <br>
-                                            </div>
-
-                                        </div>
+                        <form name="myform" ng-submit="uploadFiles()">
+                            <fieldset class="form-horizontal">
+                                <div class="form-group"><label class="col-sm-2 control-label">Name:</label>
+                                    <div class="col-sm-10 control-label" style="text-align:left">{{name}}</div>
+                                </div>
+                                <!--<ui-select ng-required="true" close-on-select="false" style="padding-left: 0px;"-->
+                                <!--theme="select2" class="col-md-12" title="Choose products">-->
+                                <!--<ui-select-match placeholder="Select products">{{$item.name}}</ui-select-match>-->
+                                <!--<ui-select-choices repeat="product in products | propsFilter: {name: $select.search}">-->
+                                <!--<div ng-bind-html="product.name | highlight: $select.search"></div>-->
+                                <!--<small>-->
+                                <!--Meta: <span ng-bind-html="''+product.meta | highlight: $select.search"></span>-->
+                                <!--</small>-->
+                                <!--</ui-select-choices>-->
+                                <!--</ui-select>-->
+                                <div class="form-group"><label class="col-sm-2 control-label">Description:</label>
+                                    <div class="col-sm-10">
+                                        <!-- <textarea ng-model="detail" class="form-control"></textarea> -->
+                                        <div text-angular="text-angular" name="htmlcontent" ng-model="detail"></div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="col-md-2"></div>
+                            <div class="col-md-10" style="padding-right: 0px; padding-left: 6px;">
+                            <div class="col-md-3" ng-repeat="image in images">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-stripped">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    Image preview
+                                                </th>
+                                                <th>
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img ng-src="http://soft360d.com/accountingManagement/uploads/images/{{image.image_path}}" width="100%" height="150px">
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-white" ng-click="deleteImage(image)"><i class="fa fa-trash"></i> </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                        </fieldset>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-10" style="padding-right: 0px; padding-left: 6px;">
-                           <div class="col-md-4">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-stripped">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Image preview
-                                            </th>
-                                            <th>
-                                                Actions
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="img/gallery/2s.jpg">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="form-group row" style="margin-left:0px; margin-right:0px;">
+                                <label class="col-sm-2 control-label">Upload New File:</label>
+                                <div class="col-sm-10" style="padding-right: 0px; padding-left: 6px;">
+                                    <input ng-hide="doc" type="file" class="form-control" file-model="newdoc">
+                                    <a ng-show="doc" target="_blank" href="http://soft360d.com/accountingManagement/uploads/docs/{{doc}}">Download</a>
+                                    <a ng-show="doc" ng-click="removeDoc()" style="margin-left:20px">Remove</a>
                                 </div>
-                           </div>
-                           <div class="col-md-4">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-stripped">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Image preview
-                                            </th>
-                                            <th>
-                                                Actions
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="img/gallery/2s.jpg">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                           </div>
-                           <div class="col-md-4">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-stripped">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                Image preview
-                                            </th>
-                                            <th>
-                                                Actions
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>
-                                                <img src="img/gallery/2s.jpg">
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-white"><i class="fa fa-trash"></i> </button>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd" class="col-sm-2 control-label">Upload New Image:</label>
-                            <div class="col-sm-10" style="padding-right: 0px; padding-left: 6px;">
-                                <input type="file" class="form-control" id="file" multiple>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd" class="col-sm-2 control-label">Upload New File:</label>
-                            <div class="col-sm-10" style="padding-right: 0px; padding-left: 6px; margin-top: 10px;">
-                                <input type="file" class="form-control" id="file" multiple>
+                            <div class="clear-fix"></div>
+                            <div class="form-group">
+                                <label for="pwd" class="col-sm-2 control-label">Upload New Image:</label>
+                                <div class="col-sm-10" style="padding-right: 0px; padding-left: 6px; margin-top: 10px;">
+                                    <input type="file" id="file1" name="file" multiple 
+                                            ng-files="getTheFiles($files)" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-10 col-md-offset-2" style="    margin-top: 10px; padding-left: 6px;">
-                            <button type="submit" class="btn btn-primary" style="width: 20%;">Submit</button>
-                        </div>
+                        
+                            <div class="col-md-10 col-md-offset-2" style="    margin-top: 10px; padding-left: 6px;" ng-hide="submitting">
+                                <button type="submit" class="btn btn-primary" style="width: 20%;">Submit</button>
+                            </div>
+                            <div class="col-md-10 col-md-offset-2" style="    margin-top: 10px; padding-left: 6px;" ng-show="submitting">
+                                    <img src="img/spinner.gif" />
+                                </div>
+                        </form>
                     </div>
 
                 </div>

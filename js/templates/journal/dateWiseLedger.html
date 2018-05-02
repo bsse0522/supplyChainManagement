@@ -58,10 +58,9 @@
 
                         <div class="col-md-4" style="padding-top:43px">
                             <a class="btn btn-info" ng-disabled="!ledger || !to || !from" ng-click="showLedger(from, to, ledger.id)">Get ledgers</a>
-                            <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && !showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=true">Show trial balance</a>
-                            <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers && showTrialBalance && ledgers.length!=0" ng-click="showTrialBalance=false">Back to ledgers</a>
+                            <a class="btn btn-info" style="margin-left: 10px;" ng-show="showLedgers" ng-click="printDiv('ledger')">Print</a>
                         </div>
-                        <div class="col-md-12" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && !showTrialBalance">
+                        <div class="col-md-12" id="ledger" style="background-color:white; margin-top: -250px; padding:20px" ng-show="showLedgers && !showTrialBalance">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="ibox float-e-margins">

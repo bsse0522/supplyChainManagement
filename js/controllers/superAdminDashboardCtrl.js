@@ -4,10 +4,6 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
 		location.href = "login.html"
 	}
 	
-	if ($rootScope.role != 'super') {
-		$rootScope.withoutPermission();
-	}
-	
 	$rootScope.title = "Super Admin Dashboard";
 	
 	if($stateParams.message){
@@ -15,16 +11,38 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
 	}
 	
 	$scope.suppliers = [];
+	$scope.supplier = null;
 	$scope.purchases = [];
 	$scope.purchaseTimeRange = 'today';
 	$scope.purchaseQuantity = 0;
 	$scope.purchaseValue = 0;
+	$scope.saleTimeRange = 'today';
+	$scope.saleQuantity = 0;
+	$scope.saleValue = 0;
 	
 	baseSvc.get("suppliers")
 		.then(function (response) {
 			$scope.suppliers = response;
 			
 		});
+	
+	baseSvc.get("buyers")
+		.then(function (response) {
+			$scope.buyers = response.filter(function(node){
+				return node.company!=null;
+			});
+		});
+
+	$scope.supplierSelected = function(item, model){
+		$scope.supplier = item;
+		baseSvc.get("super/supplierWise/reports?id="+item.id)
+		.then(function (response) {
+			$scope.suppliersPurchases = response.purchase;
+			$scope.suppliersPurchases.forEach(function(node){
+				node.created_at = new Date(node.created_at);
+			})
+		});
+	}
 	
 	$scope.purchaseTypeChanged = function (type) {
 		baseSvc.get("super/timeWise/purchases?time=" + type)
@@ -37,12 +55,13 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
 					purchase.created_at = new Date(purchase.created_at);
 					purchase.quantity = 0;
 					purchase.value = 0;
-					if (purchase.status != '0') {
-						purchase.product.forEach(function (product) {
-							purchase.quantity += product.stock;
-							purchase.value += (product.stock * product.purchase_unit_price);
-						});
-					}
+					purchase.product.forEach(function (product) {
+						purchase.quantity += product.initial_stock;
+						if (purchase.status != '0') {
+							purchase.value += (product.initial_stock * product.purchase_unit_price);
+						}
+					});
+					
 					$scope.purchaseQuantity += purchase.quantity;
 					$scope.purchaseValue += purchase.value;
 				});
@@ -50,6 +69,32 @@ myApp.controller('superAdminDashboardCtrl', function ($scope, baseSvc, $uibModal
 	}
 	
 	$scope.purchaseTypeChanged($scope.purchaseTimeRange);
+
+	$scope.saleTypeChanged = function (type) {
+		baseSvc.get("super/timeWise/sales?time=" + type)
+			.then(function (response) {
+				$scope.sales = response;
+				//console.log(response);
+				$scope.saleQuantity = 0;
+				$scope.saleValue = 0;
+				$scope.sales.forEach(function (sale) {
+					sale.created_at = new Date(sale.created_at);
+					sale.quantity = 0;
+					sale.value = 0;
+					sale.product.forEach(function (product) {
+						sale.quantity += product.pivot.total_amount;
+						if (sale.status != '0') {
+							sale.value += (product.pivot.total_amount * product.pivot.price);
+						}
+					});
+					
+					$scope.saleQuantity += sale.quantity;
+					$scope.saleValue += sale.value;
+				});
+			});
+	}
+	
+	$scope.saleTypeChanged($scope.saleTimeRange);
 	
 	// function showJournal(date){
 	//     var modalInstance = $uibModal.open({

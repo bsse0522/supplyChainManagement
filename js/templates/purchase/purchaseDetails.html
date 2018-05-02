@@ -2,11 +2,14 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Purchase Report <span data-toggle="modal" data-target="#myModal33"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                <h5>Purchase Report
+                    <span data-toggle="modal" data-target="#myModal33">
+                        <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                    </span>
                 </h5>
                 <div class="modal inmodal" id="myModal33" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                    <div class="modal-content animated bounceInRight">
+                        <div class="modal-content animated bounceInRight">
                             <div class="modal-header">
                                 <h3>Instructions</h3>
                             </div>
@@ -22,7 +25,11 @@
                     </div>
                 </div>
             </div>
-            <div class="ibox-content">
+
+            <div class="ibox-content" id="report">
+                <div class="col-md-12">
+                    <button style="float: right;" id="button" class="btn btn-primary" ng-click="printDiv('report')">Print</button>
+                </div>
                 <h4 class="h-css">Purchase</h4>
                 <table class="table">
                     <tr class="t-bd-n">
@@ -57,11 +64,11 @@
                                         </tr>
                                     </tbody>
                                     <tr>
-                                        <td colspan="3">@tk {{product.unit_pricr}}</td>
+                                        <td colspan="3">@tk {{product.unit_price}}</td>
                                     </tr>
                                 </table>
                             </td>
-                            <td style="vertical-align: middle;width:20%">{{product.initial_stock*product.unit_pricr}}</td>
+                            <td style="vertical-align: middle;width:20%">{{product.initial_stock*product.unit_price}}</td>
                         </tr>
                     </table>
                     <table class="table table-bordered">
@@ -95,6 +102,9 @@
                         </tr>
                         <tr class="t-bd-n">
                             <td>Sale id: {{sale.id}}</td>
+                        </tr>
+                        <tr class="t-bd-n">
+
                             <td>Buyer Name: {{sale.buyer.company}}</td>
                         </tr>
                         </tbody>
@@ -119,11 +129,11 @@
                                         </tr>
                                     </tbody>
                                     <tr>
-                                        <td colspan="3">@tk {{product.unit_price}}</td>
+                                        <td colspan="3">@tk {{sale.product.price}}</td>
                                     </tr>
                                 </table>
                             </td>
-                            <td style="vertical-align: middle;">{{product.total_amount*product.unit_price}}</td>
+                            <td style="vertical-align: middle;">{{sale.product.total_amount*sale.product.price}}</td>
                         </tr>
                         <tr>
                             <td>Discount</td>
@@ -149,6 +159,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>

@@ -12,14 +12,15 @@ app.controller('loginCtrl', function($scope, $http) {
 			password: passwrod
 		}).then(function(response){
 			if(response.data.status=='Ok'){
-				console.log(response.data.api_token);
+				console.log(response.data);
 				localStorage.setItem("token",response.data.user.api_token);
 				localStorage.setItem("role",response.data.user.role);
-				location.href='index.html';
+				localStorage.setItem("user",JSON.stringify(response.data.user));
+				location.href='home.html';
 			}
 			else {
 				$scope.error = true;
-				console.log(response);
+				//console.log(response);
 				if(response.data.email=='Ok'){
 					$scope.errorMessage = 'Email or password is incorrect.';
 				}

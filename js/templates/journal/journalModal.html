@@ -1,12 +1,4 @@
-<style>
-    .app-modal-window .modal-dialog {
-        width: 400px;
-    }
 
-    .padding-left-3em {
-        padding-left: 3em;
-    }
-</style>
 <div class="modal-header">
     <h3 class="modal-title" id="modal-title">Journal</h3>
 </div>
@@ -57,5 +49,6 @@
     </div>
 </div>
 <div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="printDiv('modal-body');">Print</button>
     <button class="btn btn-warning" type="button" ng-click="cancel();">Close</button>
 </div>

@@ -8644,3 +8644,49 @@ body.md-skin {
   margin-bottom: 10px;
   margin-top: 30px !important;
 }
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
+.app-modal-window .modal-dialog {
+  width: 400px;
+}
+
+.padding-left-3em {
+  padding-left: 3em;
+}
+
+._720kb-datepicker-calendar {
+  min-width: auto!important;
+  max-width: 1500px!important;
+}
+
+.padding-left-3em {
+  padding-left: 3em;
+}
+
+.italic-account {
+  font-style: italic;
+  padding-left: 20px!important;
+}
+
+.borderless {
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.borderless th td {
+  padding: 5px;
+}
+
+.gross-total {
+  border: 1px solid black;
+  border-left-color: white;
+  border-right-color: white;
+  padding: 5px;
+}

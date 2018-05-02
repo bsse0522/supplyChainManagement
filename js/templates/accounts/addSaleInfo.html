@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Discount:</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" ng-model="item.discount">
+                                <input type="number" ng-change="calculateTotal()" class="form-control" ng-model="item.discount">
                             </div>
                         </div>
                         <div ng-repeat="product in item.product">
@@ -26,7 +26,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Unit Price:</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" required ng-model="product.price">
+                                    <input type="number" class="form-control" ng-change="calculateTotal()" required ng-model="product.price">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -71,6 +71,12 @@
                                 <div class="col-sm-10">
                                     <input type="number" ng-required="product.payment_type==3" class="form-control" ng-model="product.partial.check">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Total Sale value</label>
+                            <div class="col-sm-10">
+                                <input type="number" string-to-number class="form-control" ng-model="total" readonly>
                             </div>
                         </div>
                     </fieldset>

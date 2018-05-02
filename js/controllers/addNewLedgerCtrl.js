@@ -4,7 +4,7 @@ myApp.controller('addNewLedgerCtrl', function($scope, baseSvc, $uibModal, $rootS
 		location.href="login.html"
 	}
 	
-	if ($rootScope.role != 'super') {
+	if ($rootScope.role.indexOf("add_ledger")==-1) {
 		$rootScope.withoutPermission();
 	}
 	

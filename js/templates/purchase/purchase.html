@@ -140,13 +140,13 @@
                                                 <div class="col-md-12" style="margin-top:20px; padding-right: 0px;" ng-show="color.pickedSizes.length>0">
                                                     <table class="table table-striped">
                                                         <tr>
-                                                            <th style="font-size: 16px;">Sizes</th>
-                                                            <th style="font-size: 16px;">Quantity
+                                                            <th style="font-size: 12px;">Sizes</th>
+                                                            <th style="font-size: 12px;">Quantity
                                                                 <span style="color:red">*</span>
                                                             </th>
                                                         </tr>
                                                         <tr ng-repeat="size in color.pickedSizes">
-                                                            <td style="padding-top: 16px; font-size: 14px; font-weight: bold;">{{size.name}}</td>
+                                                            <td style="padding-top: 16px; font-size: 12px; font-weight: bold;">{{size.name}}</td>
                                                             <td>
                                                                 <input ng-model="size.quantity" type="number" class="form-control" required>
                                                             </td>

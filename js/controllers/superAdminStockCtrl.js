@@ -3,16 +3,43 @@ myApp.controller('superAdminStockCtrl', function ($scope, baseSvc, $uibModal, $r
 	if (!token) {
 		location.href = "login.html"
 	}
-	if ($rootScope.role != 'super') {
+	if ($rootScope.role.indexOf("stock")==-1) {
 		$rootScope.withoutPermission();
 	}
 	$rootScope.title = "Stock";
-	$scope.ledgers = [];
-	$scope.showLedgers = false;
-	$scope.showTrialBalance = false;
-	var d = new Date();
-	$scope.date = new Date();
-	$scope.today = "" + d.getMonth + "\/" + d.getDate() + "\/" + d.getFullYear();
+	$scope.supplier = "-1";
+	$scope.category = "-1";
+	$scope.selectedCategory = "-1";
+	$scope.subcategory = "-1";
+	baseSvc.get("suppliers")
+		.then(function(response){
+			$scope.suppliers = response;
+		});
+	
+	baseSvc.get("categories")
+		.then(function(response){
+			$scope.categories = response;
+		});
+
+	$scope.categorySelected = function(category) {
+		console.log(category);
+		category = JSON.parse(category);
+		if(category=="-1"){
+			$scope.selectedCategory = "-1";
+		}
+		else {
+			$scope.subcategories = category.sub_category;
+			$scope.selectedCategory = category.id;
+		}
+	}
+
+	$scope.filter = function() {
+		baseSvc.get("filter/stock?category_id="+$scope.selectedCategory+"&sub_category_id="+$scope.subcategory+"&supplier_id="+$scope.supplier)
+			.then(function(response){
+				$scope.products = response;
+				console.log($scope.products);
+			});
+	}
 	
 	$scope.getProducts = function(){
 		baseSvc.get("available/products")

@@ -4,9 +4,9 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
 		location.href="login.html"
 	}
 	
-	if ($rootScope.role != 'warehouse') {
-		$rootScope.withoutPermission();
-	}
+	// if ($rootScope.role != 'warehouse') {
+	// 	$rootScope.withoutPermission();
+	// }
 	
 	$rootScope.title = "Warehouse Admin Dashboard";
 	

@@ -2,11 +2,14 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Incomplete Sales List <span data-toggle="modal" data-target="#myModal33"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                <h5>Incomplete Sales List
+                    <span data-toggle="modal" data-target="#myModal33">
+                        <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                    </span>
                 </h5>
                 <div class="modal inmodal" id="myModal33" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                    <div class="modal-content animated bounceInRight">
+                        <div class="modal-content animated bounceInRight">
                             <div class="modal-header">
                                 <h3>Instructions</h3>
                             </div>
@@ -33,7 +36,8 @@
                                     <div class="ibox-content" style="border: none;">
 
                                         <div class="table-responsive">
-                                            <table class="footable table table-stripped toggle-arrow-tiny">
+                                            <p ng-hide="incompleteSales.length>0">No incomplete sales.</p>
+                                            <table class="footable table table-stripped toggle-arrow-tiny" ng-show="incompleteSales.length>0">
                                                 <thead>
                                                     <tr class="gtable p-th">
                                                         <th>S/N</th>
@@ -50,10 +54,11 @@
                                                         <td>{{sale.buyer.company}}</td>
                                                         <td>{{sale.reference}}</td>
                                                         <td>
-                                                            <a href="" >
-                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details" style="margin-right: 10px;"></i>
+                                                            <a href="">
+                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                                    style="margin-right: 10px;"></i>
                                                             </a>
-                                                            <a href="" >
+                                                            <a href="">
                                                                 <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="addAccountsInfo(sale)" title="Complete accounts information"></i>
                                                             </a>
                                                         </td>
@@ -77,11 +82,14 @@
     <div class="col-lg-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Complete Sales List <span data-toggle="modal" data-target="#myModal39"><i style="margin-left: 5px;" class="fa fa-info-circle"></i></span>
+                <h5>Complete Sales List
+                    <span data-toggle="modal" data-target="#myModal37">
+                        <i style="margin-left: 5px;" class="fa fa-info-circle"></i>
+                    </span>
                 </h5>
-                <div class="modal inmodal" id="myModal39" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal inmodal" id="myModal37" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
-                    <div class="modal-content animated bounceInRight">
+                        <div class="modal-content animated bounceInRight">
                             <div class="modal-header">
                                 <h3>Instructions</h3>
                             </div>
@@ -98,48 +106,124 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <div class="row">
-                    <div class="tabs-container">
-
-                        <div class="tab-content">
-                            <div id="tab-1" class="tab-pane active">
-                                <div class="panel-body" style="border: none;">
-
-                                    <div class="ibox-content" style="border: none;">
-
-                                        <div class="table-responsive">
-                                            <table class="footable table table-stripped toggle-arrow-tiny">
-                                                <thead>
-                                                    <tr class="gtable p-th">
-                                                        <th>S/N</th>
-                                                        <th>Date</th>
-                                                        <th>Buyer Name</th>
-                                                        <th>Reference</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="gtable p-td" ng-repeat="sale in completeSales">
-                                                        <td>{{$index+1}}</td>
-                                                        <td>{{sale.created_at}}</td>
-                                                        <td>{{sale.buyer.company}}</td>
-                                                        <td>{{sale.reference}}</td>
-                                                        <td>
-                                                            <a href="" >
-                                                                <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Sales Details" ng-click="showCompleteSaleInfo(sale)" style="margin-right: 10px;"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a data-toggle="tab" href="#tabExtended">Extended</a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#tabDue">Due</a>
+                        </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#tabPaid">Full paid</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tabExtended" class="tab-pane active">
+                            <div class="panel-body">
+                                <p ng-hide="extendedSales.length>0">No extended sales.</p>
+                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedSales.length>0">
+                                    <thead>
+                                        <tr class="gtable p-th">
+                                            <th>S/N</th>
+                                            <th>Date</th>
+                                            <th>Buyer Name</th>
+                                            <th>Reference</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gtable p-td" ng-repeat="sale in extendedSales">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{sale.created_at}}</td>
+                                            <td>{{sale.buyer.company}}</td>
+                                            <td>{{sale.reference}}</td>
+                                            <td>
+                                                <a href="">
+                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                        style="margin-right: 10px;"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
+                                                        style="margin-right: 10px;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
+                        <div id="tabDue" class="tab-pane">
+                            <div class="panel-body">
+                                <p ng-hide="dueSales.length>0">No due sales.</p>
+                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="dueSales.length>0">
+                                    <thead>
+                                        <tr class="gtable p-th">
+                                            <th>S/N</th>
+                                            <th>Date</th>
+                                            <th>Buyer Name</th>
+                                            <th>Reference</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gtable p-td" ng-repeat="sale in dueSales">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{sale.created_at}}</td>
+                                            <td>{{sale.buyer.company}}</td>
+                                            <td>{{sale.reference}}</td>
+                                            <td>
+                                                <a href="">
+                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                        style="margin-right: 10px;"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
+                                                        style="margin-right: 10px;"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" ng-click="addPaymentInfo(sale)" title="Add new payment information"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="tabPaid" class="tab-pane">
+                            <div class="panel-body">
+                                <p ng-hide="paidSales.length>0">No paid sales.</p>
+                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidSales.length>0">
+                                    <thead>
+                                        <tr class="gtable p-th">
+                                            <th>S/N</th>
+                                            <th>Date</th>
+                                            <th>Buyer Name</th>
+                                            <th>Reference</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="gtable p-td" ng-repeat="sale in paidSales">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{sale.created_at}}</td>
+                                            <td>{{sale.buyer.company}}</td>
+                                            <td>{{sale.reference}}</td>
+                                            <td>
+                                                <a href="">
+                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                        style="margin-right: 10px;"></i>
+                                                </a>
+                                                <a href="">
+                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

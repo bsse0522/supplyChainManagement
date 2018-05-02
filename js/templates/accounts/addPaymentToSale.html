@@ -11,27 +11,9 @@
                 <div>
                     <fieldset class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Transport Cost:</label>
-                            <div class="col-sm-10">
-                                <input type="number" string-to-number ng-change="calculateTotal()" class="form-control" ng-model="item.transport">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Labour Cost:</label>
-                            <div class="col-sm-10">
-                                <input type="number" string-to-number ng-change="calculateTotal()" class="form-control" ng-model="item.labour">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Other Cost:</label>
-                            <div class="col-sm-10">
-                                <input type="number" string-to-number ng-change="calculateTotal()" class="form-control" ng-model="item.other">
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Discount:</label>
                             <div class="col-sm-10">
-                                <input type="number" string-to-number ng-change="calculateTotal()" class="form-control" ng-model="item.discount">
+                                <input type="number" class="form-control" ng-model="item.discount" readonly>
                             </div>
                         </div>
                         <div ng-repeat="product in item.product">
@@ -44,7 +26,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Unit Price:</label>
                                 <div class="col-sm-10">
-                                    <input type="number" ng-change="calculateTotal()" class="form-control" required ng-model="product.price">
+                                    <input type="number" class="form-control" required ng-model="product.price" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -74,8 +56,8 @@
                             <div class="form-group" ng-show="product.payment_type!=1">
                                 <label class="col-sm-2 control-label">Bank account:</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control" ng-model="product.check" ng-options="ledger.name for ledger in ledgers">
-                                    </select>
+                                        <select class="form-control" ng-model="product.check" ng-options="ledger.name for ledger in ledgers">
+                                            </select>
                                 </div>
                             </div>
                             <div class="form-group" ng-show="product.payment_type==3 || (product.payment_type==1 && product.payment_category==3)">
@@ -91,12 +73,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Total purchase value:</label>
-                            <div class="col-sm-10">
-                                <input type="number" class="form-control" ng-model="total">
-                            </div>
-                        </div>
                     </fieldset>
                 </div>
             </div>
@@ -105,9 +81,9 @@
 
     <div class="modal-footer" ng-hide="addingInfo">
         <a type="button" class="btn btn-white" ng-click="cancel()">Close</a>
-        <button type="submit" style="margin-top: -6px;" class="btn btn-primary">Save</button>
+        <button type="submit" style="margin-top: -6px;" class="btn btn-primary" >Save</button>
     </div>
     <div class="modal-footer" ng-show="addingInfo">
-        <img src="img/spinner.gif" style=" height: 50px; padding-right: 20px;" />
+        <img src="img/spinner.gif" style=" height: 50px; padding-right: 20px;"/>
     </div>
 </form>
