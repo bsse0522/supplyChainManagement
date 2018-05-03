@@ -37,12 +37,13 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a style="width:100%; margin-top: 23px;" type="button" class="btn btn-primary" ng-click="filter()">Filter</a>
+                                <a style="margin-top: 23px;" type="button" class="btn btn-primary" ng-click="filter()">Filter</a>
+                                <a style="margin-top: 23px;" type="button" class="btn btn-primary" ng-click="printDiv('stock')">Print</a>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="stock">
                             <div class="table-responsive">
-                                <p ng-hide="products.length>0">No product available in stock.</p>
+                                <p ng-if="products.length==0">No product available in stock.</p>
                                 <table st-table="displayedProducts" st-safe-src="products" class="table table-striped" ng-show="products.length>0">
                                     <thead>
                                         <tr class="gtable p-th">

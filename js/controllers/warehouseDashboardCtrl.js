@@ -3,12 +3,24 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
 	if(!token){
 		location.href="login.html"
 	}
-	
+	if($rootScope.role.indexOf('supplier_view')!=-1 || $rootScope.role.indexOf('buyer_view')!=-1 || $rootScope.role.indexOf('color_view')!=-1 || $rootScope.role.indexOf('size_view')!=-1 ||
+						$rootScope.role.indexOf('category_view')!=-1 || $rootScope.role.indexOf('warehouse_purchase_view')!=-1 || $rootScope.role.indexOf('warehouse_sale_view')!=-1){
+		
+	}
+	else {
+		$rootScope.checkPermissions();
+	}
 	// if ($rootScope.role != 'warehouse') {
 	// 	$rootScope.withoutPermission();
 	// }
-	
-	$rootScope.title = "Warehouse Admin Dashboard";
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
+	$rootScope.title = "Warehouse Dashboard";
 	
 	$scope.supplier = {};
 	

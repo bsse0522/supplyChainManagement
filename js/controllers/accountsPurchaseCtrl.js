@@ -12,6 +12,14 @@ myApp.controller('accountsIncompletePurchaseCtrl', function ($scope, baseSvc, $u
 
 	$scope.incompletePurchases = [];
 
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
+
 	$scope.getIncompletePurchases = function () {
 		baseSvc.get("incomplete/purchases")
 			.then(function (response) {
@@ -420,7 +428,13 @@ myApp.controller('ViewIncompletePurchaseInfoModalCtrl', function ($scope, $uibMo
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
-
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 	$scope.showProductDetails = function (product) {
 		localStorage.setItem("product", JSON.stringify(product));
 		var url = $state.href('productDetails');
@@ -434,7 +448,13 @@ myApp.controller('ViewCompletePurchaseInfoModalCtrl', function ($scope, $uibModa
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
-
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 	$scope.showProductDetails = function (product) {
 		localStorage.setItem("product", JSON.stringify(product));
 		var url = $state.href('productDetails');

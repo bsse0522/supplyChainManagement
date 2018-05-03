@@ -31,12 +31,12 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body" style="border: none;">
-
+                                    <button class="btn btn-primary" style="float: right" ng-click="printDiv('incompletePurchase')">Print</button>
                                     <div class="ibox-content" style="border: none;">
 
-                                        <div class="table-responsive">
-                                            <p ng-hide="incompletePurchases.length>0">No incomplete purchases.</p>
-                                            <table class="footable table table-stripped toggle-arrow-tiny" ng-show="incompletePurchases.length>0">
+                                        <div class="table-responsive" id="incompletePurchase">
+                                            <p ng-if="incompletePurchases.length==0">No incomplete purchases.</p>
+                                            <table class="footable table table-stripped toggle-arrow-tiny" ng-if="incompletePurchases.length>0">
                                                 <thead>
                                                     <tr class="gtable p-th">
                                                         <th>S/N</th>
@@ -119,101 +119,114 @@
                     <div class="tab-content">
                         <div id="tabExtended" class="tab-pane active">
                             <div class="panel-body">
-                                <p ng-hide="extendedPurchases.length>0">No extended purchases.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedPurchases.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Supplier Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="purchase in extendedPurchases">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{purchase.created_at}}</td>
-                                            <td>{{purchase.supplier.company}}</td>
-                                            <td>{{purchase.reference}}</td>
-                                            <td>
-                                                <a href="" ng-click="showCompletePurchaseInfo(purchase)">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="" ng-click="editAccountsInfo(purchase)">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('extendedePurchase')">Print</button>
+                                <div class="row" id="extendedePurchase">
+                                    <p ng-if="extendedPurchases.length==0">No extended purchases.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedPurchases.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Supplier Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="purchase in extendedPurchases">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{purchase.created_at}}</td>
+                                                <td>{{purchase.supplier.company}}</td>
+                                                <td>{{purchase.reference}}</td>
+                                                <td>
+                                                    <a href="" ng-click="showCompletePurchaseInfo(purchase)">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="" ng-click="editAccountsInfo(purchase)">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                         <div id="tabDue" class="tab-pane">
                             <div class="panel-body">
-                                <p ng-hide="duePurchases.length>0">No due purchases.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="duePurchases.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Supplier Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="purchase in duePurchases">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{purchase.created_at}}</td>
-                                            <td>{{purchase.supplier.company}}</td>
-                                            <td>{{purchase.reference}}</td>
-                                            <td>
-                                                <a href="" ng-click="showCompletePurchaseInfo(purchase)">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="" ng-click="editAccountsInfo(purchase)">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information" style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="" ng-click="addPaymentToPurchase(purchase)">
-                                                    <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" title="Add new payment information"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('duePurchase')">Print</button>
+                                <div class="row" id="duePurchase">
+                                    <p ng-if="duePurchases.length==0">No due purchases.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="duePurchases.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Supplier Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="purchase in duePurchases">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{purchase.created_at}}</td>
+                                                <td>{{purchase.supplier.company}}</td>
+                                                <td>{{purchase.reference}}</td>
+                                                <td>
+                                                    <a href="" ng-click="showCompletePurchaseInfo(purchase)">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="" ng-click="editAccountsInfo(purchase)">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="" ng-click="addPaymentToPurchase(purchase)">
+                                                        <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" title="Add new payment information"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                         <div id="tabPaid" class="tab-pane">
+
                             <div class="panel-body">
-                                <p ng-hide="paidPurchases.length>0">No paid purchases.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidPurchases.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Supplier Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="purchase in paidPurchases">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{purchase.created_at}}</td>
-                                            <td>{{purchase.supplier.company}}</td>
-                                            <td>{{purchase.reference}}</td>
-                                            <td>
-                                                <a href="" ng-click="showCompletePurchaseInfo(purchase)">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="" ng-click="editAccountsInfo(purchase)">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('paidPurchase')">Print</button>
+                                <div class="row" id="paidPurchase">
+                                    <p ng-if="paidPurchases.length==0">No paid purchases.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidPurchases.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Supplier Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="purchase in paidPurchases">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{purchase.created_at}}</td>
+                                                <td>{{purchase.supplier.company}}</td>
+                                                <td>{{purchase.reference}}</td>
+                                                <td>
+                                                    <a href="" ng-click="showCompletePurchaseInfo(purchase)">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" title="View Purchase Detail" style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="" ng-click="editAccountsInfo(purchase)">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" title="Complete accounts information"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
 

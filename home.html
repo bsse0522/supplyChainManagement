@@ -48,7 +48,7 @@
                     </div>
                 </li>
 
-                <li>
+                <li ng-show="superDashboardPermission">
                     <a ui-sref="superDashboard">
                         <i class="fa fa-diamond"></i>
                         <span class="nav-label">Dashboard</span>
@@ -96,7 +96,7 @@
                         <span class="nav-label">Sales</span>
                     </a>
                 </li>
-                <li>
+                <li ng-show="warehouseDashboardPermission">
                     <a ui-sref="warehouseDashboard">
                         <i class="fa fa-diamond"></i>
                         <span class="nav-label">Warehouse</span>

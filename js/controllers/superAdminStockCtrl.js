@@ -11,6 +11,15 @@ myApp.controller('superAdminStockCtrl', function ($scope, baseSvc, $uibModal, $r
 	$scope.category = "-1";
 	$scope.selectedCategory = "-1";
 	$scope.subcategory = "-1";
+
+	$scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
+	
 	baseSvc.get("suppliers")
 		.then(function(response){
 			$scope.suppliers = response;

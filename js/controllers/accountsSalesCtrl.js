@@ -13,6 +13,14 @@ myApp.controller('accountsIncompleteSalesCtrl', function ($scope, baseSvc, $uibM
     $scope.incompleteSales = [];
     $scope.completeSales = [];
 
+    $scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
+
     $scope.getIncompleteSales = function () {
         baseSvc.get("incomplete/sales")
             .then(function (response) {
@@ -409,6 +417,14 @@ myApp.controller('ViewIncompleteSaleInfoModalCtrl', function ($scope, $uibModalI
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    $scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 });
 
 myApp.controller('ViewCompleteSaleInfoModalCtrl', function ($scope, $uibModalInstance, sale, baseSvc, $state) {
@@ -417,4 +433,12 @@ myApp.controller('ViewCompleteSaleInfoModalCtrl', function ($scope, $uibModalIns
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    $scope.printDiv = function (divName) {
+		var printContents = document.getElementById(divName).innerHTML;
+		var popupWin = window.open('', '_blank', 'width=1000,height=1000');
+		popupWin.document.open();
+		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /><link href="css/bootstrap.min.css" rel="stylesheet"></head><body onload="window.print()">' + printContents + '</body></html>');
+		popupWin.document.close();
+	}
 });

@@ -1,4 +1,4 @@
-var myApp = angular.module('accounting-soft', ['ui.router', 'ngResource', 'textAngular','smart-table', 'ngSanitize', 'ui.bootstrap', 'ui.utils', 'ui.select', 'colorpicker.module', '720kb.datepicker'])
+var myApp = angular.module('accounting-soft', ['ui.router', 'ngResource', 'textAngular', 'smart-table', 'ngSanitize', 'ui.bootstrap', 'ui.utils', 'ui.select', 'colorpicker.module', '720kb.datepicker'])
 	.value('$anchorScroll', angular.noop);
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
@@ -137,6 +137,12 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 		controller: 'profitLossCtrl',
 	}
 
+	var noPermission = {
+		name: 'noPermission',
+		url: '/no-permission',
+		templateUrl: 'js/templates/profitLoss/noPermission.html',
+	}
+
 
 	$stateProvider.state(warehousePurchase);
 	$stateProvider.state(editWarehousePurchase);
@@ -156,6 +162,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider.state(marketing);
 	$stateProvider.state(productDetailsUpdate);
 	$stateProvider.state(profitLoss);
+	$stateProvider.state(noPermission);
 
 
 	$urlRouterProvider.otherwise('/');
@@ -164,14 +171,62 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 myApp.run(function ($rootScope, $state) {
 	$rootScope.role = localStorage.getItem("role");
 	$rootScope.loggedInUser = JSON.parse(localStorage.getItem("user"));
-
+	$rootScope.warehouseDashboardPermission = false;
+	$rootScope.superDashboardPermission = false;
 	$rootScope.logout = function () {
 		localStorage.clear();
 		window.location.href = "login.html";
 	}
 
+	$rootScope.checkPermissions = function () {
+		if ($rootScope.role.indexOf('supplier_info_dashboard') != -1 || $rootScope.role.indexOf('buyer_info_dashboard') != -1 || $rootScope.role.indexOf('purchase_summary_dashboard') != -1 || $rootScope.role.indexOf('sale_summary_dashboard') != -1) {
+			$rootScope.superDashboardPermission = true;
+			$state.go('superDashboard');
+			if ($rootScope.role.indexOf('supplier_view') != -1 || $rootScope.role.indexOf('buyer_view') != -1 || $rootScope.role.indexOf('color_view') != -1 || $rootScope.role.indexOf('size_view') != -1 ||
+				$rootScope.role.indexOf('category_view') != -1 || $rootScope.role.indexOf('warehouse_purchase_view') != -1 || $rootScope.role.indexOf('warehouse_sale_view') != -1) {
+				$rootScope.warehouseDashboardPermission = true;
+			}
+		}
+		else if ($rootScope.role.indexOf('supplier_view') != -1 || $rootScope.role.indexOf('buyer_view') != -1 || $rootScope.role.indexOf('color_view') != -1 || $rootScope.role.indexOf('size_view') != -1 ||
+			$rootScope.role.indexOf('category_view') != -1 || $rootScope.role.indexOf('warehouse_purchase_view') != -1 || $rootScope.role.indexOf('warehouse_sale_view') != -1) {
+			$rootScope.warehouseDashboardPermission = true;
+			$state.go('warehouseDashboard');
+		}
+		else if ($rootScope.role.indexOf('marketing_view') != -1) {
+			$state.go('marketing');
+		}
+		else if ($rootScope.role.indexOf('accounts_purchase_view') != -1) {
+			$state.go('accountsIncompletePurchase');
+		}
+		else if ($rootScope.role.indexOf('accounts_sale_view') != -1) {
+			$state.go('accountsIncompleteSales');
+		}
+		else if ($rootScope.role.indexOf('add_ledger') != -1) {
+			$state.go('addLedger');
+		}
+		else if ($rootScope.role.indexOf('add_member') != -1) {
+			$state.go('addMember');
+		}
+		else if ($rootScope.role.indexOf('journal') != -1) {
+			$state.go('dateWiseJournal');
+		}
+		else if ($rootScope.role.indexOf('ledger') != -1) {
+			$state.go('dateWiseLedger');
+		}
+		else if ($rootScope.role.indexOf('stock') != -1) {
+			$state.go('superAdminStock');
+		}
+		else if ($rootScope.role.indexOf('profit_loss') != -1) {
+			$state.go('profit_loss');
+		}
+		else {
+			$rootScope.title = "No permission"
+			$state.go('noPermission');
+		}
+	}
+
 	if ($state.current.abstract) {
-		$state.go('superDashboard');
+		$rootScope.checkPermissions();
 	}
 });
 
@@ -250,23 +305,23 @@ myApp.directive('stringToNumber', function () {
 });
 
 myApp.directive('myTable', function () {
-    return {
-        restrict: 'E, A, C',
-        link: function (scope, element, attrs, controller) {
-            var dataTable = element.dataTable(scope.options);
+	return {
+		restrict: 'E, A, C',
+		link: function (scope, element, attrs, controller) {
+			var dataTable = element.dataTable(scope.options);
 
-            scope.$watch('options.aaData', handleModelUpdates, true);
+			scope.$watch('options.aaData', handleModelUpdates, true);
 
-            function handleModelUpdates(newData) {
-                var data = newData || null;
-                if (data) {
-                    dataTable.fnClearTable();
-                    dataTable.fnAddData(data);
-                }
-            }
-        },
-        scope: {
-            options: "="
-        }
-    };
+			function handleModelUpdates(newData) {
+				var data = newData || null;
+				if (data) {
+					dataTable.fnClearTable();
+					dataTable.fnAddData(data);
+				}
+			}
+		},
+		scope: {
+			options: "="
+		}
+	};
 });

@@ -32,11 +32,11 @@
                         <div class="tab-content">
                             <div id="tab-1" class="tab-pane active">
                                 <div class="panel-body" style="border: none;">
+                                    <button class="btn btn-primary" style="float: right" ng-click="printDiv('incompleteSale')">Print</button>
 
                                     <div class="ibox-content" style="border: none;">
-
-                                        <div class="table-responsive">
-                                            <p ng-hide="incompleteSales.length>0">No incomplete sales.</p>
+                                        <div class="table-responsive" id="incompleteSale">
+                                            <p ng-if="incompleteSales.length==0">No incomplete sales.</p>
                                             <table class="footable table table-stripped toggle-arrow-tiny" ng-show="incompleteSales.length>0">
                                                 <thead>
                                                     <tr class="gtable p-th">
@@ -121,106 +121,116 @@
                     <div class="tab-content">
                         <div id="tabExtended" class="tab-pane active">
                             <div class="panel-body">
-                                <p ng-hide="extendedSales.length>0">No extended sales.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedSales.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Buyer Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="sale in extendedSales">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{sale.created_at}}</td>
-                                            <td>{{sale.buyer.company}}</td>
-                                            <td>{{sale.reference}}</td>
-                                            <td>
-                                                <a href="">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
-                                                        style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
-                                                        style="margin-right: 10px;"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('extendedSale')">Print</button>
+                                <div class="row" id="extendedSale">
+                                    <p ng-if="extendedSales.length==0">No extended sales.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedSales.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Buyer Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="sale in extendedSales">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{sale.created_at}}</td>
+                                                <td>{{sale.buyer.company}}</td>
+                                                <td>{{sale.reference}}</td>
+                                                <td>
+                                                    <a href="">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                            style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
+                                                            style="margin-right: 10px;"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div id="tabDue" class="tab-pane">
                             <div class="panel-body">
-                                <p ng-hide="dueSales.length>0">No due sales.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="dueSales.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Buyer Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="sale in dueSales">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{sale.created_at}}</td>
-                                            <td>{{sale.buyer.company}}</td>
-                                            <td>{{sale.reference}}</td>
-                                            <td>
-                                                <a href="">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
-                                                        style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
-                                                        style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="">
-                                                    <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" ng-click="addPaymentInfo(sale)" title="Add new payment information"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('dueSale')">Print</button>
+                                <div class="row" id="dueSale">
+                                    <p ng-if="dueSales.length==0">No due sales.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="dueSales.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Buyer Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="sale in dueSales">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{sale.created_at}}</td>
+                                                <td>{{sale.buyer.company}}</td>
+                                                <td>{{sale.reference}}</td>
+                                                <td>
+                                                    <a href="">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                            style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"
+                                                            style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="">
+                                                        <i class="fa fa-plus" data-toggle="tooltip" data-placement="top" ng-click="addPaymentInfo(sale)" title="Add new payment information"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div id="tabPaid" class="tab-pane">
                             <div class="panel-body">
-                                <p ng-hide="paidSales.length>0">No paid sales.</p>
-                                <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidSales.length>0">
-                                    <thead>
-                                        <tr class="gtable p-th">
-                                            <th>S/N</th>
-                                            <th>Date</th>
-                                            <th>Buyer Name</th>
-                                            <th>Reference</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="gtable p-td" ng-repeat="sale in paidSales">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{sale.created_at}}</td>
-                                            <td>{{sale.buyer.company}}</td>
-                                            <td>{{sale.reference}}</td>
-                                            <td>
-                                                <a href="">
-                                                    <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
-                                                        style="margin-right: 10px;"></i>
-                                                </a>
-                                                <a href="">
-                                                    <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <button class="btn btn-primary" style="float: right" ng-click="printDiv('paidSale')">Print</button>
+                                <div class="row" id="paidSale">
+                                    <p ng-if="paidSales.length==0">No paid sales.</p>
+                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidSales.length>0">
+                                        <thead>
+                                            <tr class="gtable p-th">
+                                                <th>S/N</th>
+                                                <th>Date</th>
+                                                <th>Buyer Name</th>
+                                                <th>Reference</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gtable p-td" ng-repeat="sale in paidSales">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{sale.created_at}}</td>
+                                                <td>{{sale.buyer.company}}</td>
+                                                <td>{{sale.reference}}</td>
+                                                <td>
+                                                    <a href="">
+                                                        <i class="fa fa-eye" data-toggle="tooltip" data-placement="top" ng-click="showIncompleteSaleInfo(sale)" title="View Sales Details"
+                                                            style="margin-right: 10px;"></i>
+                                                    </a>
+                                                    <a href="">
+                                                        <i class="fa fa-edit" data-toggle="tooltip" data-placement="top" ng-click="editAccountsInfo(sale)" title="Complete accounts information"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
 

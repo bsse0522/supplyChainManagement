@@ -6,7 +6,11 @@
         <div class="ibox-content">
             <div class="row">
                 <div class="panel-body" style="border: none;">
-                    <div class="ibox-content" style="border: none;">
+                    <div class="col-md-12">
+                        <button style="float: right;" id="button" class="btn btn-primary" ng-click="printDiv('report')">Print</button>
+                    </div>
+                    <div class="ibox-content" style="border: none;" id="report">
+
                         <div class="table-responsive">
                             <table st-table="displayedProducts" st-safe-src="products" class="table table-striped">
                                 <thead>

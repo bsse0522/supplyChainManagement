@@ -30,10 +30,13 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="panel-body" style="border: none;">
+                            <div class="col-md-12">
+                                <button style="float: right;" id="button" class="btn btn-primary" ng-click="printDiv('purchase')">Print</button>
+                            </div>
                             <div class="ibox-content" style="border: none;">
 
-                                <div class="table-responsive">
-                                    <p ng-hide="purchases.length>0">No purchase available.</p>
+                                <div class="table-responsive" id="purchase">
+                                    <p ng-if="purchases.length==0">No purchase available.</p>
                                     <table class="footable table table-stripped toggle-arrow-tiny" ng-show="purchases.length>0">
                                         <thead>
                                             <tr class="gtable p-th">
@@ -52,8 +55,8 @@
                                                 <td>{{purchase.supplier.company}}</td>
                                                 <td>{{purchase.reference}}</td>
                                                 <td>
-                                                    <span ng-show="purchase.status=='0'" style="color:red">Incomplete</span>
-                                                    <span ng-hide="purchase.status=='0'" style="color:green">Complete</span>
+                                                    <span ng-if="purchase.status=='0'" style="color:red">Incomplete</span>
+                                                    <span ng-if="purchase.status!='0'" style="color:green">Complete</span>
                                                 </td>
                                                 <td>
                                                     <a href="" ng-click="showPurchaseInfo(purchase)">
@@ -110,9 +113,12 @@
                 <div class="ibox-content">
                     <div class="row">
                         <div class="panel-body" style="border: none;">
+                            <div class="col-md-12">
+                                <button style="float: right;" id="button" class="btn btn-primary" ng-click="printDiv('sale')">Print</button>
+                            </div>
                             <div class="ibox-content" style="border: none;">
 
-                                <div class="table-responsive">
+                                <div class="table-responsive" id="sale">
                                     <p ng-hide="sales.length>0">No sales available.</p>
                                     <table class="footable table table-stripped toggle-arrow-tiny" ng-show="sales.length>0">
                                         <thead>
@@ -132,8 +138,8 @@
                                                 <td>{{sale.buyer.company}}</td>
                                                 <td>{{sale.reference}}</td>
                                                 <td>
-                                                    <span ng-show="sale.status=='0'" style="color:red">Incomplete</span>
-                                                    <span ng-hide="sale.status=='0'" style="color:green">Complete</span>
+                                                    <span ng-if="sale.status=='0'" style="color:red">Incomplete</span>
+                                                    <span ng-if="sale.status!='0'" style="color:green">Complete</span>
                                                 </td>
                                                 <td>
                                                     <a href="" ng-click="showSaleInfo(sale)">
@@ -161,23 +167,23 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active" ng-hide="role.indexOf('color_view')==-1">
-                        <a data-toggle="tab" href="#tab-1" >Color</a>
+                        <a data-toggle="tab" href="#tab-1">Color</a>
                     </li>
-                    <li  ng-hide="role.indexOf('size_view')==-1">
-                        <a data-toggle="tab" href="#tab-2" >Size</a>
+                    <li ng-hide="role.indexOf('size_view')==-1">
+                        <a data-toggle="tab" href="#tab-2">Size</a>
                     </li>
-                    <li  ng-hide="role.indexOf('category_view')==-1">
-                        <a data-toggle="tab" href="#tab-3" >Category</a>
+                    <li ng-hide="role.indexOf('category_view')==-1">
+                        <a data-toggle="tab" href="#tab-3">Category</a>
                     </li>
                     <li class="" ng-hide="role.indexOf('category_view')==-1">
-                        <a data-toggle="tab" href="#tab-4" >Subcategory</a>
+                        <a data-toggle="tab" href="#tab-4">Subcategory</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-1" class="tab-pane active">
-                        <div class="panel-body">
-                            <p ng-hide="colors.length>0">No colors available.</p>
-                            <table class="table" style="margin-bottom: 10px;" ng-show="colors.length>0">
+                        <div class="panel-body" id="color">
+                            <p ng-if="colors.length==0">No colors available.</p>
+                            <table class="table"  style="margin-bottom: 10px;" ng-show="colors.length>0">
                                 <thead>
                                     <tr class="p-th">
                                         <th>S/L</th>
@@ -191,15 +197,15 @@
                                         <td>{{color.name}}</td>
                                         <td ng-style="{'background-color': color.hex}"></td>
                                     </tr>
-
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary btn-xs ware-db" ng-hide="role.indexOf('color_modification')==-1" ng-click="addNewColor()">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('color')">Print</button>
                         </div>
                     </div>
                     <div id="tab-2" class="tab-pane">
-                        <div class="panel-body">
-                            <p ng-hide="sizes.length>0">No sizes available.</p>
+                        <div class="panel-body" id="size">
+                            <p ng-if="sizes.length==0">No sizes available.</p>
                             <table class="table" style="margin-bottom: 10px;" ng-show="sizes.length>0">
                                 <thead>
                                     <tr class="p-th">
@@ -216,11 +222,12 @@
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary btn-xs pull-right" ng-hide="role.indexOf('size_modification')==-1" ng-click="addNewSize()">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('size')">Print</button>
                         </div>
                     </div>
                     <div id="tab-3" class="tab-pane">
-                        <div class="panel-body">
-                            <p ng-hide="categories.length>0">No categories available.</p>
+                        <div class="panel-body" id="category">
+                            <p ng-if="categories.length==0">No categories available.</p>
                             <table class="table" style="margin-bottom: 10px;" ng-show="categories.length>0">
                                 <thead>
                                     <tr class="p-th">
@@ -236,11 +243,12 @@
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary btn-xs ware-db" ng-click="addNewCategory()" ng-hide="role.indexOf('category_modification')==-1">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('category')">Print</button>
                         </div>
                     </div>
                     <div id="tab-4" class="tab-pane">
-                        <div class="panel-body">
-                            <p ng-hide="categories.length>0">No subcategories available.</p>
+                        <div class="panel-body" id="sub_category">
+                            <p ng-if="categories.length==0">No subcategories available.</p>
                             <table class="table" style="margin-bottom: 10px;" ng-show="categories.length>0">
                                 <thead>
                                     <tr class="p-th">
@@ -258,6 +266,7 @@
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary btn-xs ware-db" ng-click="addNewSubcategory()" ng-hide="role.indexOf('category_modification')==-1">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('sub_category')">Print</button>
                         </div>
                     </div>
                 </div>
@@ -266,17 +275,17 @@
         <div class="col-lg-6">
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
-                    <li class="active"  ng-show="role.indexOf('supplier_view')!=-1">
+                    <li class="active" ng-show="role.indexOf('supplier_view')!=-1">
                         <a data-toggle="tab" href="#tab-5">Suppliers</a>
                     </li>
-                    <li  ng-show="role.indexOf('buyer_view')!=-1">
+                    <li ng-show="role.indexOf('buyer_view')!=-1">
                         <a data-toggle="tab" href="#tab-6">Buyer</a>
                     </li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-5" class="tab-pane active" ng-show="role.indexOf('supplier_view')!=-1">
-                        <div class="panel-body">
-                            <p ng-hide="suppliers.length>0">No suppliers available.</p>
+                        <div class="panel-body" id="supplier">
+                            <p ng-if="suppliers.length==0">No suppliers available.</p>
                             <table class="table" style="margin-bottom: 10px;" ng-show="suppliers.length>0">
                                 <thead>
                                     <tr class="p-th">
@@ -293,27 +302,29 @@
                                 </tbody>
                             </table>
                             <button type="button" class="btn btn-primary btn-xs ware-db" ng-click="addNewSupplier()" ng-show="role.indexOf('supplier_modification')!=-1">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('supplier')">Print</button>
                         </div>
                     </div>
                     <div id="tab-6" class="tab-pane" ng-show="role.indexOf('buyer_view')!=-1">
-                        <div class="panel-body">
-                                <p ng-hide="buyers.length>0">No buyers available.</p>
-                                <table class="table" style="margin-bottom: 10px;" ng-show="buyers.length>0">
-                                    <thead>
-                                        <tr class="p-th">
-                                            <th>S/L</th>
-                                            <th>Name</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="p-td" ng-repeat="supplier in buyers">
-                                            <td>{{$index+1}}</td>
-                                            <td>{{supplier.company}}</td>
-                                        </tr>
-    
-                                    </tbody>
-                                </table>
+                        <div class="panel-body" id="buyer">
+                            <p ng-if="buyers.length==0">No buyers available.</p>
+                            <table class="table" style="margin-bottom: 10px;" ng-show="buyers.length>0">
+                                <thead>
+                                    <tr class="p-th">
+                                        <th>S/L</th>
+                                        <th>Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="p-td" ng-repeat="supplier in buyers">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{supplier.company}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
                             <button type="button" class="btn btn-primary btn-xs ware-db" ng-show="role.indexOf('buyer_modification')!=-1" ng-click="">Add New</button>
+                            <button type="button" class="btn btn-primary btn-xs ware-db" style="margin-right: 10px" ng-click="printDiv('buyer')">Print</button>
                         </div>
                     </div>
                 </div>
