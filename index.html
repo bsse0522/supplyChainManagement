@@ -1,6 +1,7 @@
 <script>
     var token = localStorage.getItem("token");
-    if(token){
+    var role = localStorage.getItem("role");
+    if(token && role){
         location.href='home.html';
     }
     else {

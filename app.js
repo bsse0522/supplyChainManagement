@@ -169,14 +169,17 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 myApp.run(function ($rootScope, $state) {
-	$rootScope.role = localStorage.getItem("role");
-	$rootScope.loggedInUser = JSON.parse(localStorage.getItem("user"));
-	$rootScope.warehouseDashboardPermission = false;
-	$rootScope.superDashboardPermission = false;
 	$rootScope.logout = function () {
 		localStorage.clear();
 		window.location.href = "login.html";
 	}
+	$rootScope.role = localStorage.getItem("role");
+	if(!$rootScope.role){
+		$rootScope.logout();
+	}
+	$rootScope.loggedInUser = JSON.parse(localStorage.getItem("user"));
+	$rootScope.warehouseDashboardPermission = false;
+	$rootScope.superDashboardPermission = false;
 
 	$rootScope.checkPermissions = function () {
 		if ($rootScope.role.indexOf('supplier_info_dashboard') != -1 || $rootScope.role.indexOf('buyer_info_dashboard') != -1 || $rootScope.role.indexOf('purchase_summary_dashboard') != -1 || $rootScope.role.indexOf('sale_summary_dashboard') != -1) {

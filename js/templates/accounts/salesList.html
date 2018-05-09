@@ -37,7 +37,7 @@
                                     <div class="ibox-content" style="border: none;">
                                         <div class="table-responsive" id="incompleteSale">
                                             <p ng-if="incompleteSales.length==0">No incomplete sales.</p>
-                                            <table class="footable table table-stripped toggle-arrow-tiny" ng-show="incompleteSales.length>0">
+                                            <table st-table="displayedSales" st-safe-src="incompleteSales" class="footable table table-stripped toggle-arrow-tiny" ng-show="incompleteSales.length>0">
                                                 <thead>
                                                     <tr class="gtable p-th">
                                                         <th>S/N</th>
@@ -46,9 +46,14 @@
                                                         <th>Reference</th>
                                                         <th>Action</th>
                                                     </tr>
+                                                    <tr>
+                                                        <th colspan="5">
+                                                            <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                                        </th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr class="gtable p-td" ng-repeat="sale in incompleteSales">
+                                                    <tr class="gtable p-td" ng-repeat="sale in displayedSales">
                                                         <td>{{$index+1}}</td>
                                                         <td>{{sale.created_at}}</td>
                                                         <td>{{sale.buyer.company}}</td>
@@ -64,6 +69,13 @@
                                                         </td>
                                                     </tr>
                                                 </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">
+                                                            <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                                        </td>
+                                                    </tr>
+                                                </tfoot>
                                             </table>
                                         </div>
 
@@ -124,7 +136,7 @@
                                 <button class="btn btn-primary" style="float: right" ng-click="printDiv('extendedSale')">Print</button>
                                 <div class="row" id="extendedSale">
                                     <p ng-if="extendedSales.length==0">No extended sales.</p>
-                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedSales.length>0">
+                                    <table st-table="displayedESales" st-safe-src="extendedSales" class="footable table table-stripped toggle-arrow-tiny" ng-show="extendedSales.length>0">
                                         <thead>
                                             <tr class="gtable p-th">
                                                 <th>S/N</th>
@@ -133,9 +145,14 @@
                                                 <th>Reference</th>
                                                 <th>Action</th>
                                             </tr>
+                                            <tr>
+                                                <th colspan="5">
+                                                    <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gtable p-td" ng-repeat="sale in extendedSales">
+                                            <tr class="gtable p-td" ng-repeat="sale in displayedESales">
                                                 <td>{{$index+1}}</td>
                                                 <td>{{sale.created_at}}</td>
                                                 <td>{{sale.buyer.company}}</td>
@@ -152,6 +169,13 @@
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -161,7 +185,7 @@
                                 <button class="btn btn-primary" style="float: right" ng-click="printDiv('dueSale')">Print</button>
                                 <div class="row" id="dueSale">
                                     <p ng-if="dueSales.length==0">No due sales.</p>
-                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="dueSales.length>0">
+                                    <table st-table="displayedDSales" st-safe-src="dueSales" class="footable table table-stripped toggle-arrow-tiny" ng-show="dueSales.length>0">
                                         <thead>
                                             <tr class="gtable p-th">
                                                 <th>S/N</th>
@@ -170,9 +194,14 @@
                                                 <th>Reference</th>
                                                 <th>Action</th>
                                             </tr>
+                                            <tr>
+                                                <th colspan="5">
+                                                    <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gtable p-td" ng-repeat="sale in dueSales">
+                                            <tr class="gtable p-td" ng-repeat="sale in displayedDSales">
                                                 <td>{{$index+1}}</td>
                                                 <td>{{sale.created_at}}</td>
                                                 <td>{{sale.buyer.company}}</td>
@@ -192,6 +221,13 @@
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -201,7 +237,7 @@
                                 <button class="btn btn-primary" style="float: right" ng-click="printDiv('paidSale')">Print</button>
                                 <div class="row" id="paidSale">
                                     <p ng-if="paidSales.length==0">No paid sales.</p>
-                                    <table class="footable table table-stripped toggle-arrow-tiny" ng-show="paidSales.length>0">
+                                    <table st-table="displayedPSales" st-safe-src="paidSales" class="footable table table-stripped toggle-arrow-tiny" ng-show="paidSales.length>0">
                                         <thead>
                                             <tr class="gtable p-th">
                                                 <th>S/N</th>
@@ -210,9 +246,14 @@
                                                 <th>Reference</th>
                                                 <th>Action</th>
                                             </tr>
+                                            <tr>
+                                                <th colspan="5">
+                                                    <input st-search placeholder="search" class="input-sm form-control" type="search" />
+                                                </th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="gtable p-td" ng-repeat="sale in paidSales">
+                                            <tr class="gtable p-td" ng-repeat="sale in displayedPSales">
                                                 <td>{{$index+1}}</td>
                                                 <td>{{sale.created_at}}</td>
                                                 <td>{{sale.buyer.company}}</td>
@@ -228,6 +269,13 @@
                                                 </td>
                                             </tr>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5" class="text-center">
+                                                    <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
 

@@ -107,6 +107,16 @@ myApp.controller('warehouseDashboardCtrl', function ($scope, baseSvc, $uibModal,
 			});
 	}
 	$scope.getSuppliers();
+
+	$scope.getBuyers = function(){
+		baseSvc.get("buyers")
+			.then(function(response){
+				//console.log(response);
+				$scope.buyers = response;
+				
+			});
+	}
+	$scope.getBuyers();
 	
 	$scope.getCategories = function(){
 		baseSvc.get("categories")
